@@ -1,0 +1,283 @@
+---
+import { siteConfig } from "../config/site";
+import { services } from "../config/services";
+---
+
+<header>
+  <div class="topbar">
+    <a class="logo-link" href="/" aria-label={`${siteConfig.companyName} - strona główna`}>
+      <img src="/alniko.webp" alt="Logo firmy ALNIKO" width="190" height="62" />
+    </a>
+
+    <a class="social-link" href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Profil firmy na Facebooku">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M22 12.061C22 6.504 17.523 2 12 2S2 6.504 2 12.061c0 5.023 3.657 9.186 8.438 9.939v-7.03H7.898v-2.909h2.54V9.845c0-2.52 1.492-3.913 3.777-3.913 1.094 0 2.238.197 2.238.197v2.475h-1.261c-1.244 0-1.631.776-1.631 1.572v1.885h2.773l-.443 2.909h-2.33V22c4.78-.753 8.439-4.916 8.439-9.939z"
+        />
+      </svg>
+    </a>
+  </div>
+
+  <nav class="main-nav" aria-label="Menu główne">
+    <ul>
+      <li><a href="/o-nas">O nas</a></li>
+
+      {
+        services.map((service) => (
+          <li class="service-item">
+            <a href={service.path} style={`--service-color: ${service.color};`}>
+              {service.shortName}
+              <svg class="chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <ul class="submenu">
+              {service.menuItems.map((item) => (
+                <li>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+
+      <li><a href="/kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const topbar = document.querySelector<HTMLElement>('.topbar');
+  if (topbar) {
+    topbar.classList.add('topbar-hidden');
+
+    function updateTopbar() {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      if (scrollY > 150) {
+        topbar.classList.remove('topbar-hidden');
+      } else {
+        topbar.classList.add('topbar-hidden');
+      }
+    }
+
+    updateTopbar();
+    window.addEventListener('scroll', updateTopbar, { passive: true });
+  }
+</script>
+
+<style is:global>
+  header {
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar {
+    max-height: 80px;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .topbar.topbar-hidden {
+    max-height: 0;
+    opacity: 0;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+</style>
+
+<style>
+  .topbar {
+    align-items: center;
+    background: var(--color-white);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+  }
+
+  .logo-link {
+    align-items: center;
+    display: inline-flex;
+  }
+
+  .logo-link img {
+    display: block;
+    height: auto;
+    max-width: min(190px, 42vw);
+  }
+
+  .social-link {
+    align-items: center;
+    color: var(--color-bg-dark);
+    display: inline-flex;
+    justify-content: center;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .social-link:hover {
+    color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .social-link svg {
+    fill: currentColor;
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .main-nav {
+    background: var(--color-bg-dark);
+    position: relative;
+    z-index: 10;
+  }
+
+  .main-nav ul {
+    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-nav > ul > li {
+    display: flex;
+    position: relative;
+  }
+
+  .main-nav a {
+    align-items: center;
+    color: var(--color-white);
+    display: inline-flex;
+    font-family: var(--font-title);
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    padding: 0.45rem 0.75rem;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .main-nav > ul > li:not(.service-item) > a:hover {
+    color: var(--color-accent);
+  }
+
+  .service-item > a {
+    color: var(--color-white);
+    gap: 0.3rem;
+    position: relative;
+    z-index: 1;
+    transition: filter 0.2s ease;
+  }
+
+  .service-item > a::before {
+    background: var(--service-color);
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: skewX(-8deg);
+    transition: filter 0.2s ease, transform 0.2s ease;
+    z-index: -1;
+  }
+
+  .service-item:hover > a::before {
+    filter: brightness(1.15);
+    transform: skewX(-8deg) scaleY(1.08);
+  }
+
+  .chevron {
+    height: 0.45rem;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 0.45rem;
+  }
+
+  .service-item:hover .chevron {
+    transform: rotate(180deg);
+  }
+
+  .submenu {
+    background: var(--color-white);
+    border-radius: 0.35rem;
+    box-shadow: 0 14px 36px rgb(0 0 0 / 0.28);
+    left: 0;
+    min-width: 220px;
+    opacity: 0;
+    padding: 0.4rem;
+    padding-top: calc(0.4rem + 0.5rem);
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    transform: translateY(-6px) scale(0.96);
+    transition:
+      opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    visibility: hidden;
+  }
+
+  .submenu::before {
+    content: "";
+    height: 0.5rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .service-item:hover .submenu,
+  .service-item:focus-within .submenu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+  }
+
+  .submenu li {
+    width: 100%;
+  }
+
+  .submenu a {
+    border-radius: 0.2rem;
+    color: var(--color-bg-dark);
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: normal;
+    padding: 0.5rem 0.75rem;
+    text-transform: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .submenu a:hover {
+    background: color-mix(in srgb, var(--color-accent), transparent 88%);
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 930px) {
+    .main-nav ul {
+      justify-content: flex-start;
+    }
+
+    .submenu {
+      position: static;
+      margin: 0.2rem 0 0.35rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-4px);
+      visibility: hidden;
+    }
+
+    .service-item:hover .submenu,
+    .service-item:focus-within .submenu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      visibility: visible;
+    }
+  }
+</style>

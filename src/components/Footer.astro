@@ -1,0 +1,84 @@
+---
+import { siteConfig } from "../config/site";
+import { services } from "../config/services";
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <a class="footer-logo" href="/" aria-label={`${siteConfig.companyName} - strona główna`}>
+      <img src="/alniko.webp" alt="Logo ALNIKO" width="190" height="62" />
+      <p>Skład opału | Skup złomu | Węże hydrauliczne | Katalizatory</p>
+    </a>
+
+    <nav aria-label="Menu stopki">
+      <ul>
+        <li><a href="/o-nas">O nas</a></li>
+        {services.map((service) => <li><a href={service.path}>{service.shortName}</a></li>)}
+        <li><a href="/kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: color-mix(in srgb, var(--color-bg-dark), black 15%);
+    border-top: 2px solid color-mix(in srgb, var(--color-accent), transparent 40%);
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+  }
+
+  .footer-inner {
+    align-items: center;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    max-width: 1100px;
+  }
+
+  .footer-logo {
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+  .footer-logo img {
+    display: block;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-logo p {
+    margin: 0;
+  }
+
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.2rem;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a {
+    color: var(--color-white);
+    font-family: var(--font-title);
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 820px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+
+    nav ul {
+      justify-content: flex-start;
+    }
+  }
+</style>

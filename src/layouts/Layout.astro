@@ -1,0 +1,92 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { colors } from "../config/theme";
+import { siteConfig } from "../config/site";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={`${siteConfig.siteUrl}${Astro.url.pathname}`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content={siteConfig.companyName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`${siteConfig.siteUrl}${Astro.url.pathname}`} />
+    <meta property="og:image" content={`${siteConfig.siteUrl}/head.webp`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+    <style set:html={`
+      :root {
+        --color-bg-dark: ${colors.backgroundDark};
+        --color-white: ${colors.white};
+        --color-accent: ${colors.accent};
+        --color-service-fuel: ${colors.services.fuel};
+        --color-service-scrap: ${colors.services.scrap};
+        --color-service-hoses: ${colors.services.hoses};
+        --color-service-catalysts: ${colors.services.catalysts};
+        --font-title: "Orbitron", "Arial Narrow", Arial, sans-serif;
+        --font-body: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+      }
+    `} />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    min-height: 100%;
+    padding: 0;
+  }
+
+  body {
+    background: var(--color-bg-dark);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-title);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .section-title::first-letter {
+    color: var(--color-accent);
+  }
+
+  p {
+    max-width: 70ch;
+  }
+</style>

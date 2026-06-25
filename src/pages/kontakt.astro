@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { locations, siteConfig } from "../config/site";
+---
+
+<Layout title="Kontakt - ALNIKO" description="Dane kontaktowe i lokalizacje punktów ALNIKO.">
+  <main class="simple-page">
+    <h1 class="section-title">Kontakt</h1>
+    <p>
+      Skontaktuj się z nami telefonicznie lub odwiedź wybraną lokalizację. Aktualności publikujemy również na
+      <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer">Facebooku</a>.
+    </p>
+
+    <div class="location-grid">
+      {
+        locations.map((location) => (
+          <article class="location-card">
+            <h2>{location.title}</h2>
+            <p>{location.address}</p>
+            <p>
+              Tel: <a href={location.phoneHref}>{location.phoneLabel}</a>
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .simple-page {
+    margin: 1.8rem auto 2.6rem;
+    max-width: 1100px;
+    padding: 0 1rem;
+  }
+
+  .simple-page > p a,
+  .location-card a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .location-grid {
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 1.2rem;
+  }
+
+  .location-card {
+    border: 1px solid color-mix(in srgb, var(--color-white), transparent 70%);
+    border-radius: 0.4rem;
+    padding: 1rem;
+  }
+
+  .location-card h2 {
+    font-size: 1.05rem;
+    margin-top: 0;
+  }
+</style>

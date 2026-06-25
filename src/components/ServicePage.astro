@@ -1,0 +1,126 @@
+---
+import { locations } from "../config/site";
+import type { ServiceDefinition } from "../config/services";
+
+interface Props {
+  service: ServiceDefinition;
+  offerTitle: string;
+  offerPoints: string[];
+  wholesalePoints?: string[];
+}
+
+const { service, offerTitle, offerPoints, wholesalePoints = [] } = Astro.props;
+const serviceLocations = locations.filter((location) => location.services.includes(service.slug));
+---
+
+<main class="service-main">
+  <section class="service-hero" style={`--service-color: ${service.color};`}>
+    <div class="service-hero-inner">
+      <h1 class="section-title">{service.name}</h1>
+      <p>
+        Oferta firmy ALNIKO w zakresie usługi: <strong>{service.name}</strong>. Działamy lokalnie i zapewniamy
+        szybką obsługę dla klientów indywidualnych oraz biznesowych.
+      </p>
+    </div>
+  </section>
+
+  <section id="lokalizacje" class="content-section">
+    <h2 class="section-title">Lokalizacje</h2>
+    <div class="location-grid">
+      {
+        serviceLocations.map((location) => (
+          <article class="location-card">
+            <h3>{location.title}</h3>
+            <p>{location.address}</p>
+            <p>
+              Kontakt: <a href={location.phoneHref}>{location.phoneLabel}</a>
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="godziny-otwarcia" class="content-section">
+    <h2 class="section-title">Godziny otwarcia</h2>
+    <p>
+      Godziny pracy różnią się między punktami. Aktualne informacje potwierdzisz telefonicznie pod numerami podanymi
+      w sekcji lokalizacji.
+    </p>
+  </section>
+
+  <section id="oferta" class="content-section">
+    <h2 class="section-title">{offerTitle}</h2>
+    <ul class="offer-list">
+      {offerPoints.map((point) => <li>{point}</li>)}
+    </ul>
+  </section>
+
+  {
+    wholesalePoints.length > 0 && (
+      <section id="oferta-hurtowa" class="content-section">
+        <h2 class="section-title">Oferta hurtowa</h2>
+        <ul class="offer-list">
+          {wholesalePoints.map((point) => (
+            <li>{point}</li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</main>
+
+<style>
+  .service-main {
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 0 1rem;
+  }
+
+  .service-hero {
+    background: linear-gradient(130deg, var(--service-color), color-mix(in srgb, var(--service-color), black 30%));
+    border-radius: 0.4rem;
+    margin-top: 1.2rem;
+    padding: 2rem 1.4rem;
+  }
+
+  .service-hero-inner {
+    max-width: 720px;
+  }
+
+  .service-hero p {
+    margin-bottom: 0;
+  }
+
+  .content-section {
+    margin-top: 2rem;
+  }
+
+  .location-grid {
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .location-card {
+    border: 1px solid color-mix(in srgb, var(--color-white), transparent 70%);
+    border-radius: 0.4rem;
+    padding: 1rem;
+  }
+
+  .location-card h3 {
+    margin-top: 0;
+  }
+
+  .location-card a {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .offer-list {
+    display: grid;
+    gap: 0.4rem;
+    padding-left: 1.1rem;
+  }
+</style>
