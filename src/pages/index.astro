@@ -10,6 +10,13 @@ const iconMap: Record<string, string> = {
   catalysts: "/icons/cat.webp",
 };
 
+const bgMap: Record<string, string> = {
+  scrap: "/fuchs.png",
+  fuel: "/fuel-bg.png",
+  hoses: "/hoses-bg.png",
+  catalysts: "/catalysts-bg.png",
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -45,10 +52,13 @@ const jsonLd = {
       <img src="/head2.webp" alt="ALNIKO - główna grafika przedstawiająca działalność firmy" width="1920" height="700" />
       <canvas class="hero-dots" aria-hidden="true"></canvas>
       <div class="hero-content">
-        <img class="hero-logo" src="/alniko.webp" alt="ALNIKO" width="280" height="90" />
+        <span class="hero-logo-wrap">
+          <span class="hero-logo-panel" />
+          <img class="hero-logo" src="/alniko.webp" alt="ALNIKO" width="280" height="90" />
+        </span>
         <div class="hero-tiles">
           {services.map((service) => (
-            <a class="hero-tile" href={service.path} style={`--tile-color: ${service.color};`}>
+            <a class="hero-tile" href={`#${service.slug}`} style={`--tile-color: ${service.color};`}>
               <span class="hero-tile-inner">
                 <span class="hero-tile-bg" />
                 <img class="hero-icon" src={iconMap[service.slug]} alt="" width="64" height="64" />
@@ -60,51 +70,61 @@ const jsonLd = {
       </div>
     </section>
 
-    <section class="container">
-      <h2 id="o-nas" class="section-title">O nas</h2>
-      <p>
-        ALNIKO to lokalna firma obsługująca klientów indywidualnych i biznesowych. Łączymy skup surowców wtórnych,
-        sprzedaż opału oraz szybkie zakuwanie węży hydraulicznych w kilku punktach na Dolnym Śląsku.
-      </p>
-    </section>
+    {services.map((service) => {
+      const serviceLocations = locations.filter(loc => loc.services.includes(service.slug));
+      const otherServices = services.filter(s => s.slug !== service.slug);
 
-    <section class="container">
-      <h2 class="section-title">Nasze działalności</h2>
-      <div class="service-grid">
-        {
-          services.map((service) => (
-            <a class="service-card" href={service.path} style={`--service-color: ${service.color};`}>
-              <h3>{service.name}</h3>
-              <span>Zobacz szczegóły</span>
-            </a>
-          ))
-        }
-      </div>
-    </section>
+      return (
+        <section id={service.slug} class="service-section has-deco" style={`--section-color: ${service.color};`}>
+          <div class="service-section-inner">
 
-    <section class="container">
-      <h2 class="section-title">Lokalizacje</h2>
-      <div class="location-grid">
-        {
-          locations.map((location) => (
-            <article class="location-card">
-              <h3>{location.title}</h3>
-              <p>{location.address}</p>
-              <p>
-                Tel: <a href={location.phoneHref}>{location.phoneLabel}</a>
-              </p>
-            </article>
-          ))
-        }
-      </div>
-    </section>
+            <div class="service-panel">
+              <span class="service-panel-bg" />
+              <img class="service-panel-icon" src={iconMap[service.slug]} alt="" width="128" height="128" />
+              <span class="service-panel-label">{service.name}</span>
+            </div>
 
-    <section class="container">
-      <h2 class="section-title">Mapa lokalizacji</h2>
-      <div class="map-placeholder">
-        <p>Miejsce na mapę z lokalizacjami firmy (sekcja przygotowana pod dalsze doprecyzowanie).</p>
-      </div>
-    </section>
+            <div class="service-content">
+              <div class="service-text">
+                <h2>{service.name}</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <p>
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+              </div>
+
+              {serviceLocations.length > 0 && (
+                <div class="service-locations">
+                  <h3>Lokalizacje</h3>
+                  {serviceLocations.map(loc => (
+                    <div class="service-location-item">
+                      <p class="location-address">{loc.address}</p>
+                      <p class="location-phone">
+                        Tel: <a href={loc.phoneHref}>{loc.phoneLabel}</a>
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <nav class="service-nav" aria-label={`Przejdź do: inne działalności`}>
+                {otherServices.map(other => (
+                  <a href={`#${other.slug}`} class="service-nav-link" style={`--nav-color: ${other.color};`}>
+                    <img src={iconMap[other.slug]} alt="" width="20" height="20" />
+                    <span>{other.heroLabel}</span>
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+          </div>
+
+          <img class="service-deco" src={bgMap[service.slug]} alt="" width="700" height="467" />
+        </section>
+      );
+    })}
   </main>
 
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -114,9 +134,6 @@ const jsonLd = {
   const canvas = document.querySelector<HTMLCanvasElement>('.hero-dots');
   if (canvas) {
     const ctx = canvas.getContext('2d')!;
-    const DOT_COLOR = '0,0,0';       // RGB kolor kropek — zmień np. na '236,127,36' (accent) lub '255,255,255' (białe)
-    const DOT_ALPHA_MIN = 0.6;       // przezroczystość bazowa (0–1)
-    const DOT_ALPHA_MAX = 0.8;      // przezroczystość przy odsunięciu (0–1)
     const GAP = 6;
     const BASE_R = 3;
     const PUSH_RADIUS = 120;
@@ -203,7 +220,6 @@ const jsonLd = {
 <style>
   .hero {
     height: 100vh;
-    margin-bottom: 2rem;
     position: relative;
   }
 
@@ -236,13 +252,42 @@ const jsonLd = {
     z-index: 1;
   }
 
+  .hero-logo-wrap {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-logo-panel {
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.95));
+    border: 1px solid rgba(236, 127, 36, 0.3);
+    display: block;
+    inset: 0;
+    position: absolute;
+    transform: skewX(-8deg);
+  }
+
   .hero-logo {
-    filter: drop-shadow(0 4px 20px rgb(0 0 0 / 0.5));
+    animation: logoPulse 3s ease-in-out infinite;
     height: auto;
-    max-width: 280px;
+    max-width: 420px;
     position: relative;
     width: 100%;
     z-index: 1;
+  }
+
+  @keyframes logoPulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 6px rgba(236, 127, 36, 0.2));
+      transform: scale(1);
+    }
+    50% {
+      filter: drop-shadow(0 0 16px rgba(236, 127, 36, 0.4));
+      transform: scale(1.02);
+    }
   }
 
   .hero-tiles {
@@ -324,12 +369,12 @@ const jsonLd = {
       gap: 1.4rem;
     }
 
-    .hero-backdrop {
-      inset: -1.2rem -1rem;
+    .hero-logo-wrap {
+      padding: 1.2rem 1.8rem;
     }
 
     .hero-logo {
-      max-width: 180px;
+      max-width: 260px;
     }
 
     .hero-tiles {
@@ -349,67 +394,219 @@ const jsonLd = {
     }
   }
 
-  .container {
-    margin: 0 auto 2.4rem;
-    max-width: 1100px;
-    padding: 0 1rem;
+  /* --- Service Sections --- */
+
+  .service-section {
+    align-items: center;
+    display: flex;
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    position: relative;
   }
 
-  .service-grid {
+  .service-section:nth-child(even) {
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .service-section-inner {
+    align-items: center;
     display: grid;
-    gap: 0.9rem;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 3rem;
+    grid-template-columns: 280px 1fr;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
   }
 
-  .service-card {
-    background: linear-gradient(140deg, var(--service-color), color-mix(in srgb, var(--service-color), black 30%));
-    border-radius: 0.4rem;
-    color: var(--color-white);
+  .service-panel {
+    align-items: center;
+    aspect-ratio: 1 / 1.15;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+  }
+
+  .service-panel-bg {
+    background: var(--section-color);
     display: block;
-    padding: 1.1rem;
-    text-decoration: none;
-    transition: transform 0.2s ease;
+    inset: 0;
+    position: absolute;
+    transform: skewX(-8deg);
   }
 
-  .service-card:hover {
-    transform: translateY(-4px);
+  .service-panel-icon {
+    height: 55%;
+    object-fit: contain;
+    position: relative;
+    width: 55%;
+    z-index: 1;
   }
 
-  .service-card h3 {
-    margin: 0;
+  .service-panel-label {
+    color: var(--color-white);
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-top: 1rem;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    z-index: 1;
   }
 
-  .service-card span {
-    display: inline-block;
-    margin-top: 0.9rem;
+  .service-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
-  .location-grid {
-    display: grid;
-    gap: 0.9rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-
-  .location-card {
-    border: 1px solid color-mix(in srgb, var(--color-white), transparent 70%);
-    border-radius: 0.4rem;
-    padding: 1rem;
-  }
-
-  .location-card h3 {
+  .service-text h2 {
+    color: var(--color-white);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
     margin-top: 0;
   }
 
-  .location-card a {
+  .service-text h2::first-letter {
+    color: var(--color-accent);
+  }
+
+  .service-text p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    margin: 0 0 0.8rem;
+  }
+
+  .service-locations {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 1.5rem;
+  }
+
+  .service-locations h3 {
+    font-size: 1rem;
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+  }
+
+  .service-location-item {
+    margin-bottom: 1rem;
+  }
+
+  .service-location-item p {
+    margin: 0;
+  }
+
+  .location-address {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+  }
+
+  .location-phone a {
     color: var(--color-accent);
     font-weight: 700;
     text-decoration: none;
   }
 
-  .map-placeholder {
-    border: 2px dashed color-mix(in srgb, var(--color-accent), transparent 20%);
-    border-radius: 0.4rem;
-    min-height: 260px;
-    padding: 1rem;
+  .location-phone a:hover {
+    text-decoration: underline;
+  }
+
+  .service-nav {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
+  }
+
+  .service-nav-link {
+    align-items: center;
+    background: var(--nav-color);
+    color: var(--color-white);
+    display: flex;
+    font-size: 0.85rem;
+    font-weight: 600;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transform: skewX(-4deg);
+    transition: filter 0.2s ease, transform 0.2s ease;
+  }
+
+  .service-nav-link:hover {
+    filter: brightness(1.25);
+    transform: skewX(-4deg) scale(1.05);
+  }
+
+  .service-nav-link img {
+    height: 20px;
+    object-fit: contain;
+    width: 20px;
+  }
+
+  /* Decorative background image (Fuchs excavator) */
+
+  .service-section.has-deco {
+    overflow: hidden;
+  }
+
+  .service-deco {
+    height: 100%;
+    left: 50%;
+    object-fit: contain;
+    opacity: 0.15;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 0;
+  }
+
+  .service-section.has-deco .service-section-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 900px) {
+    .service-section-inner {
+      gap: 2rem;
+      grid-template-columns: 200px 1fr;
+    }
+
+    .service-panel-label {
+      font-size: 0.9rem;
+    }
+
+    .service-text h2 {
+      font-size: 1.4rem;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .service-section {
+      padding: 3rem 1rem;
+    }
+
+    .service-section-inner {
+      gap: 2rem;
+      grid-template-columns: 1fr;
+    }
+
+    .service-panel {
+      margin: 0 auto;
+      max-width: 180px;
+    }
+
+    .service-nav {
+      justify-content: center;
+    }
+
+    .service-deco {
+      opacity: 0.12;
+    }
   }
 </style>
