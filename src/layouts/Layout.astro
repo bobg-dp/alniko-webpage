@@ -7,9 +7,11 @@ import { siteConfig } from "../config/site";
 interface Props {
   title: string;
   description: string;
+  hideHeader?: boolean;
+  hideFooter?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, hideHeader = false, hideFooter = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -48,9 +50,9 @@ const { title, description } = Astro.props;
     `} />
   </head>
   <body>
-    <Header />
+    {!hideHeader && <Header />}
     <slot />
-    <Footer />
+    {!hideFooter && <Footer />}
   </body>
 </html>
 
@@ -60,7 +62,14 @@ const { title, description } = Astro.props;
   }
 
   html {
+    font-size: 16px;
     scroll-behavior: smooth;
+  }
+
+  @media (min-width: 681px) {
+    html {
+      font-size: 18px;
+    }
   }
 
   html,

@@ -1,612 +1,725 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { locations, siteConfig } from "../config/site";
+import { siteConfig } from "../config/site";
 import { services } from "../config/services";
+import { Icon } from "astro-icon/components";
+import siteData from "../config/site-data.json";
 
-const iconMap: Record<string, string> = {
-  scrap: "/icons/recycle.webp",
-  fuel: "/icons/fire.webp",
-  hoses: "/icons/pipe.webp",
-  catalysts: "/icons/cat.webp",
-};
-
-const bgMap: Record<string, string> = {
-  scrap: "/fuchs.png",
-  fuel: "/fuel-bg.png",
-  hoses: "/hoses-bg.png",
-  catalysts: "/catalysts-bg.png",
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      name: siteConfig.companyName,
-      url: siteConfig.siteUrl,
-      logo: `${siteConfig.siteUrl}/alniko.webp`,
-      sameAs: [siteConfig.social.facebook],
-      description:
-        "ALNIKO: skład i sprzedaż opału, skup złomu, zakuwanie węży hydraulicznych oraz skup katalizatorów.",
-    },
-    ...locations.map((location) => ({
-      "@type": "LocalBusiness",
-      name: `${siteConfig.companyName} - ${location.title}`,
-      url: siteConfig.siteUrl,
-      telephone: location.phoneLabel,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: location.address,
-      },
-    })),
-  ],
-};
+const content = siteData.homePage;
 ---
 
 <Layout
   title="ALNIKO - skład opału, skup złomu, zakuwanie węży hydraulicznych, skup katalizatorów"
   description="ALNIKO działa w Jeleniej Górze i Ząbkowicach Śląskich: skup złomu, skład opału, zakuwanie węży hydraulicznych i skup katalizatorów."
+  hideHeader={true}
+  hideFooter={true}
 >
   <main>
-    <section class="hero" aria-label="Nagłówek strony firmy ALNIKO">
-      <img src="/head2.webp" alt="ALNIKO - główna grafika przedstawiająca działalność firmy" width="1920" height="700" />
-      <canvas class="hero-dots" aria-hidden="true"></canvas>
-      <div class="hero-content">
-        <span class="hero-logo-wrap">
-          <span class="hero-logo-panel" />
-          <img class="hero-logo" src="/alniko.webp" alt="ALNIKO" width="280" height="90" />
-        </span>
-        <div class="hero-tiles">
-          {services.map((service) => (
-            <a class="hero-tile" href={`#${service.slug}`} style={`--tile-color: ${service.color};`}>
-              <span class="hero-tile-inner">
-                <span class="hero-tile-bg" />
-                <img class="hero-icon" src={iconMap[service.slug]} alt="" width="64" height="64" />
-              </span>
-              <span class="hero-tile-label">{service.heroLabel}</span>
-            </a>
-          ))}
+    <section class="hero-accordion" aria-label="ALNIKO — działalności firmy">
+      <img class="accordion-logo" src="/alniko.webp" alt="ALNIKO" width="200" height="65" />
+
+      <div class="accordion-panel panel-intro is-active" data-panel="intro">
+        <div class="panel-inner">
+          <div class="panel-content">
+            <img class="intro-logo" src="/alniko.webp" alt="ALNIKO" width="280" height="90" />
+            <p class="panel-tagline" set:html={content.intro.tagline} />
+            <h1 class="panel-heading">{content.intro.heading}</h1>
+            <div class="panel-body">
+              {content.intro.body.map(p => <p set:html={p} />)}
+            </div>
+            <p class="intro-features-heading" set:html={content.intro.featuresHeading} />
+            <ul class="intro-features">
+              {content.intro.features.map(f => (
+                <li>
+                  <Icon name={f.icon} class="feature-icon" aria-hidden="true" />
+                  <span set:html={f.text} />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <a class="panel-contact-link intro-cta" href={content.intro.ctaHref}>
+            <span set:html={content.intro.ctaLabel} />
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <span class="panel-label" set:html="O<br>Nas" />
         </div>
       </div>
-    </section>
 
-    {services.map((service) => {
-      const serviceLocations = locations.filter(loc => loc.services.includes(service.slug));
-      const otherServices = services.filter(s => s.slug !== service.slug);
-
-      return (
-        <section id={service.slug} class="service-section has-deco" style={`--section-color: ${service.color};`}>
-          <div class="service-section-inner">
-
-            <div class="service-panel">
-              <span class="service-panel-bg" />
-              <img class="service-panel-icon" src={iconMap[service.slug]} alt="" width="128" height="128" />
-              <span class="service-panel-label">{service.name}</span>
+      {services.map((service) => (
+        <div
+          class="accordion-panel panel-service"
+          data-panel={service.slug}
+          style={`--panel-color: ${service.color};`}
+        >
+          <img class="panel-bg" src={service.panelBg} alt="" />
+          <div class="panel-overlay" />
+          <div class="panel-inner">
+            <div class="panel-content">
+              <h2 class="panel-title">{service.name}</h2>
+              <p class="panel-text" set:html={service.description} />
+              <a class="panel-link" href={service.path}>
+                <span set:html={service.ctaLabel} />
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
             </div>
-
-            <div class="service-content">
-              <div class="service-text">
-                <h2>{service.name}</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <p>
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-              </div>
-
-              {serviceLocations.length > 0 && (
-                <div class="service-locations">
-                  <h3>Lokalizacje</h3>
-                  {serviceLocations.map(loc => (
-                    <div class="service-location-item">
-                      <p class="location-address">{loc.address}</p>
-                      <p class="location-phone">
-                        Tel: <a href={loc.phoneHref}>{loc.phoneLabel}</a>
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <nav class="service-nav" aria-label={`Przejdź do: inne działalności`}>
-                {otherServices.map(other => (
-                  <a href={`#${other.slug}`} class="service-nav-link" style={`--nav-color: ${other.color};`}>
-                    <img src={iconMap[other.slug]} alt="" width="20" height="20" />
-                    <span>{other.heroLabel}</span>
-                  </a>
-                ))}
-              </nav>
-            </div>
-
+            <span class="panel-label" set:html={service.shortName.split(' ').join('<br>')} />
           </div>
-
-          <img class="service-deco" src={bgMap[service.slug]} alt="" width="700" height="467" />
-        </section>
-      );
-    })}
+        </div>
+      ))}
+    </section>
   </main>
 
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <!-- Mobile promotions FAB + overlay -->
+  <button class="promo-fab" id="promo-fab" aria-label="Aktualne promocje">
+    <Icon name="lucide:tag" class="promo-fab-icon" aria-hidden="true" />
+    <span class="promo-fab-label">Aktualne Promocje</span>
+  </button>
+
+  <div class="promo-overlay" id="promo-overlay" aria-modal="true" role="dialog" aria-label="Aktualne promocje">
+    <button class="promo-close" id="promo-close" aria-label="Zamknij">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M4 4l14 14M18 4L4 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="promo-overlay-inner">
+      <h2 class="promo-overlay-heading" set:html={content.intro.featuresHeading} />
+      <ul class="promo-overlay-list">
+        {content.intro.features.map(f => (
+          <li>
+            <Icon name={f.icon} class="promo-overlay-icon" aria-hidden="true" />
+            <span set:html={f.text} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
 </Layout>
 
 <script>
-  const canvas = document.querySelector<HTMLCanvasElement>('.hero-dots');
-  if (canvas) {
-    const ctx = canvas.getContext('2d')!;
-    const GAP = 6;
-    const BASE_R = 3;
-    const PUSH_RADIUS = 120;
-    const PUSH_STRENGTH = 8;
-    const LERP = 0.08;
+  const panels = document.querySelectorAll<HTMLDivElement>('.accordion-panel');
 
-    let mouse = { x: -9999, y: -9999 };
-    let cols = 0;
-    let rows = 0;
+  const accordion = document.querySelector<HTMLElement>('.hero-accordion');
 
-    interface Dot { bx: number; by: number; dx: number; dy: number }
-    let dots: Dot[] = [];
-
-    function resize() {
-      const rect = canvas!.getBoundingClientRect();
-      canvas!.width = rect.width * devicePixelRatio;
-      canvas!.height = rect.height * devicePixelRatio;
-      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-
-      cols = Math.ceil(rect.width / GAP) + 1;
-      rows = Math.ceil(rect.height / GAP) + 1;
-      dots = [];
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          dots.push({ bx: c * GAP, by: r * GAP, dx: 0, dy: 0 });
-        }
-      }
+  function updateAccordionState() {
+    const activePanel = document.querySelector<HTMLElement>('.accordion-panel.is-active');
+    if (accordion && activePanel) {
+      accordion.dataset.active = activePanel.dataset.panel ?? '';
     }
-
-    function draw() {
-      const w = canvas!.getBoundingClientRect().width;
-      const h = canvas!.getBoundingClientRect().height;
-      ctx.clearRect(0, 0, w, h);
-
-      for (const dot of dots) {
-        const diffX = dot.bx + dot.dx - mouse.x;
-        const diffY = dot.by + dot.dy - mouse.y;
-        const dist = Math.sqrt(diffX * diffX + diffY * diffY);
-
-        let targetDx = 0;
-        let targetDy = 0;
-
-        if (dist < PUSH_RADIUS && dist > 0) {
-          const force = (1 - dist / PUSH_RADIUS) * PUSH_STRENGTH;
-          targetDx = (diffX / dist) * force;
-          targetDy = (diffY / dist) * force;
-        }
-
-        dot.dx += (targetDx - dot.dx) * LERP;
-        dot.dy += (targetDy - dot.dy) * LERP;
-
-        const x = dot.bx + dot.dx;
-        const y = dot.by + dot.dy;
-        const displacement = Math.sqrt(dot.dx * dot.dx + dot.dy * dot.dy);
-        const alpha = 0.3 + Math.min(displacement / PUSH_STRENGTH, 1) * 0.35;
-
-        ctx.beginPath();
-        ctx.arc(x, y, BASE_R, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,0,0,${alpha})`;
-        ctx.fill();
-      }
-
-      requestAnimationFrame(draw);
-    }
-
-    const hero = canvas!.closest('.hero')!;
-    hero.addEventListener('mousemove', (e: MouseEvent) => {
-      const rect = canvas!.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    });
-
-    hero.addEventListener('mouseleave', () => {
-      mouse.x = -9999;
-      mouse.y = -9999;
-    });
-
-    resize();
-    window.addEventListener('resize', resize);
-    requestAnimationFrame(draw);
   }
+
+  panels.forEach(panel => {
+    panel.addEventListener('click', () => {
+      if (panel.classList.contains('is-active')) return;
+      panels.forEach(p => p.classList.remove('is-active'));
+      panel.classList.add('is-active');
+      updateAccordionState();
+    });
+  });
+
+  updateAccordionState();
+
+  // --- Promo FAB / overlay ---
+  const promoFab = document.getElementById('promo-fab');
+  const promoOverlay = document.getElementById('promo-overlay');
+  const promoClose = document.getElementById('promo-close');
+
+  function openPromo() {
+    promoOverlay?.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePromo() {
+    promoOverlay?.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  promoFab?.addEventListener('click', openPromo);
+  promoClose?.addEventListener('click', closePromo);
+
+  promoOverlay?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePromo();
+  });
 </script>
 
 <style>
-  .hero {
+  .hero-accordion {
+    display: flex;
     height: 100vh;
+    overflow: hidden;
     position: relative;
-  }
-
-  .hero > img {
-    display: block;
-    height: 100%;
-    object-fit: cover;
     width: 100%;
   }
 
-  .hero-content {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 2.4rem;
-    left: 50%;
+  .accordion-panel {
+    cursor: pointer;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    transition: flex 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .accordion-panel.is-active {
+    flex: 3;
+  }
+
+  .panel-intro.is-active {
+    flex: 3;
+  }
+
+  .accordion-panel::before {
+    content: '';
+    inset: 0;
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
     z-index: 2;
-  }
-
-  .hero-dots {
-    height: 100%;
-    left: 0;
+    background: linear-gradient(to right,
+      transparent 0%,
+      transparent calc(100% - 3px),
+      rgba(255, 255, 255, 0.08) calc(100% - 2px),
+      transparent 100%
+    );
     pointer-events: none;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 1;
   }
 
-  .hero-logo-wrap {
-    align-items: center;
+  /* Skew edges via clip-path */
+  .accordion-panel:not(:first-child) {
+    margin-left: -60px;
+    clip-path: polygon(60px 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .accordion-panel:not(:last-child) {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 60px) 100%, 0 100%);
+  }
+
+  .accordion-panel:not(:first-child):not(:last-child) {
+    clip-path: polygon(60px 0, 100% 0, calc(100% - 60px) 100%, 0 100%);
+  }
+
+  /* --- Intro Panel --- */
+
+  .panel-intro {
+    --panel-color: #ffffff;
+    background: #ffffff;
+    padding-left: 50px;
+  }
+
+  .panel-intro .panel-inner {
+    justify-content: space-between;
+    padding: 2rem 1.5rem 2rem;
+  }
+
+  .panel-intro .panel-content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 2rem 3rem;
-    position: relative;
-    z-index: 1;
+    margin: auto 0;
+    max-width: none;
+    opacity: 0;
+    padding: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.12s ease 0s, transform 0.12s ease 0s;
   }
 
-  .hero-logo-panel {
-    background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.95));
-    border: 1px solid rgba(236, 127, 36, 0.3);
+  .panel-intro.is-active .panel-content {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.4s ease 0.35s, transform 0.4s ease 0.35s;
+  }
+
+  .intro-logo {
     display: block;
-    inset: 0;
-    position: absolute;
-    transform: skewX(-8deg);
-  }
-
-  .hero-logo {
-    animation: logoPulse 3s ease-in-out infinite;
     height: auto;
-    max-width: 420px;
-    position: relative;
-    width: 100%;
-    z-index: 1;
-  }
-
-  @keyframes logoPulse {
-    0%, 100% {
-      filter: drop-shadow(0 0 6px rgba(236, 127, 36, 0.2));
-      transform: scale(1);
-    }
-    50% {
-      filter: drop-shadow(0 0 16px rgba(236, 127, 36, 0.4));
-      transform: scale(1.02);
-    }
-  }
-
-  .hero-tiles {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-tile {
-    align-items: center;
-    color: var(--color-white);
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    position: relative;
-    text-decoration: none;
-    width: 200px;
-  }
-
-  .hero-tile-inner {
-    align-items: center;
-    aspect-ratio: 1 / 1.15;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-    position: relative;
-    width: 100%;
-  }
-
-  .hero-tile-bg {
-    background: var(--tile-color);
-    display: block;
-    inset: 0;
-    position: absolute;
-    transform: skewX(-8deg);
-    transition: filter 0.25s ease, transform 0.25s ease;
-  }
-
-  .hero-tile:hover .hero-tile-bg {
-    filter: brightness(1.18);
-    transform: skewX(-8deg) scaleY(1.04);
-  }
-
-  .hero-icon {
-    flex-shrink: 0;
-    height: 70%;
-    object-fit: contain;
-    position: relative;
-    width: 70%;
-    z-index: 1;
-  }
-
-  .hero-tile-label {
-    font-family: var(--font-title);
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    position: relative;
-    text-align: center;
-    text-shadow: 0 2px 6px rgb(0 0 0 / 0.6);
-    text-transform: uppercase;
-    z-index: 1;
-  }
-
-  @media (max-width: 1100px) {
-    .hero-tile {
-      width: 150px;
-    }
-
-    .hero-tile-label {
-      font-size: 0.9rem;
-    }
-  }
-
-  @media (max-width: 680px) {
-    .hero-content {
-      gap: 1.4rem;
-    }
-
-    .hero-logo-wrap {
-      padding: 1.2rem 1.8rem;
-    }
-
-    .hero-logo {
-      max-width: 260px;
-    }
-
-    .hero-tiles {
-      gap: 12px;
-    }
-
-    .hero-tile {
-      width: 100px;
-    }
-
-    .hero-tile-inner {
-      padding: 0.6rem;
-    }
-
-    .hero-tile-label {
-      font-size: 0.65rem;
-    }
-  }
-
-  /* --- Service Sections --- */
-
-  .service-section {
-    align-items: center;
-    display: flex;
-    min-height: 100vh;
-    padding: 4rem 2rem;
-    position: relative;
-  }
-
-  .service-section:nth-child(even) {
-    background: rgba(0, 0, 0, 0.15);
-  }
-
-  .service-section-inner {
-    align-items: center;
-    display: grid;
-    gap: 3rem;
-    grid-template-columns: 280px 1fr;
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 340px;
     width: 100%;
   }
 
-  .service-panel {
-    align-items: center;
-    aspect-ratio: 1 / 1.15;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    width: 100%;
+  .intro-cta {
+    flex-shrink: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.12s ease 0s, transform 0.12s ease 0s;
   }
 
-  .service-panel-bg {
-    background: var(--section-color);
-    display: block;
-    inset: 0;
-    position: absolute;
-    transform: skewX(-8deg);
+  .panel-intro.is-active .intro-cta {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.4s ease 0.45s, transform 0.4s ease 0.45s;
   }
 
-  .service-panel-icon {
-    height: 55%;
-    object-fit: contain;
-    position: relative;
-    width: 55%;
-    z-index: 1;
-  }
-
-  .service-panel-label {
-    color: var(--color-white);
+  .intro-features-heading {
+    color: var(--color-accent);
+    filter: drop-shadow(0 1px 4px rgba(236, 127, 36, 0.45));
     font-family: var(--font-title);
-    font-size: 1.1rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    margin-top: 1rem;
-    position: relative;
-    text-align: center;
+    letter-spacing: 0.1em;
+    margin: 0.75rem 0 0.5rem;
+    max-width: none;
     text-transform: uppercase;
-    z-index: 1;
   }
 
-  .service-content {
+  .intro-features {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
   }
 
-  .service-text h2 {
-    color: var(--color-white);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    margin-top: 0;
+  .intro-features li {
+    align-items: flex-start;
+    color: #444;
+    display: flex;
+    font-size: 0.82rem;
+    gap: 0.75rem;
+    line-height: 1.5;
   }
 
-  .service-text h2::first-letter {
+  .feature-icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    height: 28px;
+    margin-top: 0.05rem;
+    width: 28px;
+  }
+
+  .intro-features strong {
     color: var(--color-accent);
   }
 
-  .service-text p {
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.7;
-    margin: 0 0 0.8rem;
+  .accordion-logo {
+    height: auto;
+    left: 1.5rem;
+    max-width: 180px;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    top: 1.5rem;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    width: 100%;
+    z-index: 10;
   }
 
-  .service-locations {
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    padding-top: 1.5rem;
+  .hero-accordion[data-active="intro"] .accordion-logo {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
   }
 
-  .service-locations h3 {
-    font-size: 1rem;
-    margin: 0 0 1rem;
+
+  .panel-tagline {
+    color: var(--color-accent);
+    font-family: var(--font-title);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    margin: 0;
+    max-width: none;
     text-transform: uppercase;
   }
 
-  .service-location-item {
-    margin-bottom: 1rem;
-  }
-
-  .service-location-item p {
+  .panel-heading {
+    color: var(--color-bg-dark);
+    font-size: 1.1rem;
     margin: 0;
   }
 
-  .location-address {
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
+  .panel-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
   }
 
-  .location-phone a {
+  .panel-body p {
+    color: #333;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 460px;
+  }
+
+  .panel-body a {
     color: var(--color-accent);
     font-weight: 700;
     text-decoration: none;
   }
 
-  .location-phone a:hover {
-    text-decoration: underline;
+  .panel-body strong {
+    color: var(--color-bg-dark);
   }
 
-  .service-nav {
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    padding-top: 1.5rem;
-  }
-
-  .service-nav-link {
+  .panel-contact-link {
     align-items: center;
-    background: var(--nav-color);
+    background: var(--color-bg-dark);
     color: var(--color-white);
-    display: flex;
+    display: inline-flex;
+    flex-shrink: 0;
     font-size: 0.85rem;
     font-weight: 600;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.2rem;
     text-decoration: none;
     transform: skewX(-4deg);
     transition: filter 0.2s ease, transform 0.2s ease;
   }
 
-  .service-nav-link:hover {
-    filter: brightness(1.25);
+  .panel-contact-link:hover {
+    filter: brightness(1.4);
     transform: skewX(-4deg) scale(1.05);
   }
 
-  .service-nav-link img {
-    height: 20px;
-    object-fit: contain;
-    width: 20px;
+  /* --- Service Panels --- */
+
+  .panel-service {
+    background: var(--panel-color);
   }
 
-  /* Decorative background image (Fuchs excavator) */
-
-  .service-section.has-deco {
-    overflow: hidden;
-  }
-
-  .service-deco {
+  .panel-bg {
     height: 100%;
-    left: 50%;
-    object-fit: contain;
-    opacity: 0.15;
-    pointer-events: none;
+    inset: 0;
+    object-fit: cover;
+    object-position: center;
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
     width: 100%;
     z-index: 0;
   }
 
-  .service-section.has-deco .service-section-inner {
-    position: relative;
+  .panel-overlay {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--panel-color), transparent 40%) 0%,
+      color-mix(in srgb, var(--panel-color), black 30%) 100%
+    );
+    inset: 0;
+    position: absolute;
     z-index: 1;
+    transition: opacity 0.6s ease;
   }
 
+  .accordion-panel.is-active .panel-overlay {
+    opacity: 0.7;
+  }
+
+  .panel-service:not(.is-active) .panel-overlay {
+    opacity: 0.85;
+  }
+
+  /* --- Panel Inner (shared) --- */
+
+  .panel-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 3;
+  }
+
+  .panel-label {
+    color: var(--color-white);
+    font-family: var(--font-title);
+    font-size: 0.8rem;
+    font-weight: 700;
+    left: 50%;
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+    opacity: 1;
+    padding: 0 0.5rem;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    text-transform: uppercase;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.4s ease 0.35s;
+    width: 100%;
+  }
+
+  .accordion-panel.is-active .panel-label {
+    opacity: 0;
+    transition: opacity 0.12s ease 0s;
+  }
+
+  /* --- Panel Content (expanded state) --- */
+
+  .accordion-panel .panel-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+    opacity: 0;
+    padding: 0 1rem;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.12s ease 0s, transform 0.12s ease 0s;
+  }
+
+  .accordion-panel.is-active .panel-content {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.4s ease 0.35s, transform 0.4s ease 0.35s;
+  }
+
+  .panel-intro .panel-label {
+      color: var(--color-bg-dark);
+    }
+
+  .panel-title {
+    color: var(--color-white);
+    font-size: 1.6rem;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .panel-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .panel-link {
+    align-items: center;
+    background: var(--panel-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-white);
+    display: inline-flex;
+    font-size: 0.85rem;
+    font-weight: 600;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    transform: skewX(-4deg);
+    transition: filter 0.2s ease, transform 0.2s ease;
+  }
+
+  .panel-link:hover {
+    filter: brightness(1.3);
+    transform: skewX(-4deg) scale(1.05);
+  }
+
+  /* --- Responsive --- */
+
   @media (max-width: 900px) {
-    .service-section-inner {
-      gap: 2rem;
-      grid-template-columns: 200px 1fr;
+    .accordion-panel:not(:first-child) {
+      margin-left: -22px;
+      clip-path: polygon(22px 0, 100% 0, 100% 100%, 0 100%);
     }
 
-    .service-panel-label {
-      font-size: 0.9rem;
+    .accordion-panel:not(:last-child) {
+      clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
     }
 
-    .service-text h2 {
-      font-size: 1.4rem;
+    .accordion-panel:not(:first-child):not(:last-child) {
+      clip-path: polygon(22px 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
+    }
+
+    .panel-title {
+      font-size: 1.3rem;
     }
   }
 
   @media (max-width: 680px) {
-    .service-section {
-      padding: 3rem 1rem;
+    .hero-accordion {
+      flex-direction: column;
+      height: 100vh;
     }
 
-    .service-section-inner {
-      gap: 2rem;
-      grid-template-columns: 1fr;
+    .accordion-panel:not(:first-child) {
+      clip-path: polygon(0 15px, 100% 0, 100% 100%, 0 100%);
+      margin-left: 0;
+      margin-top: -15px;
     }
 
-    .service-panel {
-      margin: 0 auto;
-      max-width: 180px;
+    .accordion-panel:not(:last-child) {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), 0 100%);
     }
 
-    .service-nav {
-      justify-content: center;
+    .accordion-panel:not(:first-child):not(:last-child) {
+      clip-path: polygon(0 15px, 100% 0, 100% calc(100% - 15px), 0 100%);
     }
 
-    .service-deco {
-      opacity: 0.12;
+    .accordion-panel.is-active {
+      flex: 8;
     }
+
+    .panel-intro.is-active {
+      flex: 8;
+    }
+
+    .panel-intro {
+      min-height: 100px;
+      padding-left: 0;
+    }
+
+    .panel-intro .panel-label {
+      display: none;
+    }
+
+    .panel-label {
+      font-size: 0.65rem;
+    }
+
+    .panel-inner {
+      padding: 1rem 1rem 2rem;
+    }
+
+    .panel-intro .panel-content {
+      padding: 1.5rem 1rem;
+    }
+
+    .intro-logo {
+      max-width: 160px;
+    }
+
+    /* Hide in-panel promotions on mobile */
+    .intro-features-heading,
+    .intro-features {
+      display: none;
+    }
+  }
+
+  /* --- Promo FAB (mobile only) --- */
+
+  .promo-fab {
+    align-items: center;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 999px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+    gap: 0.4rem;
+    letter-spacing: 0.03em;
+    padding: 0.6rem 1.1rem 0.6rem 0.85rem;
+    position: fixed;
+    right: 1.25rem;
+    top: 1rem;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 200;
+  }
+
+  .promo-fab:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+    transform: scale(1.06);
+  }
+
+  .promo-fab-icon {
+    height: 18px;
+    width: 18px;
+  }
+
+  @media (max-width: 680px) {
+    .promo-fab {
+      display: flex;
+    }
+  }
+
+  /* --- Promo overlay --- */
+
+  .promo-overlay {
+    background: var(--color-bg-dark);
+    clip-path: circle(0% at calc(100% - 2.75rem) 2.75rem);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: fixed;
+    transition: clip-path 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 300;
+  }
+
+  .promo-overlay.is-open {
+    clip-path: circle(160% at calc(100% - 2.75rem) 2.75rem);
+    pointer-events: auto;
+  }
+
+  .promo-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.65);
+    cursor: pointer;
+    padding: 1.25rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: color 0.2s ease;
+    z-index: 1;
+  }
+
+  .promo-close:hover {
+    color: #fff;
+  }
+
+  .promo-overlay-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100%;
+    justify-content: center;
+    opacity: 0;
+    padding: 3rem 2rem;
+    transform: translateY(16px);
+    transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+  }
+
+  .promo-overlay.is-open .promo-overlay-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .promo-overlay-heading {
+    color: var(--color-accent);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .promo-overlay-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .promo-overlay-list li {
+    align-items: flex-start;
+    display: flex;
+    font-size: 1.05rem;
+    gap: 1rem;
+    line-height: 1.55;
+  }
+
+  .promo-overlay-icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    height: 28px;
+    margin-top: 0.1em;
+    width: 28px;
   }
 </style>

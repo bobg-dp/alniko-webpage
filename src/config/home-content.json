@@ -1,0 +1,45 @@
+{
+  "intro": {
+    "tagline": "Niech komfort ogrzewania będzie lepszy!<br/><br/>Najwyższa jakość w najniższej cenie!",
+    "heading": "Witamy na stronie składu opału Alniko",
+    "body": [
+      "Jesteśmy lokalną firmą z Jeleniej Góry, działającą od 2018 roku. Oferujemy skup złomu, sprzedaż opału, zakuwanie węży hydraulicznych oraz skup katalizatorów.",
+      "Naszym celem jest najwyższa jakość usług w najlepszej cenie — dla klientów indywidualnych i firm."
+    ],
+    "featuresHeading": "Aktualne promocje:",
+    "features": [
+      {
+        "icon": "lucide:truck",
+        "text": "Transport do&nbsp;20&nbsp;km przy zamówieniu powyżej 1T — <strong>Gratis</strong>"
+      },
+      {
+        "icon": "lucide:search-check",
+        "text": "Asortyment gruntownie przebadany pod względem jakości"
+      },
+      {
+        "icon": "lucide:tag",
+        "text": "Najwyższe ceny skupu złomu w regionie"
+      }
+    ],
+    "ctaLabel": "Zapraszamy już dziś",
+    "ctaHref": "/kontakt"
+  },
+  "services": {
+    "scrap": {
+      "description": "Skupujemy odpady żelazne, nieżelazne i metale kolorowe oraz poddajemy je recyklingowi. Złom, który do nas trafia jest dostarczany do stalowni, hut i odlewni. </br></br>Dzięki temu materiały dostają drugie życie w postaci nowych produktów. Do złomu zaliczyć można m.&nbsp;in. elementy konstrukcji stalowych, blachy, elementy instalacji grzewczych, puszki aluminiowe, niepotrzebne garnki, przewody, akumulatory oraz wiele innych rzeczy, które często zalegają nieużyteczne w Państwa garażach i piwnicach.",
+      "ctaLabel": "Zobacz nasze lokalizacje"
+    },
+    "fuel": {
+      "description": "Jesteśmy składem węgla w Jeleniej Górze otwartym od 2018 roku, naszym celem jest zapewnienie klientom najlepszej jakości opału w najniższej cenie. </br></br>Chcemy się rozwijać i poszerzać nasz asortyment o produkty, których Państwo szukają. Jesteśmy chętni do współpracy z klientem i szybkiej realizacji usług. </br></br>Oferujemy transport zakupionego towaru we wskazane miejsce o umówionej porze dnia. Szczegóły dotyczące transportu znajdują się w zakładce oferta.",
+      "ctaLabel": "Zobacz więcej"
+    },
+    "hoses": {
+      "description": "Zakuwamy węże hydrauliczne na poczekaniu. Szeroki wybór złączek i węży wysokociśnieniowych.",
+      "ctaLabel": "Sprawdź naszą ofertę"
+    },
+    "catalysts": {
+      "description": "Specjalizujemy się w skupowaniu katalizatorów, a także monolitu ceramicznego.</br> Oferujemy naszym Klientom uczciwe warunki współpracy oraz kompleksową obsługę. Przyjmujemy katalizatory ze wszystkich modeli samochodów, zapewniając profesjonalną obsługę oraz uczciwą wycenę. <br/><br/>Posiadamy na wyposażeniu <strong>Spektrometr</strong> — specjalistyczne urządzenie umożliwiające analizowanie składu katalizatoru na podstawie zarejestrowanego widma składu pierwiastkowego substancji.",
+      "ctaLabel": "Zobacz więcej"
+    }
+  }
+}
