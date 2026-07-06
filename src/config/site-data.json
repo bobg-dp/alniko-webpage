@@ -8,6 +8,8 @@
       "path": "/skup-zlomu",
       "color": "#646464",
       "panelBg": "/panel-scrap.png",
+      "sectionImage": "/panel-scrap.png",
+      "sectionImageContain": true,
       "description": "Skupujemy odpady żelazne, nieżelazne i metale kolorowe oraz poddajemy je recyklingowi. Złom, który do nas trafia jest dostarczany do stalowni, hut i odlewni.<br/><br/>Dzięki temu materiały dostają drugie życie w postaci nowych produktów. Do złomu zaliczyć można m.&nbsp;in. elementy konstrukcji stalowych, blachy, elementy instalacji grzewczych, puszki aluminiowe, niepotrzebne garnki, przewody, akumulatory oraz wiele innych rzeczy, które często zalegają nieużyteczne w Państwa garażach i piwnicach.",
       "ctaLabel": "Zobacz nasze lokalizacje",
       "menuItems": [
@@ -25,11 +27,16 @@
       "path": "/sklad-opalu",
       "color": "#ec7f24",
       "panelBg": "/panel-fuel.png",
+      "sectionImage": "/panel-fuel.png",
+      "sectionImageContain": false,
       "description": "Jesteśmy składem węgla w Jeleniej Górze otwartym od 2018 roku, naszym celem jest zapewnienie klientom najlepszej jakości opału w najniższej cenie.<br/><br/>Chcemy się rozwijać i poszerzać nasz asortyment o produkty, których Państwo szukają. Jesteśmy chętni do współpracy z klientem i szybkiej realizacji usług.<br/><br/>Oferujemy transport zakupionego towaru we wskazane miejsce o umówionej porze dnia. Szczegóły dotyczące transportu znajdują się w zakładce oferta.",
       "ctaLabel": "Zobacz więcej",
       "menuItems": [
         { "label": "Lokalizacje", "href": "/sklad-opalu#lokalizacje" },
-        { "label": "Godziny otwarcia", "href": "/sklad-opalu#godziny-otwarcia" },
+        {
+          "label": "Godziny otwarcia",
+          "href": "/sklad-opalu#godziny-otwarcia"
+        },
         { "label": "Oferta", "href": "/sklad-opalu#oferta" }
       ]
     },
@@ -41,11 +48,16 @@
       "path": "/weze-hydrauliczne",
       "color": "#1b1b1b",
       "panelBg": "/panel-hoses.png",
+      "sectionImage": "/panel-hoses.png",
+      "sectionImageContain": true,
       "description": "Zakuwamy węże hydrauliczne na poczekaniu. Szeroki wybór złączek i węży wysokociśnieniowych.",
       "ctaLabel": "Sprawdź naszą ofertę",
       "menuItems": [
         { "label": "Lokalizacje", "href": "/weze-hydrauliczne#lokalizacje" },
-        { "label": "Godziny otwarcia", "href": "/weze-hydrauliczne#godziny-otwarcia" },
+        {
+          "label": "Godziny otwarcia",
+          "href": "/weze-hydrauliczne#godziny-otwarcia"
+        },
         { "label": "Oferta", "href": "/weze-hydrauliczne#oferta" }
       ]
     },
@@ -57,13 +69,50 @@
       "path": "/katalizatory",
       "color": "#efba1c",
       "panelBg": "/panel-catalysts.png",
-      "description": "Specjalizujemy się w skupowaniu katalizatorów, a także monolitu ceramicznego. Oferujemy naszym Klientom uczciwe warunki współpracy oraz kompleksową obsługę. Przyjmujemy katalizatory ze wszystkich modeli samochodów, zapewniając profesjonalną obsługę oraz uczciwą wycenę.<br/><br/>Posiadamy na wyposażeniu <strong>Spektrometr</strong> — specjalistyczne urządzenie umożliwiające analizowanie składu katalizatoru na podstawie zarejestrowanego widma składu pierwiastkowego substancji.",
+      "sectionImage": "/panel-catalysts.png",
+      "sectionImageContain": false,
+      "description": "Specjalizujemy się w skupowaniu katalizatorów, a także monolitu ceramicznego. Oferujemy naszym Klientom uczciwe warunki współpracy oraz kompleksową obsługę. Przyjmujemy katalizatory ze wszystkich modeli samochodów, zapewniając profesjonalną obsługę oraz uczciwą wycenę.<br/><br/>Posiadamy na wyposażeniu <br/><strong>Spektrometr</strong> — specjalistyczne urządzenie umożliwiające analizowanie składu katalizatoru na podstawie zarejestrowanego widma składu pierwiastkowego substancji.",
       "ctaLabel": "Zobacz więcej",
       "menuItems": [
         { "label": "Lokalizacje", "href": "/katalizatory#lokalizacje" },
-        { "label": "Godziny otwarcia", "href": "/katalizatory#godziny-otwarcia" },
+        {
+          "label": "Godziny otwarcia",
+          "href": "/katalizatory#godziny-otwarcia"
+        },
         { "label": "Oferta", "href": "/katalizatory#oferta" }
       ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "jg-powstancow",
+      "city": "Jelenia Góra",
+      "address": "ul. Powstańców Śląskich 41",
+      "postcode": "58-500",
+      "phone": "519 411 866",
+      "services": ["scrap", "fuel", "hoses"],
+      "lat": 50.9154,
+      "lng": 15.7225
+    },
+    {
+      "id": "jg-wroclawska",
+      "city": "Jelenia Góra",
+      "address": "ul. Wrocławska 35",
+      "postcode": "58-506",
+      "phone": "75 75 18 183",
+      "services": ["scrap", "catalysts"],
+      "lat": 50.8978,
+      "lng": 15.7472
+    },
+    {
+      "id": "zabkowice-wroclawska",
+      "city": "Ząbkowice Śląskie",
+      "address": "ul. Wrocławska 27",
+      "postcode": "57-200",
+      "phone": "604 529 255",
+      "services": ["scrap", "catalysts"],
+      "lat": 50.5903,
+      "lng": 16.8134
     }
   ],
   "homePage": {

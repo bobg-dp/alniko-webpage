@@ -9,6 +9,8 @@ export type ServiceDefinition = {
   path: string;
   color: string;
   panelBg: string;
+  sectionImage: string;
+  sectionImageContain: boolean;
   description: string;
   ctaLabel: string;
   menuItems: { label: string; href: string }[];

@@ -35,6 +35,7 @@ const { title, description, hideHeader = false, hideFooter = false } = Astro.pro
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+    <slot name="head" />
     <style set:html={`
       :root {
         --color-bg-dark: ${colors.backgroundDark};
