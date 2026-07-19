@@ -148,9 +148,6 @@ const galleryImages = [
             <a href="https://www.orlyhandlu.pl/profile-362918-cmp/" target="_blank" rel="noopener noreferrer" class="award-link" aria-label="Orły Handlu – Laureat Plebiscytu">
               <img src="https://www.orlyhandlu.pl/images/medals/laureat300_black_2_pl.png" alt="Orły Handlu – Laureat Plebiscytu" class="award-img" />
             </a>
-            <a href="https://www.orlyhandlu.pl/profile-362918-cmp/" target="_blank" rel="noopener noreferrer" class="award-link" aria-label="Orły Handlu 2021 – Laureat Konkursu">
-              <img src="http://opal.alniko.eu/thumbs/handlu-2021-logo-1500-3.jpg" alt="Orły Handlu 2021 – Laureat Konkursu" class="award-img" />
-            </a>
           </div>
 
           <div class="about-body">
@@ -735,7 +732,7 @@ const galleryImages = [
     }
 
     .slide[data-slug="hoses"] .slide-title {
-      font-size: clamp(1.0rem, 8.5vw, calc(2.2rem - 3pt));
+      font-size: clamp(1.0rem, 8.5vw, calc(2.2rem - 4pt));
     }
   }
 
@@ -1593,6 +1590,7 @@ const galleryImages = [
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
+      order: 2;
       padding-right: 0;
       width: 100%;
     }
@@ -1609,6 +1607,7 @@ const galleryImages = [
     .about-body {
       border-left: none;
       border-top: 3px solid #ec7f24;
+      order: 1;
       padding-left: 0;
       padding-top: 1.5rem;
       width: 100%;
