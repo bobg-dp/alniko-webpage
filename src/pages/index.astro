@@ -71,6 +71,7 @@ const galleryImages = [
         {services.map((service, i) => (
           <div
             class="slide"
+            data-slug={service.slug}
             style={`--slide-bg: url('${service.panelBg}'); animation-delay: ${i * 5}s;`}
           >
             <div class="slide-title-wrap">
@@ -481,6 +482,7 @@ const galleryImages = [
     display: flex;
     flex: 1;
     justify-content: center;
+    overflow: hidden;
     padding: 6rem 5vw 20%;
     position: relative;
     width: 100%;
@@ -515,6 +517,10 @@ const galleryImages = [
   }
 
   /* ---- Header bar (styles live in SiteNav.astro component) ---- */
+  /* Ensure bar sits above hero-overlay (z-index:1) regardless of CSS scope */
+  :global(.hero-bar) {
+    z-index: 50 !important;
+  }
 
   /* Facebook icon — outside bar, right side */
   .hero-fb {
@@ -715,10 +721,7 @@ const galleryImages = [
     }
 
     .hero-fb {
-      height: 58px;
-      padding: 0 12px;
-      right: 0;
-      top: 40px;
+      display: none;
     }
 
     .slide-title-wrap {
@@ -726,21 +729,19 @@ const galleryImages = [
     }
 
     .slide-title {
-      background: rgba(0, 0, 0, 0.32);
-      border-radius: 6px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
       font-size: clamp(1.1rem, 8.5vw, 2.2rem);
-      max-width: 100%;
-      padding: 0.35em 0.7em;
-      text-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.9),
-        0 0 40px rgba(0, 0, 0, 0.6);
+      width: 100%;
+    }
+
+    .slide[data-slug="hoses"] .slide-title {
+      font-size: clamp(1.0rem, 8.5vw, calc(2.2rem - 3pt));
     }
   }
 
   @media (max-width: 390px) {
     .slide-title {
       font-size: clamp(1rem, 9vw, 1.8rem);
+      width: 100%;
     }
 
     .tile-city {
@@ -754,13 +755,7 @@ const galleryImages = [
 
   @media (orientation: landscape) and (max-height: 600px) {
     .slide-title {
-      background: rgba(0, 0, 0, 0.32);
-      border-radius: 6px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
-      padding: 0.35em 0.7em;
-      text-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.9),
-        0 0 40px rgba(0, 0, 0, 0.6);
+      font-size: clamp(1rem, 6vw, 1.8rem);
     }
   }
 
