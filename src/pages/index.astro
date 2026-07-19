@@ -16,6 +16,25 @@ const serviceGallery: Record<string, string[]> = {
   catalysts: ["/panel-catalysts.png", "/catalysts-bg.png"],
 };
 
+/* stack = 2 kafelki pionowo (default)
+   side  = 2 obok siebie
+   featured = duże + małe pod spodem
+   single = jedno pełnowymiarowe */
+const galleryLayout: Record<string, string> = {
+  scrap:     "stack",
+  fuel:      "side",
+  hoses:     "featured",
+  catalysts: "single",
+};
+
+const testimonials = [
+  { text: "Współpracuję z firmą od kilku lat, wszystko zawsze na czas i z ogromną dbałością o klienta. Polecam!", author: "Bronisław" },
+  { text: "Bardzo dobra firma, obsługa bardzo miła i pomocna. Konkurencyjne ceny.", author: "Radosław" },
+  { text: "Rodzinna firma z tradycjami, w której szef ceni bardziej swoje słowo od pieniądza.", author: "Wojtek" },
+  { text: "Zawsze szybko, sprawnie i profesjonalnie. Dzięki.", author: "Jarosław" },
+  { text: "Gorąco polecam! Węgiel bardzo dobrej jakości, dobra cena, rozmowa z właścicielami konkretna i miła, transport szybki i terminowy. Kupuję w Alniko już kolejny sezon i w dalszym ciągu wszystko na plus!", author: "Agnieszka" },
+];
+
 const locationStyles: Record<string, { bg: string; color: string }> = {
   "jg-powstancow":        { bg: "/panel-fuel.png",       color: "#ec7f24" },
   "jg-wroclawska":        { bg: "/panel-catalysts.png",  color: "#efba1c" },
@@ -144,7 +163,6 @@ const locationStyles: Record<string, { bg: string; color: string }> = {
             <p>Jesteśmy składem węgla w Jeleniej Górze otwartym od 2018 roku, naszym celem jest zapewnienie klientom najlepszej jakości opału w najniższej cenie.</p>
             <p>Chcemy się rozwijać i poszerzać nasz asortyment o produkty, których Państwo szukają. Jesteśmy chętni do współpracy z klientem i szybkiej realizacji usług.</p>
             <p>Oferujemy transport zakupionego towaru we wskazane miejsce o umówionej porze dnia. Szczegóły dotyczące transportu znajdują się w zakładce oferta.</p>
-            <p>Jesteśmy dostępni dla Państwa drogą e-mail, jak i na portalu społecznościowym <a href="https://www.facebook.com/opalalniko" target="_blank" rel="noopener noreferrer">Facebook.com&nbsp;@opalalniko</a> poprzez który można się z nami kontaktować i liczyć na szybką odpowiedź oraz pod numerem telefonu <a href="tel:519411866">519&nbsp;411&nbsp;866</a>.</p>
             <div class="about-sign">
               <p class="about-sign-invite">Zapraszamy już dziś</p>
               <p class="about-sign-name">Barbara i Dawid Łukasiewicz</p>
@@ -156,44 +174,102 @@ const locationStyles: Record<string, { bg: string; color: string }> = {
       </div>
     </section>
 
-    <!-- Service sections -->
+    <!-- Service sections interleaved with stats & testimonials -->
     {services.map((service, i) => (
-      <section
-        id={`service-${service.slug}`}
-        class="svc-section"
-        style={`--svc-color: ${service.color};`}
-      >
-        <div class:list={["svc-container", i % 2 === 1 && "svc-reverse"]}>
+      <Fragment key={service.slug}>
 
-          <div class="svc-text svc-slide svc-slide-left">
-            <span class="svc-eyebrow">{service.shortName}</span>
-            <h2 class="svc-title">{service.name}</h2>
-            <div class="svc-desc" set:html={service.description} />
-            <a href={service.path} class="svc-cta">{service.ctaLabel}</a>
+        <section
+          id={`service-${service.slug}`}
+          class="svc-section"
+          style={`--svc-color: ${service.color};`}
+        >
+          <div class:list={["svc-container", i % 2 === 1 && "svc-reverse"]}>
+
+            <div class="svc-text svc-slide svc-slide-left">
+              <span class="svc-eyebrow">{service.shortName}</span>
+              <h2 class="svc-title">{service.name}</h2>
+              <div class="svc-desc" set:html={service.description} />
+              <a href={service.path} class="svc-cta">{service.ctaLabel}</a>
+            </div>
+
+            <div
+              class="svc-gallery svc-slide svc-slide-right"
+              data-layout={galleryLayout[service.slug] ?? "stack"}
+            >
+              {serviceGallery[service.slug]?.map((img, gi) => (
+                <button
+                  class="gallery-thumb"
+                  data-src={img}
+                  data-gallery={service.slug}
+                  data-index={gi}
+                  aria-label={`${service.name} – zdjęcie ${gi + 1}`}
+                >
+                  <img src={img} alt={`${service.name} – zdjęcie ${gi + 1}`} loading="lazy" />
+                  <span class="gallery-zoom" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                      <path d="m21 21-4.35-4.35M11 8v6M8 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </button>
+              ))}
+            </div>
+
           </div>
+        </section>
 
-          <div class="svc-gallery svc-slide svc-slide-right">
-            {serviceGallery[service.slug]?.map((img, gi) => (
-              <button
-                class="gallery-thumb"
-                data-src={img}
-                data-gallery={service.slug}
-                data-index={gi}
-                aria-label={`${service.name} – zdjęcie ${gi + 1}`}
-              >
-                <img src={img} alt={`${service.name} – zdjęcie ${gi + 1}`} loading="lazy" />
-                <span class="gallery-zoom" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
-                    <path d="m21 21-4.35-4.35M11 8v6M8 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
+        {/* Stats after first service */}
+        {i === 0 && (
+          <section class="stats-section">
+            <div class="stats-container">
+              <div class="stat-item">
+                <span class="stat-num" data-target="2018" data-from="2014">2018</span>
+                <span class="stat-label">Rok założenia</span>
+              </div>
+              <div class="stat-divider" aria-hidden="true" />
+              <div class="stat-item">
+                <span class="stat-num" data-target="3" data-from="0">3</span>
+                <span class="stat-label">Lokalizacje</span>
+              </div>
+              <div class="stat-divider" aria-hidden="true" />
+              <div class="stat-item">
+                <span class="stat-num" data-target="4.7" data-from="0" data-decimals="1">4.7</span>
+                <span class="stat-label">
+                  Ocena Google
+                  <span class="stat-stars" aria-label="4.7 na 5 gwiazdek">★★★★★</span>
                 </span>
-              </button>
-            ))}
-          </div>
+              </div>
+            </div>
+          </section>
+        )}
 
-        </div>
-      </section>
+        {/* Testimonials after second service */}
+        {i === 1 && (
+          <section class="testi-section">
+            <div class="testi-container">
+              <span class="testi-bigquote" aria-hidden="true">"</span>
+              <div class="testi-track">
+                {testimonials.map((t, ti) => (
+                  <blockquote class:list={["testi-item", ti === 0 && "is-active"]}>
+                    <p class="testi-text">{t.text}</p>
+                    <footer class="testi-author">— {t.author}</footer>
+                  </blockquote>
+                ))}
+              </div>
+              <div class="testi-dots">
+                {testimonials.map((_, ti) => (
+                  <button
+                    class:list={["testi-dot", ti === 0 && "is-active"]}
+                    data-index={ti}
+                    aria-label={`Opinia ${ti + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+      </Fragment>
     ))}
 
     <!-- Kontakt -->
@@ -204,8 +280,8 @@ const locationStyles: Record<string, { bg: string; color: string }> = {
           <h2 class="contact-title">Kontakt</h2>
           <p class="contact-intro">
             Skontaktuj się z nami telefonicznie lub odwiedź wybraną lokalizację.
-            Aktualności publikujemy również na
-            <a href="https://www.facebook.com/opalalniko" target="_blank" rel="noopener noreferrer">Facebooku&nbsp;@opalalniko</a>.
+            Aktualności publikujemy również na Facebooku:&nbsp;
+            <a href="https://www.facebook.com/opalalniko" target="_blank" rel="noopener noreferrer">@opalalniko</a>.
           </p>
         </div>
 
@@ -498,19 +574,23 @@ const locationStyles: Record<string, { bg: string; color: string }> = {
 
   /* Facebook icon — outside bar, right side */
   .hero-fb {
+    align-items: center;
+    background: #ec7f24;
     color: #fff;
-    line-height: 0;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    padding: 0 16px;
     position: absolute;
-    right: 20px;
+    right: 0;
     top: 100px;
-    transform: translateY(calc(80px / 2 - 13px)); /* vertically center with bar */
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: background 0.35s ease, color 0.2s ease, transform 0.2s ease;
     z-index: 11;
   }
 
   .hero-fb:hover {
-    color: #e0e0e0;
-    transform: translateY(calc(80px / 2 - 13px)) scale(1.15);
+    background: color-mix(in srgb, #ec7f24 85%, white);
+    transform: scale(1.04);
   }
 
   /* ---- Service tiles ---- */
@@ -704,7 +784,9 @@ const locationStyles: Record<string, { bg: string; color: string }> = {
     }
 
     .hero-fb {
-      right: 12px;
+      height: 58px;
+      padding: 0 12px;
+      right: 0;
       top: 40px;
     }
   }
@@ -966,8 +1048,6 @@ const locationStyles: Record<string, { bg: string; color: string }> = {
 
   .contact-intro a {
     color: #ec7f24;
-    text-decoration: underline;
-    text-underline-offset: 3px;
   }
 
   .contact-cards {
@@ -1089,6 +1169,197 @@ const locationStyles: Record<string, { bg: string; color: string }> = {
 
   @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
 
+  /* ---- Gallery layout variants ---- */
+  /* default = stack (grid-template-rows: 1fr 1fr) — already set */
+
+  .svc-gallery[data-layout="side"] {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .svc-gallery[data-layout="side"] .gallery-thumb {
+    aspect-ratio: 3 / 4;
+  }
+
+  .svc-gallery[data-layout="featured"] {
+    grid-template-rows: auto auto;
+  }
+
+  .svc-gallery[data-layout="featured"] .gallery-thumb:first-child {
+    aspect-ratio: 4 / 3;
+  }
+
+  .svc-gallery[data-layout="featured"] .gallery-thumb:last-child {
+    aspect-ratio: 21 / 9;
+  }
+
+  .svc-gallery[data-layout="single"] {
+    grid-template-rows: 1fr;
+  }
+
+  .svc-gallery[data-layout="single"] .gallery-thumb:first-child {
+    aspect-ratio: 3 / 4;
+  }
+
+  .svc-gallery[data-layout="single"] .gallery-thumb:last-child {
+    display: none;
+  }
+
+  /* ---- Stats section ---- */
+  .stats-section {
+    background: #1a1918;
+    padding: 4rem 2rem;
+  }
+
+  .stats-container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 860px;
+  }
+
+  .stat-item {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 180px;
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    color: #ec7f24;
+    display: block;
+    font-family: var(--font-title);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .stat-suffix {
+    color: rgba(255,255,255,0.5);
+    display: block;
+    font-size: 1.1rem;
+    margin-top: -0.2rem;
+  }
+
+  .stat-label {
+    color: rgba(255,255,255,0.65);
+    display: flex;
+    flex-direction: column;
+    font-size: 0.8rem;
+    gap: 0.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .stat-stars {
+    color: #ec7f24;
+    display: block;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  .stat-divider {
+    background: rgba(255,255,255,0.12);
+    height: 60px;
+    width: 1px;
+  }
+
+  @media (max-width: 600px) {
+    .stat-divider { display: none; }
+    .stats-container { gap: 1rem; }
+  }
+
+  /* ---- Testimonials section ---- */
+  .testi-section {
+    background: #1a1918;
+    padding: 2.5rem 2rem;
+  }
+
+  .testi-container {
+    margin: 0 auto;
+    max-width: 720px;
+    position: relative;
+    text-align: center;
+  }
+
+  .testi-bigquote {
+    color: #ec7f24;
+    display: block;
+    font-family: Georgia, serif;
+    font-size: 5rem;
+    line-height: 0.5;
+    margin-bottom: 0.75rem;
+    opacity: 0.35;
+    user-select: none;
+  }
+
+  .testi-track {
+    min-height: 170px;
+    position: relative;
+  }
+
+  .testi-item {
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 1.4s ease;
+  }
+
+  .testi-item.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .testi-text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    font-style: italic;
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+
+  .testi-author {
+    color: #ec7f24;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .testi-dots {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .testi-dot {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 9px;
+    padding: 0;
+    transition: background 0.25s ease, transform 0.25s ease;
+    width: 9px;
+  }
+
+  .testi-dot.is-active {
+    background: #ec7f24;
+    transform: scale(1.3);
+  }
+
   /* ---- O nas ---- */
   .about-section {
     background: #f8f7f5;
@@ -1177,8 +1448,6 @@ const locationStyles: Record<string, { bg: string; color: string }> = {
 
   .about-body a {
     color: #ec7f24;
-    text-decoration: underline;
-    text-underline-offset: 3px;
   }
 
   .about-sign {
@@ -1241,6 +1510,15 @@ const locationStyles: Record<string, { bg: string; color: string }> = {
 </style>
 
 <style is:global>
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   .map-pin-wrap {
     align-items: center;
     display: flex;
@@ -1308,6 +1586,67 @@ const locationStyles: Record<string, { bg: string; color: string }> = {
       }, 700);
     });
   });
+
+  /* ---- Stats counters ---- */
+  (function () {
+    var nums = document.querySelectorAll('.stat-num[data-target]');
+    if (!nums.length) return;
+    var done = false;
+
+    function animateCounters() {
+      if (done) return;
+      done = true;
+      nums.forEach(function (el) {
+        var from     = parseFloat(el.dataset.from || '0');
+        var to       = parseFloat(el.dataset.target);
+        var decimals = parseInt(el.dataset.decimals || '0', 10);
+        var dur      = 1600;
+        var start    = null;
+
+        function step(ts) {
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / dur, 1);
+          var ease = 1 - Math.pow(1 - progress, 3);
+          var val  = from + (to - from) * ease;
+          el.textContent = decimals ? val.toFixed(decimals) : Math.round(val).toString();
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { animateCounters(); io.disconnect(); }
+      }, { threshold: 0.5 });
+      io.observe(document.querySelector('.stats-section'));
+    } else {
+      animateCounters();
+    }
+  })();
+
+  /* ---- Testimonials carousel ---- */
+  (function () {
+    var items = document.querySelectorAll('.testi-item');
+    var dots  = document.querySelectorAll('.testi-dot');
+    if (!items.length) return;
+    var current = 0;
+
+    function show(idx) {
+      items[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      current = (idx + items.length) % items.length;
+      items[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+    }
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { show(i); clearInterval(timer); timer = setInterval(next, 6000); });
+    });
+
+    function next() { show(current + 1); }
+    var timer = setInterval(next, 6000);
+  })();
 
   /* ---- Scroll-in animation ---- */
   const slides = document.querySelectorAll('.svc-slide');
