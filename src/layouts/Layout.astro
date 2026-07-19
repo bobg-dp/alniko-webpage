@@ -34,7 +34,7 @@ const { title, description, hideHeader = false, hideFooter = false } = Astro.pro
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,400;0,700;0,900;1,400&subset=latin,latin-ext&display=swap" rel="stylesheet" />
     <slot name="head" />
     <style set:html={`
       :root {
@@ -45,15 +45,13 @@ const { title, description, hideHeader = false, hideFooter = false } = Astro.pro
         --color-service-scrap: ${colors.services.scrap};
         --color-service-hoses: ${colors.services.hoses};
         --color-service-catalysts: ${colors.services.catalysts};
-        --font-title: "Orbitron", "Arial Narrow", Arial, sans-serif;
+        --font-title: "Orbitron", "Exo 2", "Arial Narrow", Arial, sans-serif;
         --font-body: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
       }
     `} />
   </head>
   <body>
-    {!hideHeader && <Header />}
     <slot />
-    {!hideFooter && <Footer />}
   </body>
 </html>
 

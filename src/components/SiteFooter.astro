@@ -1,0 +1,234 @@
+---
+/**
+ * Shared site footer.
+ * homeLinks – if true, anchors are prefixed with "/" (for subpages).
+ *             if false (default), anchors are hash-only (for the main page).
+ */
+interface Props {
+  homeLinks?: boolean;
+}
+const { homeLinks = false } = Astro.props;
+const p = homeLinks ? '/' : '';
+
+import { services } from "../config/services";
+import siteData from "../config/site-data.json";
+const locations = siteData.locations;
+---
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo-link">
+        <img src="/alniko.webp" alt="Alniko" class="footer-logo" />
+      </a>
+      <p class="footer-tagline">Skład opału · Skup złomu<br/>Węże hydrauliczne · Katalizatory</p>
+      <a href="https://www.facebook.com/opalalniko" class="footer-fb" target="_blank" rel="noopener noreferrer" aria-label="ALNIKO na Facebooku">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <span>facebook.com/opalalniko</span>
+      </a>
+    </div>
+
+    <div class="footer-locations">
+      <h3 class="footer-col-title">Nasze lokalizacje</h3>
+      {locations.map(loc => (
+        <div class="footer-loc">
+          <strong>{loc.city}</strong>
+          <span>{loc.address}</span>
+          <a href={`tel:${loc.phone.replace(/\s/g, '')}`}>{loc.phone}</a>
+        </div>
+      ))}
+    </div>
+
+    <div class="footer-nav">
+      <h3 class="footer-col-title">Usługi</h3>
+      <nav>
+        {services.map(s => (
+          <a href={`${p}#service-${s.slug}`}>{s.shortName}</a>
+        ))}
+      </nav>
+      <h3 class="footer-col-title" style="margin-top:1.5rem">Strona</h3>
+      <nav>
+        <a href={`${p}#lokalizacje`}>Nasze lokalizacje</a>
+        <a href={`${p}#o-nas`}>O nas</a>
+        <a href={`${p}#kontakt`}>Kontakt</a>
+        <a href={`${p}#galeria`}>Galeria</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {new Date().getFullYear()} ALNIKO. Wszelkie prawa zastrzeżone.</p>
+    <a href="/polityka-prywatnosci" class="footer-pp-link">Polityka prywatności</a>
+    <a href="https://driftingpixel.com" target="_blank" rel="noopener noreferrer" class="footer-dp-link">
+      <span>Projekt i realizacja:</span>
+      <img src="https://driftingpixel.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-small.1d923798.png&w=128&q=75" alt="DriftingPixel" class="footer-dp-logo" />
+      <span class="footer-dp-name">DriftingPixel.com</span>
+    </a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #080808;
+    border-top: 2px solid var(--color-accent);
+    color: rgba(255,255,255,0.75);
+  }
+
+  .footer-container {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1.4fr 1.2fr 1fr;
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 3.5rem 2rem 2rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-logo {
+    height: auto;
+    width: 130px;
+  }
+
+  .footer-tagline {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .footer-fb {
+    align-items: center;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    font-size: 0.82rem;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-fb:hover { color: #fff; }
+
+  .footer-col-title {
+    color: var(--color-accent);
+    font-family: var(--font-title);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .footer-locations {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .footer-loc {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    gap: 0.15rem;
+    line-height: 1.5;
+  }
+
+  .footer-loc strong {
+    color: #fff;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .footer-loc a {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .footer-loc a:hover { text-decoration: underline; }
+
+  .footer-nav nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .footer-nav a {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-nav a:hover { color: #fff; }
+
+  .footer-bottom {
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+  }
+
+  .footer-bottom p {
+    color: rgba(255,255,255,0.3);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  .footer-pp-link {
+    color: rgba(255,255,255,0.3);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-pp-link:hover { color: var(--color-accent); }
+
+  .footer-dp-link {
+    align-items: center;
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    font-size: 0.78rem;
+    gap: 0.35rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-dp-link:hover { color: #fff; }
+
+  .footer-dp-logo {
+    height: 1.1rem;
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+    width: auto;
+  }
+  .footer-dp-link:hover .footer-dp-logo { opacity: 1; }
+
+  .footer-dp-name {
+    font-weight: 600;
+  }
+
+  @media (max-width: 820px) {
+    .footer-container {
+      grid-template-columns: 1fr 1fr;
+      padding: 2.5rem 1.5rem 1.5rem;
+    }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 500px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,246 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import siteData from "../config/site-data.json";
+
+const locations = siteData.locations;
+const year = new Date().getFullYear();
+---
+
+<Layout
+  title="Polityka prywatności – ALNIKO"
+  description="Polityka prywatności serwisu ALNIKO – skup złomu, skład opału, zakuwanie węży hydraulicznych, skup katalizatorów."
+  hideHeader={true}
+>
+  <SiteNav alwaysSticky={true} homeLinks={true} showHome={true} />
+  <main class="pp-main">
+    <div class="pp-container">
+
+      <header class="pp-header">
+        <h1 class="pp-title">Polityka prywatności</h1>
+        <p class="pp-subtitle">Ostatnia aktualizacja: {year} r.</p>
+      </header>
+
+      <article class="pp-content">
+
+        <section class="pp-section">
+          <h2>1. Administrator danych osobowych</h2>
+          <p>
+            Administratorem danych osobowych zbieranych za pośrednictwem niniejszego serwisu internetowego jest:
+          </p>
+          <address>
+            <strong>ALNIKO</strong><br />
+            {locations[0].address}, {locations[0].postcode} {locations[0].city}<br />
+            Tel.: <a href={`tel:${locations[0].phone.replace(/\s/g, '')}`}>{locations[0].phone}</a>
+          </address>
+        </section>
+
+        <section class="pp-section">
+          <h2>2. Zakres zbieranych danych</h2>
+          <p>
+            Niniejszy serwis jest stroną <strong>statyczną</strong> — nie zawiera formularzy kontaktowych, systemu logowania ani innych mechanizmów służących do zbierania danych osobowych odwiedzających.
+          </p>
+          <p>
+            Serwis nie przetwarza bezpośrednio żadnych danych osobowych użytkowników. Dane techniczne (adresy IP, czas wizyty, przeglądarka) mogą być gromadzone wyłącznie przez serwer hostingowy w ramach standardowych logów systemowych, zgodnie z jego własną polityką prywatności.
+          </p>
+        </section>
+
+        <section class="pp-section">
+          <h2>3. Zewnętrzne serwisy i usługi trzecich</h2>
+          <p>
+            W celu zapewnienia prawidłowego działania serwisu korzystamy z następujących usług zewnętrznych:
+          </p>
+
+          <h3>Google Fonts</h3>
+          <p>
+            Strona wczytuje czcionki (Orbitron, Exo 2, Dancing Script) z serwerów Google LLC (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>). Podczas tego procesu przeglądarka użytkownika nawiązuje połączenie z serwerami Google, co może skutkować przekazaniem adresu IP. Więcej informacji: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Polityka prywatności Google</a>.
+          </p>
+
+          <h3>Leaflet.js (mapa)</h3>
+          <p>
+            Do wyświetlenia interaktywnej mapy z lokalizacjami firmy używamy biblioteki Leaflet.js w wersji 1.9.4, wczytywanej z serwisu <code>unpkg.com</code>. Podczas ładowania biblioteki przeglądarka nawiązuje połączenie z serwerem unpkg. Więcej informacji: <a href="https://unpkg.com" target="_blank" rel="noopener noreferrer">unpkg.com</a>.
+          </p>
+
+          <h3>CartoDB / CARTO</h3>
+          <p>
+            Kafelki mapy (podkład kartograficzny) są pobierane z serwerów CARTO (<code>basemaps.cartocdn.com</code>). Może to wiązać się z rejestrowaniem adresu IP przez CARTO. Więcej informacji: <a href="https://carto.com/privacy/" target="_blank" rel="noopener noreferrer">Polityka prywatności CARTO</a>.
+          </p>
+
+          <h3>Facebook</h3>
+          <p>
+            Serwis zawiera odnośniki do profilu firmy na platformie Facebook (<code>facebook.com/opalalniko</code>). Są to wyłącznie linki zewnętrzne — serwis nie osadza żadnych wtyczek, pikseli śledzących ani widgetów Facebooka. Kliknięcie linku przekierowuje użytkownika na stronę Facebooka, podlegającą <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer">polityce prywatności Meta</a>.
+          </p>
+
+          <h3>Orły Handlu</h3>
+          <p>
+            Strona zawiera linki do profilu firmy w serwisie Orły Handlu (<code>orlyhandlu.pl</code>). Kliknięcie odnośnika przekierowuje użytkownika na zewnętrzną stronę, podlegającą własnej polityce prywatności tego serwisu.
+          </p>
+        </section>
+
+        <section class="pp-section">
+          <h2>4. Pliki cookies</h2>
+          <p>
+            Sam serwis nie ustawia żadnych własnych plików cookie. Zewnętrzne serwisy opisane powyżej (Google Fonts, CartoDB) mogą jednak zapisywać pliki cookie lub podobne technologie w przeglądarce użytkownika zgodnie ze swoją własną polityką. Użytkownik może zarządzać plikami cookie z poziomu ustawień swojej przeglądarki internetowej.
+          </p>
+        </section>
+
+        <section class="pp-section">
+          <h2>5. Prawa użytkownika</h2>
+          <p>
+            Na podstawie rozporządzenia RODO przysługują Ci następujące prawa:
+          </p>
+          <ul>
+            <li>prawo dostępu do swoich danych oraz otrzymania ich kopii,</li>
+            <li>prawo do sprostowania (poprawiania) swoich danych,</li>
+            <li>prawo do usunięcia danych (prawo „do bycia zapomnianym"),</li>
+            <li>prawo do ograniczenia przetwarzania danych,</li>
+            <li>prawo do wniesienia sprzeciwu wobec przetwarzania danych,</li>
+            <li>prawo do przenoszenia danych,</li>
+            <li>prawo do wniesienia skargi do organu nadzorczego (Prezes Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warszawa).</li>
+          </ul>
+        </section>
+
+        <section class="pp-section">
+          <h2>6. Kontakt</h2>
+          <p>
+            W sprawach związanych z ochroną danych osobowych oraz realizacją przysługujących praw można kontaktować się pod adresem:
+          </p>
+          <address>
+            <strong>ALNIKO</strong><br />
+            {locations[0].address}, {locations[0].postcode} {locations[0].city}<br />
+            Tel.: <a href={`tel:${locations[0].phone.replace(/\s/g, '')}`}>{locations[0].phone}</a>
+          </address>
+        </section>
+
+        <section class="pp-section">
+          <h2>7. Zmiany polityki prywatności</h2>
+          <p>
+            Administrator zastrzega sobie prawo do zmiany niniejszej Polityki prywatności w przypadku zmian w przepisach prawa lub w sposobie działania serwisu. Wszelkie zmiany będą publikowane na tej stronie.
+          </p>
+        </section>
+
+      </article>
+
+    </div>
+  </main>
+  <SiteFooter homeLinks={true} />
+</Layout>
+
+<style>
+  .pp-main {
+    background: #0c0c0c;
+    min-height: 100vh;
+    padding-top: 5.5rem;
+  }
+
+  .pp-container {
+    margin: 0 auto;
+    max-width: 820px;
+    padding: 2rem 2rem 5rem;
+  }
+
+  .pp-header {
+    border-bottom: 2px solid var(--color-accent);
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .pp-title {
+    color: #fff;
+    font-family: var(--font-title);
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .pp-subtitle {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  .pp-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .pp-section {
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1.5rem;
+  }
+
+  .pp-section h2 {
+    color: #fff;
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.85rem;
+    text-transform: uppercase;
+  }
+
+  .pp-section h3 {
+    color: var(--color-accent);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin: 1rem 0 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .pp-section p,
+  .pp-section address {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    font-style: normal;
+    line-height: 1.75;
+    margin: 0 0 0.6rem;
+  }
+
+  .pp-section address {
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .pp-section ul {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  .pp-section li {
+    margin-bottom: 0.3rem;
+  }
+
+  .pp-section a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .pp-section a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .pp-section code {
+    background: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.82rem;
+    padding: 0.1em 0.4em;
+  }
+
+  @media (max-width: 600px) {
+    .pp-container { padding: 1.25rem 1.25rem 4rem; }
+    .pp-section { padding-left: 1rem; }
+    .pp-main { padding-top: 6rem; }
+  }
+</style>
