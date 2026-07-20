@@ -9,6 +9,8 @@
  *                   if false (default) links are hash-only (#o-nas) (for the main page).
  *   showHome      – if true adds "Strona główna" as the first nav item (for subpages).
  */
+import siteData from "../config/site-data.json";
+
 interface Props {
   alwaysSticky?: boolean;
   homeLinks?: boolean;
@@ -17,33 +19,34 @@ interface Props {
 
 const { alwaysSticky = false, homeLinks = false, showHome = false } = Astro.props;
 const prefix = homeLinks ? '/' : '';
+const nav = siteData.nav;
 
 const navLinks = [
-  ...(showHome ? [{ href: '/', label: 'Strona główna' }] : []),
-  { href: `${prefix}#lokalizacje`, label: 'Nasze lokalizacje' },
-  { href: `${prefix}#o-nas`,       label: 'O nas' },
-  { href: `${prefix}#kontakt`,     label: 'Kontakt' },
-  { href: `${prefix}#galeria`,     label: 'Galeria' },
+  ...(showHome ? [{ href: '/', label: nav.homeLabel }] : []),
+  ...nav.links.map((link) => ({
+    href: `${prefix}${link.href}`,
+    label: link.label,
+  })),
 ];
 ---
 
 <div class:list={["hero-bar", alwaysSticky && "is-sticky is-always-sticky"]}>
   <a href="/" class="hero-bar-brand">
-    <img src="/alniko.webp" alt="ALNIKO" class="hero-bar-logo" width="180" height="58" />
+    <img src="/alniko.webp" alt={nav.logoAlt} class="hero-bar-logo" width="180" height="58" />
   </a>
 
   <!-- Desktop nav -->
-  <nav class="hero-bar-nav" aria-label="Nawigacja główna">
+  <nav class="hero-bar-nav" aria-label={nav.ariaMain}>
     {navLinks.map(l => <a href={l.href}>{l.label}</a>)}
   </nav>
 
   <!-- FB icon (sticky state) -->
   <a
-    href="https://www.facebook.com/opalalniko"
+    href={siteData.meta.facebookUrl}
     class="hero-fb-inner"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="ALNIKO na Facebooku"
+    aria-label={nav.facebookAriaLabel}
   >
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
@@ -51,7 +54,7 @@ const navLinks = [
   </a>
 
   <!-- Hamburger button (mobile only) -->
-  <button class="mob-toggle" id="mob-toggle" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mob-menu">
+  <button class="mob-toggle" id="mob-toggle" aria-label={nav.openMenu} aria-expanded="false" aria-controls="mob-menu" data-open-label={nav.openMenu} data-close-label={nav.closeMenu}>
     <span class="mob-bar"></span>
     <span class="mob-bar"></span>
     <span class="mob-bar"></span>
@@ -60,13 +63,13 @@ const navLinks = [
 
 <!-- Mobile drawer -->
 <div class="mob-menu" id="mob-menu" aria-hidden="true">
-  <nav aria-label="Menu mobilne">
+  <nav aria-label={nav.ariaMobile}>
     {navLinks.map(l => <a href={l.href} class="mob-link">{l.label}</a>)}
-    <a href="https://www.facebook.com/opalalniko" class="mob-link mob-fb" target="_blank" rel="noopener noreferrer">
+    <a href={siteData.meta.facebookUrl} class="mob-link mob-fb" target="_blank" rel="noopener noreferrer">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
       </svg>
-      Facebook
+      {nav.facebookLinkLabel}
     </a>
   </nav>
 </div>
@@ -310,6 +313,9 @@ const navLinks = [
   var backdrop = document.getElementById('mob-backdrop');
   if (!toggle || !menu || !backdrop) return;
 
+  var openLabel  = toggle.getAttribute('data-open-label') || 'Otwórz menu';
+  var closeLabel = toggle.getAttribute('data-close-label') || 'Zamknij menu';
+
   /* Move drawer & backdrop to <body> so they're never clipped by
      overflow:hidden ancestors (e.g. the hero section). */
   document.body.appendChild(backdrop);
@@ -319,7 +325,7 @@ const navLinks = [
     menu.classList.add('is-open');
     backdrop.classList.add('is-open');
     toggle.setAttribute('aria-expanded', 'true');
-    toggle.setAttribute('aria-label', 'Zamknij menu');
+    toggle.setAttribute('aria-label', closeLabel);
     menu.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
@@ -328,7 +334,7 @@ const navLinks = [
     menu.classList.remove('is-open');
     backdrop.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Otwórz menu');
+    toggle.setAttribute('aria-label', openLabel);
     menu.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }

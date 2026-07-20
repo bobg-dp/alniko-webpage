@@ -2,21 +2,10 @@
 import ServicePage from "../components/ServicePage.astro";
 import Layout from "../layouts/Layout.astro";
 import { serviceMap } from "../config/services";
+
+const service = serviceMap.scrap;
 ---
 
-<Layout title="Skup złomu - ALNIKO" description="Skup złomu ALNIKO: lokalizacje, szczegóły oferty i kontakt.">
-  <ServicePage
-    service={serviceMap.scrap}
-    offerTitle="Oferta skupu złomu"
-    offerPoints={[
-      "Skup metali kolorowych i stali.",
-      "Obsługa klientów detalicznych i firmowych.",
-      "Transparentne warunki współpracy i szybka obsługa.",
-    ]}
-    wholesalePoints={[
-      "Indywidualna wycena dla większych partii surowca.",
-      "Stała współpraca dla firm produkcyjnych i usługowych.",
-      "Możliwość ustalenia regularnych odbiorów po kontakcie telefonicznym.",
-    ]}
-  />
+<Layout title={service.page.metaTitle} description={service.page.metaDescription}>
+  <ServicePage service={service} />
 </Layout>

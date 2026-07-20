@@ -2,19 +2,10 @@
 import ServicePage from "../components/ServicePage.astro";
 import Layout from "../layouts/Layout.astro";
 import { serviceMap } from "../config/services";
+
+const service = serviceMap.hoses;
 ---
 
-<Layout
-  title="Zakuwanie węży hydraulicznych - ALNIKO"
-  description="Zakuwanie węży hydraulicznych ALNIKO: lokalizacje, kontakt i szczegóły oferty."
->
-  <ServicePage
-    service={serviceMap.hoses}
-    offerTitle="Oferta zakuwania węży hydraulicznych"
-    offerPoints={[
-      "Dobór i zakuwanie przewodów hydraulicznych.",
-      "Wsparcie dla serwisów, warsztatów i klientów indywidualnych.",
-      "Szybka realizacja zamówień lokalnych.",
-    ]}
-  />
+<Layout title={service.page.metaTitle} description={service.page.metaDescription}>
+  <ServicePage service={service} />
 </Layout>

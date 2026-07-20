@@ -1,16 +1,17 @@
 ---
 import { locations } from "../config/site";
 import type { ServiceDefinition } from "../config/services";
+import { servicePagesCommon } from "../config/services";
 
 interface Props {
   service: ServiceDefinition;
-  offerTitle: string;
-  offerPoints: string[];
-  wholesalePoints?: string[];
 }
 
-const { service, offerTitle, offerPoints, wholesalePoints = [] } = Astro.props;
+const { service } = Astro.props;
+const common = servicePagesCommon;
 const serviceLocations = locations.filter((location) => location.services.includes(service.slug));
+const offerPoints = service.page.offerPoints;
+const wholesalePoints = service.page.wholesalePoints ?? [];
 ---
 
 <main class="service-main">
@@ -18,14 +19,13 @@ const serviceLocations = locations.filter((location) => location.services.includ
     <div class="service-hero-inner">
       <h1 class="section-title">{service.name}</h1>
       <p>
-        Oferta firmy ALNIKO w zakresie usługi: <strong>{service.name}</strong>. Działamy lokalnie i zapewniamy
-        szybką obsługę dla klientów indywidualnych oraz biznesowych.
+        {common.heroIntroBefore} <strong>{service.name}</strong>{common.heroIntroAfter}
       </p>
     </div>
   </section>
 
   <section id="lokalizacje" class="content-section">
-    <h2 class="section-title">Lokalizacje</h2>
+    <h2 class="section-title">{common.locationsTitle}</h2>
     <div class="location-grid">
       {
         serviceLocations.map((location) => (
@@ -33,7 +33,7 @@ const serviceLocations = locations.filter((location) => location.services.includ
             <h3>{location.title}</h3>
             <p>{location.address}</p>
             <p>
-              Kontakt: <a href={location.phoneHref}>{location.phoneLabel}</a>
+              {common.contactLabel} <a href={location.phoneHref}>{location.phoneLabel}</a>
             </p>
           </article>
         ))
@@ -42,15 +42,12 @@ const serviceLocations = locations.filter((location) => location.services.includ
   </section>
 
   <section id="godziny-otwarcia" class="content-section">
-    <h2 class="section-title">Godziny otwarcia</h2>
-    <p>
-      Godziny pracy różnią się między punktami. Aktualne informacje potwierdzisz telefonicznie pod numerami podanymi
-      w sekcji lokalizacji.
-    </p>
+    <h2 class="section-title">{common.hoursTitle}</h2>
+    <p>{common.hoursBody}</p>
   </section>
 
   <section id="oferta" class="content-section">
-    <h2 class="section-title">{offerTitle}</h2>
+    <h2 class="section-title">{service.page.offerTitle}</h2>
     <ul class="offer-list">
       {offerPoints.map((point) => <li>{point}</li>)}
     </ul>
@@ -59,7 +56,7 @@ const serviceLocations = locations.filter((location) => location.services.includ
   {
     wholesalePoints.length > 0 && (
       <section id="oferta-hurtowa" class="content-section">
-        <h2 class="section-title">Oferta hurtowa</h2>
+        <h2 class="section-title">{common.wholesaleTitle}</h2>
         <ul class="offer-list">
           {wholesalePoints.map((point) => (
             <li>{point}</li>

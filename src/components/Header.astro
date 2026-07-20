@@ -1,15 +1,18 @@
 ---
 import { siteConfig } from "../config/site";
 import { services } from "../config/services";
+import siteData from "../config/site-data.json";
+
+const header = siteData.legacyHeader;
 ---
 
 <header>
   <div class="topbar">
-    <a class="logo-link" href="/" aria-label={`${siteConfig.companyName} - strona główna`}>
-      <img src="/alniko.webp" alt="Logo firmy ALNIKO" width="190" height="62" />
+    <a class="logo-link" href="/" aria-label={header.homeAriaLabel}>
+      <img src="/alniko.webp" alt={header.logoAlt} width="190" height="62" />
     </a>
 
-    <a class="social-link" href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Profil firmy na Facebooku">
+    <a class="social-link" href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label={header.facebookAriaLabel}>
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path
           d="M22 12.061C22 6.504 17.523 2 12 2S2 6.504 2 12.061c0 5.023 3.657 9.186 8.438 9.939v-7.03H7.898v-2.909h2.54V9.845c0-2.52 1.492-3.913 3.777-3.913 1.094 0 2.238.197 2.238.197v2.475h-1.261c-1.244 0-1.631.776-1.631 1.572v1.885h2.773l-.443 2.909h-2.33V22c4.78-.753 8.439-4.916 8.439-9.939z"
@@ -18,9 +21,9 @@ import { services } from "../config/services";
     </a>
   </div>
 
-  <nav class="main-nav" aria-label="Menu główne">
+  <nav class="main-nav" aria-label={header.navAriaLabel}>
     <ul>
-      <li><a href="/o-nas">O nas</a></li>
+      <li><a href={header.aboutHref}>{header.aboutLabel}</a></li>
 
       {
         services.map((service) => (
@@ -40,7 +43,7 @@ import { services } from "../config/services";
         ))
       }
 
-      <li><a href="/kontakt">Kontakt</a></li>
+      <li><a href={header.contactHref}>{header.contactLabel}</a></li>
     </ul>
   </nav>
 </header>

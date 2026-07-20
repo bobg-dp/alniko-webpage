@@ -12,24 +12,27 @@ const p = homeLinks ? '/' : '';
 
 import { services } from "../config/services";
 import siteData from "../config/site-data.json";
+
 const locations = siteData.locations;
+const footer = siteData.footer;
+const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="footer-container">
     <div class="footer-brand">
       <a href="/" class="footer-logo-link">
-        <img src="/alniko.webp" alt="Alniko" class="footer-logo" />
+        <img src="/alniko.webp" alt={footer.logoAlt} class="footer-logo" />
       </a>
-      <p class="footer-tagline">Skład opału · Skup złomu<br/>Węże hydrauliczne · Katalizatory</p>
-      <a href="https://www.facebook.com/opalalniko" class="footer-fb" target="_blank" rel="noopener noreferrer" aria-label="ALNIKO na Facebooku">
+      <p class="footer-tagline" set:html={footer.tagline} />
+      <a href={siteData.meta.facebookUrl} class="footer-fb" target="_blank" rel="noopener noreferrer" aria-label={footer.facebookAriaLabel}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        <span>facebook.com/opalalniko</span>
+        <span>{siteData.meta.facebookDisplayUrl}</span>
       </a>
     </div>
 
     <div class="footer-locations">
-      <h3 class="footer-col-title">Nasze lokalizacje</h3>
+      <h3 class="footer-col-title">{footer.locationsTitle}</h3>
       {locations.map(loc => (
         <div class="footer-loc">
           <strong>{loc.city}</strong>
@@ -40,29 +43,28 @@ const locations = siteData.locations;
     </div>
 
     <div class="footer-nav">
-      <h3 class="footer-col-title">Usługi</h3>
+      <h3 class="footer-col-title">{footer.servicesTitle}</h3>
       <nav>
         {services.map(s => (
           <a href={`${p}#service-${s.slug}`}>{s.shortName}</a>
         ))}
       </nav>
-      <h3 class="footer-col-title" style="margin-top:1.5rem">Strona</h3>
+      <h3 class="footer-col-title" style="margin-top:1.5rem">{footer.pageTitle}</h3>
       <nav>
-        <a href={`${p}#lokalizacje`}>Nasze lokalizacje</a>
-        <a href={`${p}#o-nas`}>O nas</a>
-        <a href={`${p}#kontakt`}>Kontakt</a>
-        <a href={`${p}#galeria`}>Galeria</a>
+        {footer.pageLinks.map((link) => (
+          <a href={`${p}${link.href}`}>{link.label}</a>
+        ))}
       </nav>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <p>&copy; {new Date().getFullYear()} ALNIKO. Wszelkie prawa zastrzeżone.</p>
-    <a href="/polityka-prywatnosci" class="footer-pp-link">Polityka prywatności</a>
+    <p>&copy; {year} {footer.copyright}</p>
+    <a href="/polityka-prywatnosci" class="footer-pp-link">{footer.privacyLabel}</a>
     <a href="https://driftingpixel.com" target="_blank" rel="noopener noreferrer" class="footer-dp-link">
-      <span>Projekt i realizacja:</span>
-      <img src="https://driftingpixel.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-small.1d923798.png&w=128&q=75" alt="DriftingPixel" class="footer-dp-logo" />
-      <span class="footer-dp-name">DriftingPixel.com</span>
+      <span>{footer.creditPrefix}</span>
+      <img src="https://driftingpixel.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-small.1d923798.png&w=128&q=75" alt={footer.creditLogoAlt} class="footer-dp-logo" />
+      <span class="footer-dp-name">{footer.creditName}</span>
     </a>
   </div>
 </footer>

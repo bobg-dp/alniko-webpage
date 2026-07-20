@@ -1,4 +1,11 @@
 {
+  "meta": {
+    "companyName": "ALNIKO",
+    "siteUrl": "https://example.com",
+    "facebookUrl": "https://www.facebook.com/opalalniko",
+    "facebookHandle": "@opalalniko",
+    "facebookDisplayUrl": "facebook.com/opalalniko"
+  },
   "services": [
     {
       "slug": "scrap",
@@ -10,6 +17,8 @@
       "panelBg": "/panel-scrap.png",
       "sectionImage": "/panel-scrap.png",
       "sectionImageContain": true,
+      "galleryImages": ["/panel-scrap.png", "/fuchs.png"],
+      "galleryLayout": "stack",
       "description": "Skupujemy odpady żelazne, nieżelazne i metale kolorowe oraz poddajemy je recyklingowi. Złom, który do nas trafia jest dostarczany do stalowni, hut i odlewni.<br/><br/>Dzięki temu materiały dostają drugie życie w postaci nowych produktów. Do złomu zaliczyć można m.&nbsp;in. elementy konstrukcji stalowych, blachy, elementy instalacji grzewczych, puszki aluminiowe, niepotrzebne garnki, przewody, akumulatory oraz wiele innych rzeczy, które często zalegają nieużyteczne w Państwa garażach i piwnicach.",
       "ctaLabel": "Zobacz nasze lokalizacje",
       "menuItems": [
@@ -17,7 +26,22 @@
         { "label": "Godziny otwarcia", "href": "/skup-zlomu#godziny-otwarcia" },
         { "label": "Oferta", "href": "/skup-zlomu#oferta" },
         { "label": "Oferta hurtowa", "href": "/skup-zlomu#oferta-hurtowa" }
-      ]
+      ],
+      "page": {
+        "metaTitle": "Skup złomu - ALNIKO",
+        "metaDescription": "Skup złomu ALNIKO: lokalizacje, szczegóły oferty i kontakt.",
+        "offerTitle": "Oferta skupu złomu",
+        "offerPoints": [
+          "Skup metali kolorowych i stali.",
+          "Obsługa klientów detalicznych i firmowych.",
+          "Transparentne warunki współpracy i szybka obsługa."
+        ],
+        "wholesalePoints": [
+          "Indywidualna wycena dla większych partii surowca.",
+          "Stała współpraca dla firm produkcyjnych i usługowych.",
+          "Możliwość ustalenia regularnych odbiorów po kontakcie telefonicznym."
+        ]
+      }
     },
     {
       "slug": "fuel",
@@ -29,16 +53,25 @@
       "panelBg": "/panel-fuel.png",
       "sectionImage": "/panel-fuel.png",
       "sectionImageContain": false,
+      "galleryImages": ["/panel-fuel.png", "/fuel-bg.png"],
+      "galleryLayout": "side",
       "description": "Jesteśmy składem węgla w Jeleniej Górze otwartym od 2018 roku, naszym celem jest zapewnienie klientom najlepszej jakości opału w najniższej cenie.<br/><br/>Chcemy się rozwijać i poszerzać nasz asortyment o produkty, których Państwo szukają. Jesteśmy chętni do współpracy z klientem i szybkiej realizacji usług.<br/><br/>Oferujemy transport zakupionego towaru we wskazane miejsce o umówionej porze dnia. Szczegóły dotyczące transportu znajdują się w zakładce oferta.",
       "ctaLabel": "Zobacz więcej",
       "menuItems": [
         { "label": "Lokalizacje", "href": "/sklad-opalu#lokalizacje" },
-        {
-          "label": "Godziny otwarcia",
-          "href": "/sklad-opalu#godziny-otwarcia"
-        },
+        { "label": "Godziny otwarcia", "href": "/sklad-opalu#godziny-otwarcia" },
         { "label": "Oferta", "href": "/sklad-opalu#oferta" }
-      ]
+      ],
+      "page": {
+        "metaTitle": "Skład i sprzedaż opału - ALNIKO",
+        "metaDescription": "Skład i sprzedaż opału ALNIKO. Sprawdź lokalizacje, kontakt i zakres oferty.",
+        "offerTitle": "Oferta opału",
+        "offerPoints": [
+          "Sprzedaż opału dla klientów indywidualnych i firm.",
+          "Pomoc w doborze paliwa opałowego do potrzeb obiektu.",
+          "Obsługa zamówień lokalnych i cyklicznych."
+        ]
+      }
     },
     {
       "slug": "hoses",
@@ -50,16 +83,25 @@
       "panelBg": "/panel-hoses.png",
       "sectionImage": "/panel-hoses.png",
       "sectionImageContain": true,
+      "galleryImages": ["/panel-hoses.png", "/hoses-bg.png"],
+      "galleryLayout": "featured",
       "description": "Zakuwamy węże hydrauliczne na poczekaniu. Szeroki wybór złączek i węży wysokociśnieniowych.",
       "ctaLabel": "Sprawdź naszą ofertę",
       "menuItems": [
         { "label": "Lokalizacje", "href": "/weze-hydrauliczne#lokalizacje" },
-        {
-          "label": "Godziny otwarcia",
-          "href": "/weze-hydrauliczne#godziny-otwarcia"
-        },
+        { "label": "Godziny otwarcia", "href": "/weze-hydrauliczne#godziny-otwarcia" },
         { "label": "Oferta", "href": "/weze-hydrauliczne#oferta" }
-      ]
+      ],
+      "page": {
+        "metaTitle": "Zakuwanie węży hydraulicznych - ALNIKO",
+        "metaDescription": "Zakuwanie węży hydraulicznych ALNIKO: lokalizacje, kontakt i szczegóły oferty.",
+        "offerTitle": "Oferta zakuwania węży hydraulicznych",
+        "offerPoints": [
+          "Dobór i zakuwanie przewodów hydraulicznych.",
+          "Wsparcie dla serwisów, warsztatów i klientów indywidualnych.",
+          "Szybka realizacja zamówień lokalnych."
+        ]
+      }
     },
     {
       "slug": "catalysts",
@@ -71,16 +113,25 @@
       "panelBg": "/panel-catalysts.png",
       "sectionImage": "/panel-catalysts.png",
       "sectionImageContain": false,
+      "galleryImages": ["/panel-catalysts.png", "/catalysts-bg.png"],
+      "galleryLayout": "single",
       "description": "Specjalizujemy się w skupowaniu katalizatorów, a także monolitu ceramicznego. Oferujemy naszym Klientom uczciwe warunki współpracy oraz kompleksową obsługę. Przyjmujemy katalizatory ze wszystkich modeli samochodów, zapewniając profesjonalną obsługę oraz uczciwą wycenę.<br/><br/>Posiadamy na wyposażeniu <br/><strong>Spektrometr</strong> — specjalistyczne urządzenie umożliwiające analizowanie składu katalizatoru na podstawie zarejestrowanego widma składu pierwiastkowego substancji.",
       "ctaLabel": "Zobacz więcej",
       "menuItems": [
         { "label": "Lokalizacje", "href": "/katalizatory#lokalizacje" },
-        {
-          "label": "Godziny otwarcia",
-          "href": "/katalizatory#godziny-otwarcia"
-        },
+        { "label": "Godziny otwarcia", "href": "/katalizatory#godziny-otwarcia" },
         { "label": "Oferta", "href": "/katalizatory#oferta" }
-      ]
+      ],
+      "page": {
+        "metaTitle": "Skup katalizatorów - ALNIKO",
+        "metaDescription": "Skup katalizatorów ALNIKO: lokalizacje punktów, dane kontaktowe i zakres usługi.",
+        "offerTitle": "Oferta skupu katalizatorów",
+        "offerPoints": [
+          "Skup katalizatorów dla klientów indywidualnych oraz biznesowych.",
+          "Rzetelna wycena i szybka obsługa.",
+          "Obsługa w punktach w Jeleniej Górze i Ząbkowicach Śląskich."
+        ]
+      }
     }
   ],
   "locations": [
@@ -90,7 +141,10 @@
       "address": "ul. Powstańców Śląskich 41",
       "postcode": "58-500",
       "phone": "519 411 866",
+      "title": "Skup złomu, skład opału, zakuwanie węży hydraulicznych",
       "services": ["scrap", "fuel", "hoses"],
+      "tileBg": "/panel-fuel.png",
+      "tileColor": "#ec7f24",
       "lat": 50.9154,
       "lng": 15.7225
     },
@@ -100,7 +154,10 @@
       "address": "ul. Wrocławska 35",
       "postcode": "58-506",
       "phone": "75 75 18 183",
+      "title": "Skup złomu, skup katalizatorów",
       "services": ["scrap", "catalysts"],
+      "tileBg": "/panel-catalysts.png",
+      "tileColor": "#efba1c",
       "lat": 50.8978,
       "lng": 15.7472
     },
@@ -110,36 +167,284 @@
       "address": "ul. Wrocławska 27",
       "postcode": "57-200",
       "phone": "604 529 255",
+      "title": "Skup złomu, skup katalizatorów",
       "services": ["scrap", "catalysts"],
+      "tileBg": "/panel-scrap.png",
+      "tileColor": "#646464",
       "lat": 50.5903,
       "lng": 16.8134
     }
   ],
+  "nav": {
+    "ariaMain": "Nawigacja główna",
+    "ariaMobile": "Menu mobilne",
+    "logoAlt": "ALNIKO",
+    "facebookAriaLabel": "ALNIKO na Facebooku",
+    "facebookLinkLabel": "Facebook",
+    "openMenu": "Otwórz menu",
+    "closeMenu": "Zamknij menu",
+    "homeLabel": "Strona główna",
+    "links": [
+      { "href": "#lokalizacje", "label": "Nasze lokalizacje" },
+      { "href": "#o-nas", "label": "O nas" },
+      { "href": "#kontakt", "label": "Kontakt" },
+      { "href": "#galeria", "label": "Galeria" }
+    ]
+  },
   "homePage": {
-    "intro": {
-      "tagline": "Niech komfort ogrzewania będzie lepszy!<br />Najwyższa jakość w najniższej cenie!",
-      "heading": "Witamy na stronie składu opału Alniko",
+    "meta": {
+      "title": "ALNIKO - skład opału, skup złomu, zakuwanie węży hydraulicznych, skup katalizatorów",
+      "description": "ALNIKO działa w Jeleniej Górze i Ząbkowicach Śląskich: skup złomu, skład opału, zakuwanie węży hydraulicznych i skup katalizatorów."
+    },
+    "hero": {
+      "ariaLabel": "ALNIKO",
+      "facebookAriaLabel": "ALNIKO na Facebooku"
+    },
+    "about": {
+      "logoAlt": "Alniko Skład Opału Jelenia Góra",
+      "tagline": "Niech komfort ogrzewania będzie lepszy!<br/>Najwyższa jakość w najniższej cenie!",
       "body": [
-        "Jesteśmy lokalną firmą z Jeleniej Góry, działającą od 2018 roku. Oferujemy skup złomu, sprzedaż opału, zakuwanie węży hydraulicznych oraz skup katalizatorów.",
-        "Naszym celem jest najwyższa jakość usług w najlepszej cenie — dla klientów indywidualnych i firm."
-      ],
-      "featuresHeading": "Aktualne promocje:",
-      "features": [
-        {
-          "icon": "lucide:truck",
-          "text": "Transport do&nbsp;20&nbsp;km przy zamówieniu powyżej 1T — <strong>Gratis</strong>"
-        },
-        {
-          "icon": "lucide:search-check",
-          "text": "Asortyment gruntownie przebadany pod względem jakości"
-        },
-        {
-          "icon": "lucide:tag",
-          "text": "Najwyższe ceny skupu złomu w regionie"
-        }
+        "Jesteśmy składem węgla w Jeleniej Górze otwartym od 2018 roku, naszym celem jest zapewnienie klientom najlepszej jakości opału w najniższej cenie.",
+        "Chcemy się rozwijać i poszerzać nasz asortyment o produkty, których Państwo szukają. Jesteśmy chętni do współpracy z klientem i szybkiej realizacji usług.",
+        "Oferujemy transport zakupionego towaru we wskazane miejsce o umówionej porze dnia. Szczegóły dotyczące transportu znajdują się w zakładce oferta."
       ],
       "ctaLabel": "Zapraszamy już dziś",
-      "ctaHref": "/kontakt"
+      "signName": "Barbara i Dawid Łukasiewicz",
+      "awards": [
+        {
+          "href": "https://www.orlyhandlu.pl/profile-362918-cmp/",
+          "imgSrc": "https://www.orlyhandlu.pl/images/projectImages/app_logo_for_customer_2025_240.png",
+          "alt": "Orły Handlu 2025 – Laureat Konkursu",
+          "ariaLabel": "Orły Handlu 2025 – Laureat Konkursu"
+        },
+        {
+          "href": "https://www.orlyhandlu.pl/profile-362918-cmp/",
+          "imgSrc": "https://www.orlyhandlu.pl/images/medals/laureat300_black_2_pl.png",
+          "alt": "Orły Handlu – Laureat Plebiscytu",
+          "ariaLabel": "Orły Handlu – Laureat Plebiscytu"
+        }
+      ]
+    },
+    "stats": [
+      {
+        "value": "2018",
+        "from": "2014",
+        "label": "Rok założenia"
+      },
+      {
+        "value": "3",
+        "from": "0",
+        "label": "Lokalizacje"
+      },
+      {
+        "value": "4.7",
+        "from": "0",
+        "decimals": 1,
+        "label": "Ocena Google",
+        "starsAriaLabel": "4.7 na 5 gwiazdek",
+        "stars": "★★★★★"
+      }
+    ],
+    "testimonials": [
+      {
+        "text": "Współpracuję z firmą od kilku lat, wszystko zawsze na czas i z ogromną dbałością o klienta. Polecam!",
+        "author": "Bronisław"
+      },
+      {
+        "text": "Bardzo dobra firma, obsługa bardzo miła i pomocna. Konkurencyjne ceny.",
+        "author": "Radosław"
+      },
+      {
+        "text": "Rodzinna firma z tradycjami, w której szef ceni bardziej swoje słowo od pieniądza.",
+        "author": "Wojtek"
+      },
+      {
+        "text": "Zawsze szybko, sprawnie i profesjonalnie. Dzięki.",
+        "author": "Jarosław"
+      },
+      {
+        "text": "Gorąco polecam! Węgiel bardzo dobrej jakości, dobra cena, rozmowa z właścicielami konkretna i miła, transport szybki i terminowy. Kupuję w Alniko już kolejny sezon i w dalszym ciągu wszystko na plus!",
+        "author": "Agnieszka"
+      }
+    ],
+    "testimonialsAriaLabel": "Opinia",
+    "contact": {
+      "title": "Kontakt",
+      "introBefore": "Skontaktuj się z nami telefonicznie lub odwiedź wybraną lokalizację. Aktualności publikujemy również na Facebooku:\u00a0",
+      "introLinkLabel": "@opalalniko",
+      "introAfter": ".",
+      "navigateLabel": "Nawiguj",
+      "callAriaPrefix": "Zadzwoń:"
+    },
+    "gallery": {
+      "title": "Galeria",
+      "subtitle": "Zajrzyj do naszych lokalizacji i poznaj naszą działalność",
+      "images": [
+        { "src": "/head.webp", "caption": "Alniko – siedziba główna" },
+        { "src": "/head2.webp", "caption": "Alniko – Jelenia Góra" },
+        { "src": "/panel-fuel.png", "caption": "Skład Opału" },
+        { "src": "/fuel-bg.png", "caption": "Opał – pełny asortyment" },
+        { "src": "/panel-scrap.png", "caption": "Skup Złomu" },
+        { "src": "/fuchs.png", "caption": "Złom – skup metali" },
+        { "src": "/panel-hoses.png", "caption": "Zakuwanie Węży Hydraulicznych" },
+        { "src": "/hoses-bg.png", "caption": "Węże hydrauliczne – warsztat" },
+        { "src": "/panel-catalysts.png", "caption": "Skup Katalizatorów" },
+        { "src": "/catalysts-bg.png", "caption": "Katalizatory – baza skupu" }
+      ]
+    },
+    "lightbox": {
+      "ariaLabel": "Podgląd zdjęcia",
+      "closeLabel": "Zamknij",
+      "prevLabel": "Poprzednie zdjęcie",
+      "nextLabel": "Następne zdjęcie"
+    },
+    "serviceGalleryAriaSuffix": "zdjęcie"
+  },
+  "footer": {
+    "logoAlt": "Alniko",
+    "tagline": "Skład opału · Skup złomu<br/>Węże hydrauliczne · Katalizatory",
+    "facebookAriaLabel": "ALNIKO na Facebooku",
+    "locationsTitle": "Nasze lokalizacje",
+    "servicesTitle": "Usługi",
+    "pageTitle": "Strona",
+    "pageLinks": [
+      { "href": "#lokalizacje", "label": "Nasze lokalizacje" },
+      { "href": "#o-nas", "label": "O nas" },
+      { "href": "#kontakt", "label": "Kontakt" },
+      { "href": "#galeria", "label": "Galeria" }
+    ],
+    "copyright": "ALNIKO. Wszelkie prawa zastrzeżone.",
+    "privacyLabel": "Polityka prywatności",
+    "creditPrefix": "Projekt i realizacja:",
+    "creditName": "DriftingPixel.com",
+    "creditLogoAlt": "DriftingPixel"
+  },
+  "servicePages": {
+    "common": {
+      "heroIntroBefore": "Oferta firmy ALNIKO w zakresie usługi:",
+      "heroIntroAfter": ". Działamy lokalnie i zapewniamy szybką obsługę dla klientów indywidualnych oraz biznesowych.",
+      "locationsTitle": "Lokalizacje",
+      "hoursTitle": "Godziny otwarcia",
+      "hoursBody": "Godziny pracy różnią się między punktami. Aktualne informacje potwierdzisz telefonicznie pod numerami podanymi w sekcji lokalizacji.",
+      "contactLabel": "Kontakt:",
+      "wholesaleTitle": "Oferta hurtowa"
     }
+  },
+  "legacyHeader": {
+    "logoAlt": "Logo firmy ALNIKO",
+    "homeAriaLabel": "ALNIKO - strona główna",
+    "facebookAriaLabel": "Profil firmy na Facebooku",
+    "navAriaLabel": "Menu główne",
+    "aboutLabel": "O nas",
+    "aboutHref": "/o-nas",
+    "contactLabel": "Kontakt",
+    "contactHref": "/kontakt"
+  },
+  "legacyFooter": {
+    "logoAlt": "Logo ALNIKO",
+    "homeAriaLabel": "ALNIKO - strona główna",
+    "tagline": "Skład opału | Skup złomu | Węże hydrauliczne | Katalizatory",
+    "navAriaLabel": "Menu stopki",
+    "aboutLabel": "O nas",
+    "aboutHref": "/o-nas",
+    "contactLabel": "Kontakt",
+    "contactHref": "/kontakt"
+  },
+  "privacyPage": {
+    "meta": {
+      "title": "Polityka prywatności – ALNIKO",
+      "description": "Polityka prywatności serwisu ALNIKO – skup złomu, skład opału, zakuwanie węży hydraulicznych, skup katalizatorów."
+    },
+    "title": "Polityka prywatności",
+    "subtitle": "Ostatnia aktualizacja: {year} r.",
+    "phonePrefix": "Tel.:",
+    "sections": [
+      {
+        "heading": "1. Administrator danych osobowych",
+        "paragraphs": [
+          "Administratorem danych osobowych zbieranych za pośrednictwem niniejszego serwisu internetowego jest:"
+        ],
+        "showAddress": true
+      },
+      {
+        "heading": "2. Zakres zbieranych danych",
+        "paragraphs": [
+          "Niniejszy serwis jest stroną <strong>statyczną</strong> — nie zawiera formularzy kontaktowych, systemu logowania ani innych mechanizmów służących do zbierania danych osobowych odwiedzających.",
+          "Serwis nie przetwarza bezpośrednio żadnych danych osobowych użytkowników. Dane techniczne (adresy IP, czas wizyty, przeglądarka) mogą być gromadzone wyłącznie przez serwer hostingowy w ramach standardowych logów systemowych, zgodnie z jego własną polityką prywatności."
+        ]
+      },
+      {
+        "heading": "3. Zewnętrzne serwisy i usługi trzecich",
+        "paragraphs": [
+          "W celu zapewnienia prawidłowego działania serwisu korzystamy z następujących usług zewnętrznych:"
+        ],
+        "subsections": [
+          {
+            "heading": "Google Fonts",
+            "paragraphs": [
+              "Strona wczytuje czcionki (Orbitron, Exo 2, Dancing Script) z serwerów Google LLC (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>). Podczas tego procesu przeglądarka użytkownika nawiązuje połączenie z serwerami Google, co może skutkować przekazaniem adresu IP. Więcej informacji: <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Polityka prywatności Google</a>."
+            ]
+          },
+          {
+            "heading": "Leaflet.js (mapa)",
+            "paragraphs": [
+              "Do wyświetlenia interaktywnej mapy z lokalizacjami firmy używamy biblioteki Leaflet.js w wersji 1.9.4, wczytywanej z serwisu <code>unpkg.com</code>. Podczas ładowania biblioteki przeglądarka nawiązuje połączenie z serwerem unpkg. Więcej informacji: <a href=\"https://unpkg.com\" target=\"_blank\" rel=\"noopener noreferrer\">unpkg.com</a>."
+            ]
+          },
+          {
+            "heading": "CartoDB / CARTO",
+            "paragraphs": [
+              "Kafelki mapy (podkład kartograficzny) są pobierane z serwerów CARTO (<code>basemaps.cartocdn.com</code>). Może to wiązać się z rejestrowaniem adresu IP przez CARTO. Więcej informacji: <a href=\"https://carto.com/privacy/\" target=\"_blank\" rel=\"noopener noreferrer\">Polityka prywatności CARTO</a>."
+            ]
+          },
+          {
+            "heading": "Facebook",
+            "paragraphs": [
+              "Serwis zawiera odnośniki do profilu firmy na platformie Facebook (<code>facebook.com/opalalniko</code>). Są to wyłącznie linki zewnętrzne — serwis nie osadza żadnych wtyczek, pikseli śledzących ani widgetów Facebooka. Kliknięcie linku przekierowuje użytkownika na stronę Facebooka, podlegającą <a href=\"https://www.facebook.com/privacy/policy/\" target=\"_blank\" rel=\"noopener noreferrer\">polityce prywatności Meta</a>."
+            ]
+          },
+          {
+            "heading": "Orły Handlu",
+            "paragraphs": [
+              "Strona zawiera linki do profilu firmy w serwisie Orły Handlu (<code>orlyhandlu.pl</code>). Kliknięcie odnośnika przekierowuje użytkownika na zewnętrzną stronę, podlegającą własnej polityce prywatności tego serwisu."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "4. Pliki cookies",
+        "paragraphs": [
+          "Sam serwis nie ustawia żadnych własnych plików cookie. Zewnętrzne serwisy opisane powyżej (Google Fonts, CartoDB) mogą jednak zapisywać pliki cookie lub podobne technologie w przeglądarce użytkownika zgodnie ze swoją własną polityką. Użytkownik może zarządzać plikami cookie z poziomu ustawień swojej przeglądarki internetowej."
+        ]
+      },
+      {
+        "heading": "5. Prawa użytkownika",
+        "paragraphs": [
+          "Na podstawie rozporządzenia RODO przysługują Ci następujące prawa:"
+        ],
+        "list": [
+          "prawo dostępu do swoich danych oraz otrzymania ich kopii,",
+          "prawo do sprostowania (poprawiania) swoich danych,",
+          "prawo do usunięcia danych (prawo „do bycia zapomnianym\"),",
+          "prawo do ograniczenia przetwarzania danych,",
+          "prawo do wniesienia sprzeciwu wobec przetwarzania danych,",
+          "prawo do przenoszenia danych,",
+          "prawo do wniesienia skargi do organu nadzorczego (Prezes Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warszawa)."
+        ]
+      },
+      {
+        "heading": "6. Kontakt",
+        "paragraphs": [
+          "W sprawach związanych z ochroną danych osobowych oraz realizacją przysługujących praw można kontaktować się pod adresem:"
+        ],
+        "showAddress": true
+      },
+      {
+        "heading": "7. Zmiany polityki prywatności",
+        "paragraphs": [
+          "Administrator zastrzega sobie prawo do zmiany niniejszej Polityki prywatności w przypadku zmian w przepisach prawa lub w sposobie działania serwisu. Wszelkie zmiany będą publikowane na tej stronie."
+        ]
+      }
+    ]
   }
 }

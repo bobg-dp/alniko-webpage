@@ -1,20 +1,22 @@
 ---
-import { siteConfig } from "../config/site";
 import { services } from "../config/services";
+import siteData from "../config/site-data.json";
+
+const footer = siteData.legacyFooter;
 ---
 
 <footer class="footer">
   <div class="footer-inner">
-    <a class="footer-logo" href="/" aria-label={`${siteConfig.companyName} - strona główna`}>
-      <img src="/alniko.webp" alt="Logo ALNIKO" width="190" height="62" />
-      <p>Skład opału | Skup złomu | Węże hydrauliczne | Katalizatory</p>
+    <a class="footer-logo" href="/" aria-label={footer.homeAriaLabel}>
+      <img src="/alniko.webp" alt={footer.logoAlt} width="190" height="62" />
+      <p>{footer.tagline}</p>
     </a>
 
-    <nav aria-label="Menu stopki">
+    <nav aria-label={footer.navAriaLabel}>
       <ul>
-        <li><a href="/o-nas">O nas</a></li>
+        <li><a href={footer.aboutHref}>{footer.aboutLabel}</a></li>
         {services.map((service) => <li><a href={service.path}>{service.shortName}</a></li>)}
-        <li><a href="/kontakt">Kontakt</a></li>
+        <li><a href={footer.contactHref}>{footer.contactLabel}</a></li>
       </ul>
     </nav>
   </div>

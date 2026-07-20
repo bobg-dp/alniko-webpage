@@ -2,19 +2,10 @@
 import ServicePage from "../components/ServicePage.astro";
 import Layout from "../layouts/Layout.astro";
 import { serviceMap } from "../config/services";
+
+const service = serviceMap.fuel;
 ---
 
-<Layout
-  title="Skład i sprzedaż opału - ALNIKO"
-  description="Skład i sprzedaż opału ALNIKO. Sprawdź lokalizacje, kontakt i zakres oferty."
->
-  <ServicePage
-    service={serviceMap.fuel}
-    offerTitle="Oferta opału"
-    offerPoints={[
-      "Sprzedaż opału dla klientów indywidualnych i firm.",
-      "Pomoc w doborze paliwa opałowego do potrzeb obiektu.",
-      "Obsługa zamówień lokalnych i cyklicznych.",
-    ]}
-  />
+<Layout title={service.page.metaTitle} description={service.page.metaDescription}>
+  <ServicePage service={service} />
 </Layout>

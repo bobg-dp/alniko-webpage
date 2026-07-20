@@ -2,19 +2,10 @@
 import ServicePage from "../components/ServicePage.astro";
 import Layout from "../layouts/Layout.astro";
 import { serviceMap } from "../config/services";
+
+const service = serviceMap.catalysts;
 ---
 
-<Layout
-  title="Skup katalizatorów - ALNIKO"
-  description="Skup katalizatorów ALNIKO: lokalizacje punktów, dane kontaktowe i zakres usługi."
->
-  <ServicePage
-    service={serviceMap.catalysts}
-    offerTitle="Oferta skupu katalizatorów"
-    offerPoints={[
-      "Skup katalizatorów dla klientów indywidualnych oraz biznesowych.",
-      "Rzetelna wycena i szybka obsługa.",
-      "Obsługa w punktach w Jeleniej Górze i Ząbkowicach Śląskich.",
-    ]}
-  />
+<Layout title={service.page.metaTitle} description={service.page.metaDescription}>
+  <ServicePage service={service} />
 </Layout>

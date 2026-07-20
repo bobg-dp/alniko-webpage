@@ -6,65 +6,32 @@ import { services, serviceMap } from "../config/services";
 import siteData from "../config/site-data.json";
 
 const allLocations = siteData.locations;
-
-function locsForService(slug: string) {
-  return allLocations.filter(loc => (loc.services as string[]).includes(slug));
-}
-
-const serviceGallery: Record<string, string[]> = {
-  scrap:     ["/panel-scrap.png",     "/fuchs.png"],
-  fuel:      ["/panel-fuel.png",      "/fuel-bg.png"],
-  hoses:     ["/panel-hoses.png",     "/hoses-bg.png"],
-  catalysts: ["/panel-catalysts.png", "/catalysts-bg.png"],
-};
-
-/* stack = 2 kafelki pionowo (default)
-   side  = 2 obok siebie
-   featured = duże + małe pod spodem
-   single = jedno pełnowymiarowe */
-const galleryLayout: Record<string, string> = {
-  scrap:     "stack",
-  fuel:      "side",
-  hoses:     "featured",
-  catalysts: "single",
-};
-
-const testimonials = [
-  { text: "Współpracuję z firmą od kilku lat, wszystko zawsze na czas i z ogromną dbałością o klienta. Polecam!", author: "Bronisław" },
-  { text: "Bardzo dobra firma, obsługa bardzo miła i pomocna. Konkurencyjne ceny.", author: "Radosław" },
-  { text: "Rodzinna firma z tradycjami, w której szef ceni bardziej swoje słowo od pieniądza.", author: "Wojtek" },
-  { text: "Zawsze szybko, sprawnie i profesjonalnie. Dzięki.", author: "Jarosław" },
-  { text: "Gorąco polecam! Węgiel bardzo dobrej jakości, dobra cena, rozmowa z właścicielami konkretna i miła, transport szybki i terminowy. Kupuję w Alniko już kolejny sezon i w dalszym ciągu wszystko na plus!", author: "Agnieszka" },
-];
-
-const locationStyles: Record<string, { bg: string; color: string }> = {
-  "jg-powstancow":        { bg: "/panel-fuel.png",       color: "#ec7f24" },
-  "jg-wroclawska":        { bg: "/panel-catalysts.png",  color: "#efba1c" },
-  "zabkowice-wroclawska": { bg: "/panel-scrap.png",      color: "#646464" },
-};
-
-const galleryImages = [
-  { src: "/head.webp",           caption: "Alniko – siedziba główna" },
-  { src: "/head2.webp",          caption: "Alniko – Jelenia Góra" },
-  { src: "/panel-fuel.png",      caption: "Skład Opału" },
-  { src: "/fuel-bg.png",         caption: "Opał – pełny asortyment" },
-  { src: "/panel-scrap.png",     caption: "Skup Złomu" },
-  { src: "/fuchs.png",           caption: "Złom – skup metali" },
-  { src: "/panel-hoses.png",     caption: "Zakuwanie Węży Hydraulicznych" },
-  { src: "/hoses-bg.png",        caption: "Węże hydrauliczne – warsztat" },
-  { src: "/panel-catalysts.png", caption: "Skup Katalizatorów" },
-  { src: "/catalysts-bg.png",    caption: "Katalizatory – baza skupu" },
-];
+const home = siteData.homePage;
+const about = home.about;
+const contact = home.contact;
+const gallery = home.gallery;
+const lightbox = home.lightbox;
+const testimonials = home.testimonials;
+const galleryImages = gallery.images;
+const mapLocsJson = JSON.stringify(
+  allLocations.map((loc) => ({
+    id: loc.id,
+    lat: loc.lat,
+    lng: loc.lng,
+    city: loc.city,
+    addr: loc.address,
+  })),
+);
 ---
 
 <Layout
-  title="ALNIKO - skład opału, skup złomu, zakuwanie węży hydraulicznych, skup katalizatorów"
-  description="ALNIKO działa w Jeleniej Górze i Ząbkowicach Śląskich: skup złomu, skład opału, zakuwanie węży hydraulicznych i skup katalizatorów."
+  title={home.meta.title}
+  description={home.meta.description}
   hideHeader={true}
   hideFooter={true}
 >
   <main>
-    <section class="hero" aria-label="ALNIKO">
+    <section class="hero" aria-label={home.hero.ariaLabel}>
 
       <!-- Slideshow -->
       <div class="slideshow">
@@ -89,11 +56,11 @@ const galleryImages = [
 
       <!-- Facebook icon (outside bar, right side — visible in hero only) -->
       <a
-        href="https://www.facebook.com/opalalniko"
+        href={siteData.meta.facebookUrl}
         class="hero-fb"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="ALNIKO na Facebooku"
+        aria-label={home.hero.facebookAriaLabel}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
@@ -102,13 +69,11 @@ const galleryImages = [
 
       <!-- Location tiles (bottom) -->
       <div class="hero-tiles" id="lokalizacje">
-        {allLocations.map((loc, i) => {
-          const style = locationStyles[loc.id] ?? { bg: "/panel-scrap.png", color: "#646464" };
-          return (
+        {allLocations.map((loc, i) => (
             <a
               href="#kontakt"
               class="hero-tile"
-              style={`--tile-color: ${style.color}; --tile-bg: url('${style.bg}'); animation-delay: ${0.3 + i * 0.22}s;`}
+              style={`--tile-color: ${loc.tileColor}; --tile-bg: url('${loc.tileBg}'); animation-delay: ${0.3 + i * 0.22}s;`}
               data-loc-id={loc.id}
               aria-label={`${loc.city}, ${loc.address}`}
             >
@@ -123,8 +88,7 @@ const galleryImages = [
                 })}
               </div>
             </a>
-          );
-        })}
+        ))}
       </div>
 
     </section>
@@ -135,29 +99,26 @@ const galleryImages = [
 
         <div class="about-header">
           <a href="/">
-            <img src="/alniko.webp" alt="Alniko Skład Opału Jelenia Góra" class="about-logo" />
+            <img src="/alniko.webp" alt={about.logoAlt} class="about-logo" />
           </a>
         </div>
 
         <div class="about-main">
 
           <div class="about-awards">
-            <a href="https://www.orlyhandlu.pl/profile-362918-cmp/" target="_blank" rel="noopener noreferrer" class="award-link" aria-label="Orły Handlu 2025 – Laureat Konkursu">
-              <img src="https://www.orlyhandlu.pl/images/projectImages/app_logo_for_customer_2025_240.png" alt="Orły Handlu 2025 – Laureat Konkursu" class="award-img" />
-            </a>
-            <a href="https://www.orlyhandlu.pl/profile-362918-cmp/" target="_blank" rel="noopener noreferrer" class="award-link" aria-label="Orły Handlu – Laureat Plebiscytu">
-              <img src="https://www.orlyhandlu.pl/images/medals/laureat300_black_2_pl.png" alt="Orły Handlu – Laureat Plebiscytu" class="award-img" />
-            </a>
+            {about.awards.map((award) => (
+              <a href={award.href} target="_blank" rel="noopener noreferrer" class="award-link" aria-label={award.ariaLabel}>
+                <img src={award.imgSrc} alt={award.alt} class="award-img" />
+              </a>
+            ))}
           </div>
 
           <div class="about-body">
-            <p class="about-tagline">Niech komfort ogrzewania będzie lepszy!<br/>Najwyższa jakość w najniższej cenie!</p>
-            <p>Jesteśmy składem węgla w Jeleniej Górze otwartym od 2018 roku, naszym celem jest zapewnienie klientom najlepszej jakości opału w najniższej cenie.</p>
-            <p>Chcemy się rozwijać i poszerzać nasz asortyment o produkty, których Państwo szukają. Jesteśmy chętni do współpracy z klientem i szybkiej realizacji usług.</p>
-            <p>Oferujemy transport zakupionego towaru we wskazane miejsce o umówionej porze dnia. Szczegóły dotyczące transportu znajdują się w zakładce oferta.</p>
+            <p class="about-tagline" set:html={about.tagline} />
+            {about.body.map((paragraph) => <p>{paragraph}</p>)}
             <div class="about-sign">
-              <p class="about-sign-invite">Zapraszamy już dziś</p>
-              <p class="about-sign-name">Barbara i Dawid Łukasiewicz</p>
+              <p class="about-sign-invite">{about.ctaLabel}</p>
+              <p class="about-sign-name">{about.signName}</p>
             </div>
           </div>
 
@@ -186,17 +147,17 @@ const galleryImages = [
 
             <div
               class="svc-gallery svc-slide svc-slide-right"
-              data-layout={galleryLayout[service.slug] ?? "stack"}
+              data-layout={service.galleryLayout}
             >
-              {serviceGallery[service.slug]?.map((img, gi) => (
+              {service.galleryImages.map((img, gi) => (
                 <button
                   class="gallery-thumb"
                   data-src={img}
                   data-gallery={service.slug}
                   data-index={gi}
-                  aria-label={`${service.name} – zdjęcie ${gi + 1}`}
+                  aria-label={`${service.name} – ${home.serviceGalleryAriaSuffix} ${gi + 1}`}
                 >
-                  <img src={img} alt={`${service.name} – zdjęcie ${gi + 1}`} loading="lazy" />
+                  <img src={img} alt={`${service.name} – ${home.serviceGalleryAriaSuffix} ${gi + 1}`} loading="lazy" />
                   <span class="gallery-zoom" aria-hidden="true">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                       <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
@@ -214,23 +175,25 @@ const galleryImages = [
         {i === 0 && (
           <section class="stats-section">
             <div class="stats-container">
-              <div class="stat-item">
-                <span class="stat-num" data-target="2018" data-from="2014">2018</span>
-                <span class="stat-label">Rok założenia</span>
-              </div>
-              <div class="stat-divider" aria-hidden="true" />
-              <div class="stat-item">
-                <span class="stat-num" data-target="3" data-from="0">3</span>
-                <span class="stat-label">Lokalizacje</span>
-              </div>
-              <div class="stat-divider" aria-hidden="true" />
-              <div class="stat-item">
-                <span class="stat-num" data-target="4.7" data-from="0" data-decimals="1">4.7</span>
-                <span class="stat-label">
-                  Ocena Google
-                  <span class="stat-stars" aria-label="4.7 na 5 gwiazdek">★★★★★</span>
-                </span>
-              </div>
+              {home.stats.map((stat, si) => (
+                <Fragment>
+                  {si > 0 && <div class="stat-divider" aria-hidden="true" />}
+                  <div class="stat-item">
+                    <span
+                      class="stat-num"
+                      data-target={stat.value}
+                      data-from={stat.from}
+                      {...("decimals" in stat && stat.decimals != null ? { "data-decimals": String(stat.decimals) } : {})}
+                    >{stat.value}</span>
+                    <span class="stat-label">
+                      {stat.label}
+                      {"stars" in stat && stat.stars && (
+                        <span class="stat-stars" aria-label={stat.starsAriaLabel}>{stat.stars}</span>
+                      )}
+                    </span>
+                  </div>
+                </Fragment>
+              ))}
             </div>
           </section>
         )}
@@ -253,7 +216,7 @@ const galleryImages = [
                   <button
                     class:list={["testi-dot", ti === 0 && "is-active"]}
                     data-index={ti}
-                    aria-label={`Opinia ${ti + 1}`}
+                    aria-label={`${home.testimonialsAriaLabel} ${ti + 1}`}
                   />
                 ))}
               </div>
@@ -269,11 +232,10 @@ const galleryImages = [
       <div class="contact-container">
 
         <div class="contact-header">
-          <h2 class="contact-title">Kontakt</h2>
+          <h2 class="contact-title">{contact.title}</h2>
           <p class="contact-intro">
-            Skontaktuj się z nami telefonicznie lub odwiedź wybraną lokalizację.
-            Aktualności publikujemy również na Facebooku:&nbsp;
-            <a href="https://www.facebook.com/opalalniko" target="_blank" rel="noopener noreferrer">@opalalniko</a>.
+            {contact.introBefore}
+            <a href={siteData.meta.facebookUrl} target="_blank" rel="noopener noreferrer">{contact.introLinkLabel}</a>{contact.introAfter}
           </p>
         </div>
 
@@ -293,7 +255,7 @@ const galleryImages = [
                   <a
                     href={`tel:${loc.phone.replace(/\s/g, '')}`}
                     class="contact-phone"
-                    aria-label={`Zadzwoń: ${loc.phone}`}
+                    aria-label={`${contact.callAriaPrefix} ${loc.phone}`}
                     onclick="event.stopPropagation()"
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -322,7 +284,7 @@ const galleryImages = [
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
                     <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
                   </svg>
-                  Nawiguj
+                  {contact.navigateLabel}
                 </a>
               </div>
             ))}
@@ -339,8 +301,8 @@ const galleryImages = [
     <section id="galeria" class="gallery-section">
       <div class="gallery-container">
         <div class="gallery-header">
-          <h2 class="gallery-title">Galeria</h2>
-          <p class="gallery-subtitle">Zajrzyj do naszych lokalizacji i poznaj naszą działalność</p>
+          <h2 class="gallery-title">{gallery.title}</h2>
+          <p class="gallery-subtitle">{gallery.subtitle}</p>
         </div>
         <div class="gallery-grid">
           {galleryImages.map((img, i) => (
@@ -364,18 +326,18 @@ const galleryImages = [
     <SiteFooter />
 
     <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia" hidden>
-      <button class="lb-close" id="lb-close" aria-label="Zamknij">
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label={lightbox.ariaLabel} hidden>
+      <button class="lb-close" id="lb-close" aria-label={lightbox.closeLabel}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
       </button>
-      <button class="lb-nav lb-prev" id="lb-prev" aria-label="Poprzednie zdjęcie">
+      <button class="lb-nav lb-prev" id="lb-prev" aria-label={lightbox.prevLabel}>
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="lb-content">
         <img id="lb-img" src="" alt="" class="lb-img" />
         <p id="lb-caption" class="lb-caption"></p>
       </div>
-      <button class="lb-nav lb-next" id="lb-next" aria-label="Następne zdjęcie">
+      <button class="lb-nav lb-next" id="lb-next" aria-label={lightbox.nextLabel}>
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
@@ -1827,13 +1789,9 @@ const galleryImages = [
 })();
 </script>
 
-<script is:inline>
+<script is:inline set:html={`
 (function () {
-  var LOCS = [
-    { id: 'jg-powstancow',        lat: 50.9154, lng: 15.7225, city: 'Jelenia Góra',     addr: 'ul. Powstańców Śląskich 41' },
-    { id: 'jg-wroclawska',        lat: 50.8978, lng: 15.7472, city: 'Jelenia Góra',     addr: 'ul. Wrocławska 35' },
-    { id: 'zabkowice-wroclawska', lat: 50.5903, lng: 16.8134, city: 'Ząbkowice Śląskie', addr: 'ul. Wrocławska 27' }
-  ];
+  var LOCS = ${mapLocsJson};
 
   function initMap() {
     var map = L.map('contact-map', { zoomControl: true, scrollWheelZoom: false });
@@ -1908,4 +1866,4 @@ const galleryImages = [
   js.onload = initMap;
   document.head.appendChild(js);
 })();
-</script>
+`} />

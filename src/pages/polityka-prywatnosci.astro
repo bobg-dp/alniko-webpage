@@ -6,11 +6,13 @@ import siteData from "../config/site-data.json";
 
 const locations = siteData.locations;
 const year = new Date().getFullYear();
+const page = siteData.privacyPage;
+const adminLocation = locations[0];
 ---
 
 <Layout
-  title="Polityka prywatności – ALNIKO"
-  description="Polityka prywatności serwisu ALNIKO – skup złomu, skład opału, zakuwanie węży hydraulicznych, skup katalizatorów."
+  title={page.meta.title}
+  description={page.meta.description}
   hideHeader={true}
 >
   <SiteNav alwaysSticky={true} homeLinks={true} showHome={true} />
@@ -18,108 +20,41 @@ const year = new Date().getFullYear();
     <div class="pp-container">
 
       <header class="pp-header">
-        <h1 class="pp-title">Polityka prywatności</h1>
-        <p class="pp-subtitle">Ostatnia aktualizacja: {year} r.</p>
+        <h1 class="pp-title">{page.title}</h1>
+        <p class="pp-subtitle">{page.subtitle.replace("{year}", String(year))}</p>
       </header>
 
       <article class="pp-content">
-
-        <section class="pp-section">
-          <h2>1. Administrator danych osobowych</h2>
-          <p>
-            Administratorem danych osobowych zbieranych za pośrednictwem niniejszego serwisu internetowego jest:
-          </p>
-          <address>
-            <strong>ALNIKO</strong><br />
-            {locations[0].address}, {locations[0].postcode} {locations[0].city}<br />
-            Tel.: <a href={`tel:${locations[0].phone.replace(/\s/g, '')}`}>{locations[0].phone}</a>
-          </address>
-        </section>
-
-        <section class="pp-section">
-          <h2>2. Zakres zbieranych danych</h2>
-          <p>
-            Niniejszy serwis jest stroną <strong>statyczną</strong> — nie zawiera formularzy kontaktowych, systemu logowania ani innych mechanizmów służących do zbierania danych osobowych odwiedzających.
-          </p>
-          <p>
-            Serwis nie przetwarza bezpośrednio żadnych danych osobowych użytkowników. Dane techniczne (adresy IP, czas wizyty, przeglądarka) mogą być gromadzone wyłącznie przez serwer hostingowy w ramach standardowych logów systemowych, zgodnie z jego własną polityką prywatności.
-          </p>
-        </section>
-
-        <section class="pp-section">
-          <h2>3. Zewnętrzne serwisy i usługi trzecich</h2>
-          <p>
-            W celu zapewnienia prawidłowego działania serwisu korzystamy z następujących usług zewnętrznych:
-          </p>
-
-          <h3>Google Fonts</h3>
-          <p>
-            Strona wczytuje czcionki (Orbitron, Exo 2, Dancing Script) z serwerów Google LLC (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>). Podczas tego procesu przeglądarka użytkownika nawiązuje połączenie z serwerami Google, co może skutkować przekazaniem adresu IP. Więcej informacji: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Polityka prywatności Google</a>.
-          </p>
-
-          <h3>Leaflet.js (mapa)</h3>
-          <p>
-            Do wyświetlenia interaktywnej mapy z lokalizacjami firmy używamy biblioteki Leaflet.js w wersji 1.9.4, wczytywanej z serwisu <code>unpkg.com</code>. Podczas ładowania biblioteki przeglądarka nawiązuje połączenie z serwerem unpkg. Więcej informacji: <a href="https://unpkg.com" target="_blank" rel="noopener noreferrer">unpkg.com</a>.
-          </p>
-
-          <h3>CartoDB / CARTO</h3>
-          <p>
-            Kafelki mapy (podkład kartograficzny) są pobierane z serwerów CARTO (<code>basemaps.cartocdn.com</code>). Może to wiązać się z rejestrowaniem adresu IP przez CARTO. Więcej informacji: <a href="https://carto.com/privacy/" target="_blank" rel="noopener noreferrer">Polityka prywatności CARTO</a>.
-          </p>
-
-          <h3>Facebook</h3>
-          <p>
-            Serwis zawiera odnośniki do profilu firmy na platformie Facebook (<code>facebook.com/opalalniko</code>). Są to wyłącznie linki zewnętrzne — serwis nie osadza żadnych wtyczek, pikseli śledzących ani widgetów Facebooka. Kliknięcie linku przekierowuje użytkownika na stronę Facebooka, podlegającą <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer">polityce prywatności Meta</a>.
-          </p>
-
-          <h3>Orły Handlu</h3>
-          <p>
-            Strona zawiera linki do profilu firmy w serwisie Orły Handlu (<code>orlyhandlu.pl</code>). Kliknięcie odnośnika przekierowuje użytkownika na zewnętrzną stronę, podlegającą własnej polityce prywatności tego serwisu.
-          </p>
-        </section>
-
-        <section class="pp-section">
-          <h2>4. Pliki cookies</h2>
-          <p>
-            Sam serwis nie ustawia żadnych własnych plików cookie. Zewnętrzne serwisy opisane powyżej (Google Fonts, CartoDB) mogą jednak zapisywać pliki cookie lub podobne technologie w przeglądarce użytkownika zgodnie ze swoją własną polityką. Użytkownik może zarządzać plikami cookie z poziomu ustawień swojej przeglądarki internetowej.
-          </p>
-        </section>
-
-        <section class="pp-section">
-          <h2>5. Prawa użytkownika</h2>
-          <p>
-            Na podstawie rozporządzenia RODO przysługują Ci następujące prawa:
-          </p>
-          <ul>
-            <li>prawo dostępu do swoich danych oraz otrzymania ich kopii,</li>
-            <li>prawo do sprostowania (poprawiania) swoich danych,</li>
-            <li>prawo do usunięcia danych (prawo „do bycia zapomnianym"),</li>
-            <li>prawo do ograniczenia przetwarzania danych,</li>
-            <li>prawo do wniesienia sprzeciwu wobec przetwarzania danych,</li>
-            <li>prawo do przenoszenia danych,</li>
-            <li>prawo do wniesienia skargi do organu nadzorczego (Prezes Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warszawa).</li>
-          </ul>
-        </section>
-
-        <section class="pp-section">
-          <h2>6. Kontakt</h2>
-          <p>
-            W sprawach związanych z ochroną danych osobowych oraz realizacją przysługujących praw można kontaktować się pod adresem:
-          </p>
-          <address>
-            <strong>ALNIKO</strong><br />
-            {locations[0].address}, {locations[0].postcode} {locations[0].city}<br />
-            Tel.: <a href={`tel:${locations[0].phone.replace(/\s/g, '')}`}>{locations[0].phone}</a>
-          </address>
-        </section>
-
-        <section class="pp-section">
-          <h2>7. Zmiany polityki prywatności</h2>
-          <p>
-            Administrator zastrzega sobie prawo do zmiany niniejszej Polityki prywatności w przypadku zmian w przepisach prawa lub w sposobie działania serwisu. Wszelkie zmiany będą publikowane na tej stronie.
-          </p>
-        </section>
-
+        {page.sections.map((section) => (
+          <section class="pp-section">
+            <h2>{section.heading}</h2>
+            {section.paragraphs.map((paragraph) => (
+              <p set:html={paragraph} />
+            ))}
+            {"subsections" in section && section.subsections?.map((sub) => (
+              <Fragment>
+                <h3>{sub.heading}</h3>
+                {sub.paragraphs.map((paragraph) => (
+                  <p set:html={paragraph} />
+                ))}
+              </Fragment>
+            ))}
+            {"list" in section && section.list && (
+              <ul>
+                {section.list.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+            {"showAddress" in section && section.showAddress && (
+              <address>
+                <strong>{siteData.meta.companyName}</strong><br />
+                {adminLocation.address}, {adminLocation.postcode} {adminLocation.city}<br />
+                {page.phonePrefix} <a href={`tel:${adminLocation.phone.replace(/\s/g, '')}`}>{adminLocation.phone}</a>
+              </address>
+            )}
+          </section>
+        ))}
       </article>
 
     </div>
