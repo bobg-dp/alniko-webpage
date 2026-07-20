@@ -1,7 +1,9 @@
 ---
+import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
 import SiteNav from "../components/SiteNav.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import ServiceSideNav from "../components/ServiceSideNav.astro";
 import { services, serviceMap } from "../config/services";
 import siteData from "../config/site-data.json";
 
@@ -30,6 +32,7 @@ const mapLocsJson = JSON.stringify(
   hideHeader={true}
   hideFooter={true}
 >
+  <ServiceSideNav linkMode="sections" />
   <main>
     <section class="hero" aria-label={home.hero.ariaLabel}>
 
@@ -116,7 +119,7 @@ const mapLocsJson = JSON.stringify(
 
           <div class="about-body">
             <p class="about-tagline" set:html={about.tagline} />
-            {about.body.map((paragraph) => <p>{paragraph}</p>)}
+            {about.body.map((paragraph) => <p set:html={paragraph} />)}
             <div class="about-sign">
               <p class="about-sign-invite">{about.ctaLabel}</p>
               <p class="about-sign-name">{about.signName}</p>
@@ -143,6 +146,16 @@ const mapLocsJson = JSON.stringify(
               <span class="svc-eyebrow">{service.shortName}</span>
               <h2 class="svc-title">{service.name}</h2>
               <div class="svc-desc" set:html={service.description} />
+              {service.highlights && service.highlights.length > 0 && (
+                <ul class="svc-highlights">
+                  {service.highlights.map((item) => (
+                    <li class="svc-highlight">
+                      <Icon name={item.icon} class="svc-highlight-icon" aria-hidden="true" />
+                      <span>{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
               <a href={service.path} class="svc-cta">{service.ctaLabel}</a>
             </div>
 
@@ -792,7 +805,61 @@ const mapLocsJson = JSON.stringify(
     margin-bottom: 1.75rem;
   }
 
-  .svc-desc strong { color: #1a1a1a; }
+  .svc-desc :global(p) {
+    margin: 0 0 0.9rem;
+  }
+
+  .svc-desc :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .svc-desc :global(ul) {
+    margin: 0 0 0.9rem;
+    padding-left: 1.15rem;
+  }
+
+  .svc-desc :global(li) {
+    margin-bottom: 0.3rem;
+  }
+
+  .svc-desc :global(strong) {
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+
+  .svc-highlights {
+    display: grid;
+    gap: 0.42rem 0.78rem;
+    grid-template-columns: 1fr 1fr;
+    list-style: none;
+    margin: 0 0 1.35rem;
+    padding: 0;
+  }
+
+  .svc-highlight {
+    align-items: center;
+    color: #333;
+    display: flex;
+    font-size: 0.77rem;
+    font-weight: 600;
+    gap: 0.48rem;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+    min-width: 0;
+  }
+
+  .svc-highlight-icon {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    height: 1.14rem;
+    width: 1.14rem;
+  }
+
+  @media (max-width: 520px) {
+    .svc-highlights {
+      grid-template-columns: 1fr;
+    }
+  }
 
   .svc-cta {
     background: var(--svc-color);
@@ -1041,6 +1108,12 @@ const mapLocsJson = JSON.stringify(
   }
 
   /* ===== SITE FOOTER — styles live in SiteFooter.astro ===== */
+
+  @media (max-width: 820px) {
+    main {
+      padding-bottom: 4.5rem;
+    }
+  }
 
   /* Responsive */
   @media (max-width: 820px) {
@@ -1526,6 +1599,11 @@ const mapLocsJson = JSON.stringify(
     line-height: 1.75;
   }
 
+  .about-body strong {
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+
   .about-body a {
     color: #ec7f24;
   }
@@ -1628,8 +1706,14 @@ const mapLocsJson = JSON.stringify(
   .leaflet-popup-content { font-size: 0.85rem; line-height: 1.5; }
 </style>
 
-<script is:inline>
+<script is:inline data-astro-rerun>
 (function () {
+  if (!document.querySelector('.hero') || !document.getElementById('lightbox')) return;
+  if (window.__alnikoHomeAbort) window.__alnikoHomeAbort.abort();
+  var ac = new AbortController();
+  window.__alnikoHomeAbort = ac;
+  var listen = { signal: ac.signal, passive: true };
+
   /* ---- Sticky nav ---- */
   var barEl   = document.querySelector('.hero-bar');
   var floatFb = document.querySelector('.hero-fb');
@@ -1647,10 +1731,10 @@ const mapLocsJson = JSON.stringify(
     if (floatFb) floatFb.style.visibility = sticky ? 'hidden' : '';
   }
 
-  window.addEventListener('scroll', checkSticky, { passive: true });
+  window.addEventListener('scroll', checkSticky, listen);
   window.addEventListener('resize', function () {
     if (barEl && !barEl.classList.contains('is-sticky')) triggerY = barEl.offsetTop;
-  });
+  }, { signal: ac.signal });
   checkSticky();
 
   /* ---- Hero tiles → scroll to contact + activate card ---- */
@@ -1728,6 +1812,7 @@ const mapLocsJson = JSON.stringify(
 
     function next() { show(current + 1); }
     var timer = setInterval(next, 6000);
+    ac.signal.addEventListener('abort', function () { clearInterval(timer); });
   })();
 
   /* ---- Scroll-in animation ---- */
@@ -1799,16 +1884,25 @@ const mapLocsJson = JSON.stringify(
     if (e.key === 'Escape')      close();
     if (e.key === 'ArrowLeft')   navigate(-1);
     if (e.key === 'ArrowRight')  navigate(1);
-  });
+  }, { signal: ac.signal });
 })();
 </script>
 
-<script is:inline set:html={`
+<script is:inline data-astro-rerun set:html={`
 (function () {
+  var mapEl = document.getElementById('contact-map');
+  if (!mapEl) return;
   var LOCS = ${mapLocsJson};
 
   function initMap() {
+    if (!document.getElementById('contact-map')) return;
+    if (window.__alnikoMap) {
+      try { window.__alnikoMap.remove(); } catch (e) {}
+      window.__alnikoMap = null;
+    }
     var map = L.map('contact-map', { zoomControl: true, scrollWheelZoom: false });
+    window.__alnikoMap = map;
+
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
@@ -1869,15 +1963,28 @@ const mapLocsJson = JSON.stringify(
     });
   }
 
-  /* Load Leaflet dynamically */
-  var css = document.createElement('link');
-  css.rel = 'stylesheet';
-  css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-  document.head.appendChild(css);
-
-  var js = document.createElement('script');
-  js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-  js.onload = initMap;
-  document.head.appendChild(js);
+  /* Load Leaflet dynamically (once) */
+  if (window.L) {
+    initMap();
+    return;
+  }
+  if (!document.querySelector('link[data-alniko-leaflet]')) {
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    css.setAttribute('data-alniko-leaflet', '1');
+    document.head.appendChild(css);
+  }
+  if (!document.querySelector('script[data-alniko-leaflet]')) {
+    var js = document.createElement('script');
+    js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    js.setAttribute('data-alniko-leaflet', '1');
+    js.onload = initMap;
+    document.head.appendChild(js);
+  } else {
+    var existing = document.querySelector('script[data-alniko-leaflet]');
+    if (window.L) initMap();
+    else existing.addEventListener('load', initMap, { once: true });
+  }
 })();
 `} />

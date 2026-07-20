@@ -1,4 +1,5 @@
 ---
+import { ClientRouter, fade } from "astro:transitions";
 import JsonLd from "../components/JsonLd.astro";
 import { colors } from "../config/theme";
 import { siteConfig } from "../config/site";
@@ -17,7 +18,7 @@ const canonicalUrl = `${siteUrl}${canonicalPath === "/" ? "/" : canonicalPath}`;
 ---
 
 <!doctype html>
-<html lang="pl">
+<html lang="pl" transition:animate={fade({ duration: "0.55s" })}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -37,6 +38,7 @@ const canonicalUrl = `${siteUrl}${canonicalPath === "/" ? "/" : canonicalPath}`;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,400;0,700;0,900;1,400&subset=latin,latin-ext&display=swap" rel="stylesheet" />
+    <ClientRouter />
     <JsonLd />
     <slot name="head" />
     <style set:html={`
@@ -103,5 +105,12 @@ const canonicalUrl = `${siteUrl}${canonicalPath === "/" ? "/" : canonicalPath}`;
 
   p {
     max-width: 70ch;
+  }
+
+  /* Softer view-transition crossfade for supporting browsers */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.55s;
+    animation-timing-function: ease;
   }
 </style>

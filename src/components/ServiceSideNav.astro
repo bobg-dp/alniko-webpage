@@ -1,0 +1,165 @@
+---
+import { services } from "../config/services";
+
+interface Props {
+  /** pages = /skup-zlomu etc.; sections = #service-scrap on homepage */
+  linkMode?: "pages" | "sections";
+}
+
+const { linkMode = "pages" } = Astro.props;
+---
+
+<nav class="service-side-nav" aria-label="Szybki wybór działalności">
+  {services.map((item) => {
+    const href = linkMode === "sections" ? `#service-${item.slug}` : item.path;
+    return (
+      <a
+        href={href}
+        class="service-side-nav__item"
+        style={`--item-color: ${item.color};`}
+        aria-label={item.shortName}
+        title={item.shortName}
+      >
+        <span class="service-side-nav__icon-wrap">
+          <img
+            src={item.navIcon}
+            alt=""
+            class="service-side-nav__icon"
+            width="40"
+            height="40"
+            loading="lazy"
+          />
+        </span>
+        <span class="service-side-nav__label">{item.shortName}</span>
+      </a>
+    );
+  })}
+</nav>
+
+<style>
+  .service-side-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 150;
+  }
+
+  .service-side-nav__item {
+    align-items: center;
+    background: color-mix(in srgb, var(--item-color) 88%, black 12%);
+    border: 1px solid color-mix(in srgb, var(--item-color) 55%, white 20%);
+    border-bottom-width: 0;
+    border-right: none;
+    color: #fff;
+    display: flex;
+    gap: 0.55rem;
+    max-width: 3.35rem;
+    overflow: hidden;
+    padding: 0.55rem;
+    text-decoration: none;
+    transition:
+      max-width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      background 0.2s ease;
+  }
+
+  .service-side-nav__item:first-child {
+    border-radius: 0.35rem 0 0 0;
+  }
+
+  .service-side-nav__item:last-child {
+    border-bottom-width: 1px;
+    border-radius: 0 0 0 0.35rem;
+  }
+
+  /* Desktop: hover anywhere on the group expands all items */
+  @media (hover: hover) and (min-width: 821px) {
+    .service-side-nav:hover .service-side-nav__item,
+    .service-side-nav:focus-within .service-side-nav__item {
+      max-width: 13rem;
+    }
+
+    .service-side-nav:hover .service-side-nav__label,
+    .service-side-nav:focus-within .service-side-nav__label {
+      opacity: 1;
+    }
+
+    .service-side-nav__item:hover,
+    .service-side-nav__item:focus-visible {
+      background: color-mix(in srgb, var(--item-color) 72%, black 28%);
+      outline: none;
+    }
+  }
+
+  .service-side-nav__icon-wrap {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 0.25rem;
+    display: flex;
+    flex-shrink: 0;
+    height: 2.25rem;
+    justify-content: center;
+    overflow: hidden;
+    width: 2.25rem;
+  }
+
+  .service-side-nav__icon {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.2rem;
+    width: 100%;
+  }
+
+  .service-side-nav__label {
+    font-family: var(--font-title);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    opacity: 0;
+    padding-right: 0.35rem;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 820px) {
+    .service-side-nav {
+      background: rgba(8, 8, 8, 0.92);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      bottom: 0;
+      flex-direction: row;
+      gap: 0.2rem;
+      justify-content: stretch;
+      left: 0;
+      padding: 0.35rem 0.4rem calc(0.35rem + env(safe-area-inset-bottom));
+      right: 0;
+      top: auto;
+      transform: none;
+    }
+
+    .service-side-nav__item,
+    .service-side-nav__item:first-child,
+    .service-side-nav__item:last-child {
+      border: 1px solid transparent;
+      border-radius: 0.3rem;
+      flex: 1;
+      justify-content: center;
+      max-width: none;
+      padding: 0.4rem;
+    }
+
+    .service-side-nav__label {
+      display: none;
+    }
+
+    .service-side-nav__icon-wrap {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+</style>

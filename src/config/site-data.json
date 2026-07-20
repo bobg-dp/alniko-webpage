@@ -2,9 +2,9 @@
   "meta": {
     "companyName": "ALNIKO",
     "siteUrl": "https://alniko.eu",
-    "facebookUrl": "https://www.facebook.com/opalalniko",
-    "facebookHandle": "@opalalniko",
-    "facebookDisplayUrl": "facebook.com/opalalniko"
+    "facebookUrl": "https://www.facebook.com/alnikojeleniagora",
+    "facebookHandle": "@alnikojeleniagora",
+    "facebookDisplayUrl": "facebook.com/alnikojeleniagora"
   },
   "services": [
     {
@@ -14,12 +14,24 @@
       "heroLabel": "Złom",
       "path": "/skup-zlomu",
       "color": "#646464",
+      "navIcon": "/icons/recycle.webp",
       "panelBg": "/panel-scrap.png",
       "sectionImage": "/panel-scrap.png",
       "sectionImageContain": true,
       "galleryImages": ["/panel-scrap.png", "/fuchs.png"],
       "galleryLayout": "stack",
-      "description": "Skupujemy odpady żelazne, nieżelazne i metale kolorowe oraz poddajemy je recyklingowi. Złom, który do nas trafia jest dostarczany do stalowni, hut i odlewni.<br/><br/>Dzięki temu materiały dostają drugie życie w postaci nowych produktów. Do złomu zaliczyć można m.&nbsp;in. elementy konstrukcji stalowych, blachy, elementy instalacji grzewczych, puszki aluminiowe, niepotrzebne garnki, przewody, akumulatory oraz wiele innych rzeczy, które często zalegają nieużyteczne w Państwa garażach i piwnicach.",
+      "description": "<p>Od <strong>ponad 30 lat</strong> prowadzimy profesjonalny skup złomu oraz surowców wtórnych, obsługując zarówno klientów indywidualnych, jak i firmy. Dzięki wieloletniemu doświadczeniu oraz nowoczesnemu zapleczu technicznemu zapewniamy sprawną obsługę, rzetelną wycenę i <strong>konkurencyjne ceny</strong>.</p><p>Skupujemy między innymi:</p><ul><li>złom stalowy i żeliwny,</li><li>metale kolorowe (miedź, aluminium, mosiądz, brąz, cynk, ołów),</li><li>stal nierdzewną i kwasoodporną,</li><li>kable i przewody,</li><li>akumulatory,</li><li>puszki aluminiowe oraz inne surowce wtórne.</li></ul><p>Każda dostawa jest ważona na <strong>legalizowanych wagach</strong>, a rozliczenie odbywa się szybko i w przejrzysty sposób. Współpracujemy zarówno z klientami indywidualnymi, jak i przedsiębiorstwami, oferując możliwość stałej współpracy oraz odbioru większych ilości złomu.</p><p>Dbamy nie tylko o wysoką jakość obsługi, ale również o środowisko naturalne. Prawidłowy recykling surowców pozwala ograniczyć zużycie zasobów naturalnych i przyczynia się do ochrony środowiska.</p><p>Zapraszamy do odwiedzenia naszych punktów skupu i kontaktu z naszym zespołem. Chętnie odpowiemy na pytania oraz przygotujemy indywidualną ofertę współpracy.</p>",
+      "highlights": [
+        { "icon": "lucide:tag", "text": "Konkurencyjne ceny" },
+        { "icon": "lucide:zap", "text": "Natychmiastowe rozliczenie" },
+        { "icon": "lucide:scale", "text": "Legalizowane wagi" },
+        {
+          "icon": "lucide:users",
+          "text": "Obsługa klientów indywidualnych i firm"
+        },
+        { "icon": "lucide:truck", "text": "Odbiór złomu własnym transportem" },
+        { "icon": "lucide:award", "text": "Ponad 30 lat doświadczenia" }
+      ],
       "ctaLabel": "Zobacz nasze lokalizacje",
       "menuItems": [
         { "label": "Lokalizacje", "href": "/skup-zlomu#lokalizacje" },
@@ -32,16 +44,20 @@
         "metaDescription": "Skup złomu w Jeleniej Górze i Ząbkowicach Śląskich. Metale kolorowe i stal – punkty ALNIKO, kontakt telefoniczny i oferta.",
         "h1": "Skup złomu Jelenia Góra i Ząbkowice Śląskie",
         "heroIntro": "Skup złomu ALNIKO w Jeleniej Górze i Ząbkowicach Śląskich. Obsługujemy klientów indywidualnych oraz firmy – lokalne punkty odbioru i szybka wycena.",
-        "offerTitle": "Oferta skupu złomu",
+        "offerTitle": "W skrócie",
         "offerPoints": [
-          "Skup metali kolorowych i stali.",
-          "Obsługa klientów detalicznych i firmowych.",
-          "Transparentne warunki współpracy i szybka obsługa."
+          "Konkurencyjne ceny",
+          "Natychmiastowe rozliczenie",
+          "Legalizowane wagi",
+          "Obsługa klientów indywidualnych i firm",
+          "Odbiór złomu własnym transportem",
+          "Ponad 30 lat doświadczenia"
         ],
+        "wholesaleTitle": "Współpraca hurtowa",
         "wholesalePoints": [
-          "Indywidualna wycena dla większych partii surowca.",
-          "Stała współpraca dla firm produkcyjnych i usługowych.",
-          "Możliwość ustalenia regularnych odbiorów po kontakcie telefonicznym."
+          "Możliwość stałej współpracy z przedsiębiorstwami",
+          "Odbiór większych ilości złomu",
+          "Indywidualna oferta współpracy po kontakcie z naszym zespołem"
         ]
       }
     },
@@ -52,16 +68,20 @@
       "heroLabel": "Opał",
       "path": "/sklad-opalu",
       "color": "#ec7f24",
+      "navIcon": "/icons/fire.webp",
       "panelBg": "/panel-fuel.png",
       "sectionImage": "/panel-fuel.png",
       "sectionImageContain": false,
       "galleryImages": ["/panel-fuel.png", "/fuel-bg.png"],
       "galleryLayout": "side",
-      "description": "Jesteśmy składem węgla w Jeleniej Górze otwartym od 2018 roku, naszym celem jest zapewnienie klientom najlepszej jakości opału w najniższej cenie.<br/><br/>Chcemy się rozwijać i poszerzać nasz asortyment o produkty, których Państwo szukają. Jesteśmy chętni do współpracy z klientem i szybkiej realizacji usług.<br/><br/>Oferujemy transport zakupionego towaru we wskazane miejsce o umówionej porze dnia. Szczegóły dotyczące transportu znajdują się w zakładce oferta.",
+      "description": "<p>Od <strong>2018 roku</strong> prowadzimy skład opału, oferując wysokiej jakości paliwa opałowe dla klientów indywidualnych oraz firm. Stawiamy na sprawdzonych dostawców, dzięki czemu zapewniamy opał o odpowiednich parametrach, gwarantujący wydajne i ekonomiczne ogrzewanie.</p><p>W naszej ofercie znajdują się między innymi:</p><ul><li>węgiel kamienny,</li><li>ekogroszek,</li><li>pellet,</li><li>brykiet.</li></ul><p>Zapewniamy fachowe doradztwo w doborze odpowiedniego opału oraz <strong>konkurencyjne ceny</strong>. Oferujemy również <strong>transport</strong> zakupionego opału bezpośrednio do klienta, dzięki czemu cały proces zakupu jest szybki i wygodny.</p><p>Od lat stawiamy na rzetelną obsługę, terminowość oraz najwyższą jakość oferowanych produktów. Zadowolenie klientów i budowanie długotrwałych relacji są dla nas priorytetem.</p><p>Zapraszamy do kontaktu oraz odwiedzenia naszego składu opału przy <strong>ul. Powstańców Śląskich w Jeleniej Górze</strong>.</p>",
       "ctaLabel": "Zobacz więcej",
       "menuItems": [
         { "label": "Lokalizacje", "href": "/sklad-opalu#lokalizacje" },
-        { "label": "Godziny otwarcia", "href": "/sklad-opalu#godziny-otwarcia" },
+        {
+          "label": "Godziny otwarcia",
+          "href": "/sklad-opalu#godziny-otwarcia"
+        },
         { "label": "Oferta", "href": "/sklad-opalu#oferta" }
       ],
       "page": {
@@ -69,11 +89,14 @@
         "metaDescription": "Skład opału w Jeleniej Górze – sprzedaż opału z możliwością transportu. ALNIKO: lokalizacja, kontakt i oferta.",
         "h1": "Skład opału Jelenia Góra",
         "heroIntro": "Skład i sprzedaż opału ALNIKO w Jeleniej Górze. Opał dla klientów indywidualnych i firm – lokalna obsługa i transport.",
-        "offerTitle": "Oferta opału",
+        "offerTitle": "W skrócie",
         "offerPoints": [
-          "Sprzedaż opału dla klientów indywidualnych i firm.",
-          "Pomoc w doborze paliwa opałowego do potrzeb obiektu.",
-          "Obsługa zamówień lokalnych i cyklicznych."
+          "Węgiel kamienny, ekogroszek, pellet, brykiet",
+          "Fachowe doradztwo w doborze opału",
+          "Konkurencyjne ceny",
+          "Transport bezpośrednio do klienta",
+          "Obsługa klientów indywidualnych i firm",
+          "Skład przy ul. Powstańców Śląskich w Jeleniej Górze"
         ]
       }
     },
@@ -84,16 +107,20 @@
       "heroLabel": "Węże",
       "path": "/weze-hydrauliczne",
       "color": "#1b1b1b",
+      "navIcon": "/icons/pipe.webp",
       "panelBg": "/panel-hoses.png",
       "sectionImage": "/panel-hoses.png",
       "sectionImageContain": true,
       "galleryImages": ["/panel-hoses.png", "/hoses-bg.png"],
       "galleryLayout": "featured",
-      "description": "Zakuwamy węże hydrauliczne na poczekaniu. Szeroki wybór złączek i węży wysokociśnieniowych.",
+      "description": "<p>Oferujemy profesjonalne zakuwanie węży hydraulicznych do maszyn budowlanych, rolniczych, przemysłowych oraz pojazdów ciężarowych i specjalistycznych. Wykonujemy nowe przewody hydrauliczne oraz regenerujemy uszkodzone węże, dobierając odpowiednie końcówki i elementy zgodnie z wymaganiami klienta.</p><p>Pracujemy na wysokiej jakości komponentach, dzięki czemu nasze przewody cechują się trwałością, szczelnością oraz niezawodnością nawet w wymagających warunkach pracy.</p><p>W naszej ofercie znajdują się:</p><ul><li>zakuwanie węży hydraulicznych na wymiar,</li><li>dorabianie przewodów według wzoru lub specyfikacji,</li><li>wymiana końcówek i złączy hydraulicznych,</li><li>szeroki wybór węży, końcówek, szybkozłączy i akcesoriów hydraulicznych,</li><li>fachowe doradztwo w doborze odpowiednich elementów.</li></ul><p>Wiemy, jak ważny jest czas podczas awarii maszyn, dlatego większość przewodów wykonujemy <strong>od ręki</strong>, aby jak najszybciej przywrócić sprzęt do pracy.</p><p>Zapraszamy do naszego punktu przy <strong>ul. Powstańców Śląskich w Jeleniej Górze</strong>. Gwarantujemy profesjonalną obsługę, <strong>konkurencyjne ceny</strong> oraz szybki czas realizacji.</p>",
       "ctaLabel": "Sprawdź naszą ofertę",
       "menuItems": [
         { "label": "Lokalizacje", "href": "/weze-hydrauliczne#lokalizacje" },
-        { "label": "Godziny otwarcia", "href": "/weze-hydrauliczne#godziny-otwarcia" },
+        {
+          "label": "Godziny otwarcia",
+          "href": "/weze-hydrauliczne#godziny-otwarcia"
+        },
         { "label": "Oferta", "href": "/weze-hydrauliczne#oferta" }
       ],
       "page": {
@@ -101,11 +128,14 @@
         "metaDescription": "Zakuwanie węży hydraulicznych w Jeleniej Górze. ALNIKO – punkt przy ul. Powstańców Śląskich 41, kontakt i oferta.",
         "h1": "Zakuwanie węży hydraulicznych Jelenia Góra",
         "heroIntro": "Zakuwanie węży hydraulicznych ALNIKO w Jeleniej Górze. Szybka realizacja dla warsztatów, serwisów i klientów indywidualnych.",
-        "offerTitle": "Oferta zakuwania węży hydraulicznych",
+        "offerTitle": "W skrócie",
         "offerPoints": [
-          "Dobór i zakuwanie przewodów hydraulicznych.",
-          "Wsparcie dla serwisów, warsztatów i klientów indywidualnych.",
-          "Szybka realizacja zamówień lokalnych."
+          "Zakuwanie węży na wymiar",
+          "Dorabianie przewodów według wzoru lub specyfikacji",
+          "Wymiana końcówek i złączy hydraulicznych",
+          "Szeroki wybór węży, końcówek i akcesoriów",
+          "Większość przewodów od ręki",
+          "Punkt przy ul. Powstańców Śląskich w Jeleniej Górze"
         ]
       }
     },
@@ -116,6 +146,7 @@
       "heroLabel": "Katalizatory",
       "path": "/katalizatory",
       "color": "#efba1c",
+      "navIcon": "/icons/cat.webp",
       "panelBg": "/panel-catalysts.png",
       "sectionImage": "/panel-catalysts.png",
       "sectionImageContain": false,
@@ -149,7 +180,7 @@
       "address": "ul. Powstańców Śląskich 41",
       "postcode": "58-500",
       "phone": "519 411 866",
-      "title": "Jelenia Góra – skup złomu, skład opału, zakuwanie węży",
+      "title": "Skup złomu, skład opału, zakuwanie węży",
       "services": ["scrap", "fuel", "hoses"],
       "tileBg": "/panel-fuel.png",
       "tileColor": "#ec7f24",
@@ -162,7 +193,7 @@
       "address": "ul. Wrocławska 35",
       "postcode": "58-506",
       "phone": "75 75 18 183",
-      "title": "Jelenia Góra – skup złomu i katalizatorów",
+      "title": "Skup złomu i katalizatorów",
       "services": ["scrap", "catalysts"],
       "tileBg": "/panel-catalysts.png",
       "tileColor": "#efba1c",
@@ -175,7 +206,7 @@
       "address": "ul. Wrocławska 27",
       "postcode": "57-200",
       "phone": "604 529 255",
-      "title": "Ząbkowice Śląskie – skup złomu i katalizatorów",
+      "title": "Skup złomu i katalizatorów",
       "services": ["scrap", "catalysts"],
       "tileBg": "/panel-scrap.png",
       "tileColor": "#646464",
@@ -204,7 +235,7 @@
       "title": "ALNIKO – skład opału, skup złomu i katalizatorów | Jelenia Góra, Ząbkowice",
       "description": "Skład opału i skup złomu w Jeleniej Górze oraz skup złomu i katalizatorów w Ząbkowicach Śląskich. ALNIKO – lokalizacje, kontakt i oferta."
     },
-    "h1": "Skład opału, skup złomu i katalizatorów – Jelenia Góra i Ząbkowice Śląskie",
+    "h1": "Skład opału, skup złomu i katalizatorów <br/> Jelenia Góra i Ząbkowice Śląskie",
     "hero": {
       "ariaLabel": "ALNIKO",
       "facebookAriaLabel": "ALNIKO na Facebooku"
@@ -213,9 +244,12 @@
       "logoAlt": "ALNIKO – skład opału i skup złomu Jelenia Góra",
       "tagline": "Niech komfort ogrzewania będzie lepszy!<br/>Najwyższa jakość w najniższej cenie!",
       "body": [
-        "Jesteśmy składem węgla w Jeleniej Górze otwartym od 2018 roku, naszym celem jest zapewnienie klientom najlepszej jakości opału w najniższej cenie.",
-        "Chcemy się rozwijać i poszerzać nasz asortyment o produkty, których Państwo szukają. Jesteśmy chętni do współpracy z klientem i szybkiej realizacji usług.",
-        "Oferujemy transport zakupionego towaru we wskazane miejsce o umówionej porze dnia. Szczegóły dotyczące transportu znajdują się w zakładce oferta."
+        "Firma jest rodzinnym przedsiębiorstwem z wieloletnią tradycją, działającym nieprzerwanie od <strong>1992 roku</strong>. Jej początki związane są z otwarciem pierwszego punktu skupu złomu przy ul. Warszawskiej w <strong>Jeleniej Górze</strong>, który obsługiwał głównie klientów indywidualnych.",
+        "Wraz z rozwojem działalności w <strong>1997 roku</strong> uruchomiono kolejny punkt w Łomnicy, pełniący funkcję bazy hurtowej. W następnych latach przedsiębiorstwo sukcesywnie rozwijało swoją działalność, dostosowując infrastrukturę i zakres usług do potrzeb rynku. Skup przy ul. Warszawskiej został przeniesiony na ul. Kasprowicza, natomiast w <strong>2004 roku</strong> siedziba firmy została przeniesiona z Łomnicy na ul. Wrocławską w Jeleniej Górze.",
+        "W <strong>2013 roku</strong> firmę przejął <strong>Dawid</strong>, kontynuując rodzinne tradycje oraz wyznaczony kierunek rozwoju. Trzy lata później działalność została przekształcona w spółkę cywilną, co otworzyło nowe możliwości dalszego rozwoju przedsiębiorstwa.",
+        "Kolejnym ważnym krokiem było uruchomienie w <strong>2018 roku</strong> składu opału przy ul. Powstańców Śląskich w Jeleniej Górze. W <strong>2020 roku</strong> zmarł <strong>Janusz</strong> – założyciel firmy, którego zaangażowanie, doświadczenie i przedsiębiorczość przez blisko trzy dekady stanowiły fundament rozwoju przedsiębiorstwa. Jego dorobek i wartości pozostają ważną częścią historii firmy.",
+        "W kolejnych latach przedsiębiorstwo nadal się rozwijało. Firma przejęła punkt skupu złomu w <strong>Ząbkowicach Śląskich</strong>, rozszerzając obszar swojej działalności. W <strong>2023 roku</strong> uruchomiono działalność związaną z zakuwaniem węży hydraulicznych, a w <strong>2024 roku</strong> punkt skupu z ul. Kasprowicza został przeniesiony do lokalizacji przy ul. Powstańców Śląskich w Jeleniej Górze, tworząc nowoczesne centrum obsługi klientów.",
+        "Dziś, po <strong>ponad 30 latach</strong> działalności, firma pozostaje nowoczesnym przedsiębiorstwem rodzinnym, specjalizującym się w skupie i recyklingu surowców wtórnych, sprzedaży opału oraz zakuwaniem węży hydraulicznych. Wieloletnie doświadczenie, profesjonalizm i uczciwość pozwalają budować trwałe relacje z klientami oraz partnerami biznesowymi, łącząc tradycję z nowoczesnym podejściem do branży."
       ],
       "ctaLabel": "Zapraszamy już dziś",
       "signName": "Barbara i Dawid Łukasiewicz",
@@ -236,8 +270,8 @@
     },
     "stats": [
       {
-        "value": "2018",
-        "from": "2014",
+        "value": "1992",
+        "from": "1988",
         "label": "Rok założenia"
       },
       {
@@ -280,7 +314,7 @@
     "contact": {
       "title": "Kontakt",
       "introBefore": "Skontaktuj się z nami telefonicznie lub odwiedź wybraną lokalizację. Aktualności publikujemy również na Facebooku:\u00a0",
-      "introLinkLabel": "@opalalniko",
+      "introLinkLabel": "@alnikojeleniagora",
       "introAfter": ".",
       "navigateLabel": "Nawiguj",
       "callAriaPrefix": "Zadzwoń:"
@@ -295,7 +329,10 @@
         { "src": "/fuel-bg.png", "caption": "Opał – pełny asortyment" },
         { "src": "/panel-scrap.png", "caption": "Skup Złomu" },
         { "src": "/fuchs.png", "caption": "Złom – skup metali" },
-        { "src": "/panel-hoses.png", "caption": "Zakuwanie Węży Hydraulicznych" },
+        {
+          "src": "/panel-hoses.png",
+          "caption": "Zakuwanie Węży Hydraulicznych"
+        },
         { "src": "/hoses-bg.png", "caption": "Węże hydrauliczne – warsztat" },
         { "src": "/panel-catalysts.png", "caption": "Skup Katalizatorów" },
         { "src": "/catalysts-bg.png", "caption": "Katalizatory – baza skupu" }
@@ -334,6 +371,7 @@
       "hoursTitle": "Godziny otwarcia",
       "hoursBody": "Godziny pracy różnią się między punktami w Jeleniej Górze i Ząbkowicach Śląskich. Aktualne informacje potwierdzisz telefonicznie pod numerami podanymi w sekcji lokalizacji.",
       "contactLabel": "Kontakt:",
+      "navigateLabel": "Nawiguj",
       "wholesaleTitle": "Oferta hurtowa"
     }
   },
@@ -407,7 +445,7 @@
           {
             "heading": "Facebook",
             "paragraphs": [
-              "Serwis zawiera odnośniki do profilu firmy na platformie Facebook (<code>facebook.com/opalalniko</code>). Są to wyłącznie linki zewnętrzne — serwis nie osadza żadnych wtyczek, pikseli śledzących ani widgetów Facebooka. Kliknięcie linku przekierowuje użytkownika na stronę Facebooka, podlegającą <a href=\"https://www.facebook.com/privacy/policy/\" target=\"_blank\" rel=\"noopener noreferrer\">polityce prywatności Meta</a>."
+              "Serwis zawiera odnośniki do profilu firmy na platformie Facebook (<code>facebook.com/alnikojeleniagora</code>). Są to wyłącznie linki zewnętrzne — serwis nie osadza żadnych wtyczek, pikseli śledzących ani widgetów Facebooka. Kliknięcie linku przekierowuje użytkownika na stronę Facebooka, podlegającą <a href=\"https://www.facebook.com/privacy/policy/\" target=\"_blank\" rel=\"noopener noreferrer\">polityce prywatności Meta</a>."
             ]
           },
           {

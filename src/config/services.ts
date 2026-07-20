@@ -9,7 +9,13 @@ export type ServicePageContent = {
   heroIntro: string;
   offerTitle: string;
   offerPoints: string[];
+  wholesaleTitle?: string;
   wholesalePoints?: string[];
+};
+
+export type ServiceHighlight = {
+  icon: string;
+  text: string;
 };
 
 export type ServiceDefinition = {
@@ -19,12 +25,14 @@ export type ServiceDefinition = {
   heroLabel: string;
   path: string;
   color: string;
+  navIcon: string;
   panelBg: string;
   sectionImage: string;
   sectionImageContain: boolean;
   galleryImages: string[];
   galleryLayout: "stack" | "side" | "featured" | "single";
   description: string;
+  highlights?: ServiceHighlight[];
   ctaLabel: string;
   menuItems: { label: string; href: string }[];
   page: ServicePageContent;
