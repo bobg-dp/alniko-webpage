@@ -1,7 +1,7 @@
 {
   "meta": {
     "companyName": "ALNIKO",
-    "siteUrl": "https://example.com",
+    "siteUrl": "https://alniko.eu",
     "facebookUrl": "https://www.facebook.com/opalalniko",
     "facebookHandle": "@opalalniko",
     "facebookDisplayUrl": "facebook.com/opalalniko"
@@ -28,8 +28,10 @@
         { "label": "Oferta hurtowa", "href": "/skup-zlomu#oferta-hurtowa" }
       ],
       "page": {
-        "metaTitle": "Skup złomu - ALNIKO",
-        "metaDescription": "Skup złomu ALNIKO: lokalizacje, szczegóły oferty i kontakt.",
+        "metaTitle": "Skup złomu Jelenia Góra i Ząbkowice Śląskie | ALNIKO",
+        "metaDescription": "Skup złomu w Jeleniej Górze i Ząbkowicach Śląskich. Metale kolorowe i stal – punkty ALNIKO, kontakt telefoniczny i oferta.",
+        "h1": "Skup złomu Jelenia Góra i Ząbkowice Śląskie",
+        "heroIntro": "Skup złomu ALNIKO w Jeleniej Górze i Ząbkowicach Śląskich. Obsługujemy klientów indywidualnych oraz firmy – lokalne punkty odbioru i szybka wycena.",
         "offerTitle": "Oferta skupu złomu",
         "offerPoints": [
           "Skup metali kolorowych i stali.",
@@ -63,8 +65,10 @@
         { "label": "Oferta", "href": "/sklad-opalu#oferta" }
       ],
       "page": {
-        "metaTitle": "Skład i sprzedaż opału - ALNIKO",
-        "metaDescription": "Skład i sprzedaż opału ALNIKO. Sprawdź lokalizacje, kontakt i zakres oferty.",
+        "metaTitle": "Skład opału Jelenia Góra | Opał Jelenia Góra – ALNIKO",
+        "metaDescription": "Skład opału w Jeleniej Górze – sprzedaż opału z możliwością transportu. ALNIKO: lokalizacja, kontakt i oferta.",
+        "h1": "Skład opału Jelenia Góra",
+        "heroIntro": "Skład i sprzedaż opału ALNIKO w Jeleniej Górze. Opał dla klientów indywidualnych i firm – lokalna obsługa i transport.",
         "offerTitle": "Oferta opału",
         "offerPoints": [
           "Sprzedaż opału dla klientów indywidualnych i firm.",
@@ -93,8 +97,10 @@
         { "label": "Oferta", "href": "/weze-hydrauliczne#oferta" }
       ],
       "page": {
-        "metaTitle": "Zakuwanie węży hydraulicznych - ALNIKO",
-        "metaDescription": "Zakuwanie węży hydraulicznych ALNIKO: lokalizacje, kontakt i szczegóły oferty.",
+        "metaTitle": "Zakuwanie węży hydraulicznych Jelenia Góra | ALNIKO",
+        "metaDescription": "Zakuwanie węży hydraulicznych w Jeleniej Górze. ALNIKO – punkt przy ul. Powstańców Śląskich 41, kontakt i oferta.",
+        "h1": "Zakuwanie węży hydraulicznych Jelenia Góra",
+        "heroIntro": "Zakuwanie węży hydraulicznych ALNIKO w Jeleniej Górze. Szybka realizacja dla warsztatów, serwisów i klientów indywidualnych.",
         "offerTitle": "Oferta zakuwania węży hydraulicznych",
         "offerPoints": [
           "Dobór i zakuwanie przewodów hydraulicznych.",
@@ -123,8 +129,10 @@
         { "label": "Oferta", "href": "/katalizatory#oferta" }
       ],
       "page": {
-        "metaTitle": "Skup katalizatorów - ALNIKO",
-        "metaDescription": "Skup katalizatorów ALNIKO: lokalizacje punktów, dane kontaktowe i zakres usługi.",
+        "metaTitle": "Skup katalizatorów Jelenia Góra i Ząbkowice Śląskie | ALNIKO",
+        "metaDescription": "Skup katalizatorów w Jeleniej Górze i Ząbkowicach Śląskich. Wycena ze spektrometrem – punkty ALNIKO i kontakt.",
+        "h1": "Skup katalizatorów Jelenia Góra i Ząbkowice Śląskie",
+        "heroIntro": "Skup katalizatorów ALNIKO w Jeleniej Górze i Ząbkowicach Śląskich. Przyjmujemy katalizatory z różnych modeli samochodów – uczciwa wycena i lokalna obsługa.",
         "offerTitle": "Oferta skupu katalizatorów",
         "offerPoints": [
           "Skup katalizatorów dla klientów indywidualnych oraz biznesowych.",
@@ -141,7 +149,7 @@
       "address": "ul. Powstańców Śląskich 41",
       "postcode": "58-500",
       "phone": "519 411 866",
-      "title": "Skup złomu, skład opału, zakuwanie węży hydraulicznych",
+      "title": "Jelenia Góra – skup złomu, skład opału, zakuwanie węży",
       "services": ["scrap", "fuel", "hoses"],
       "tileBg": "/panel-fuel.png",
       "tileColor": "#ec7f24",
@@ -154,7 +162,7 @@
       "address": "ul. Wrocławska 35",
       "postcode": "58-506",
       "phone": "75 75 18 183",
-      "title": "Skup złomu, skup katalizatorów",
+      "title": "Jelenia Góra – skup złomu i katalizatorów",
       "services": ["scrap", "catalysts"],
       "tileBg": "/panel-catalysts.png",
       "tileColor": "#efba1c",
@@ -167,7 +175,7 @@
       "address": "ul. Wrocławska 27",
       "postcode": "57-200",
       "phone": "604 529 255",
-      "title": "Skup złomu, skup katalizatorów",
+      "title": "Ząbkowice Śląskie – skup złomu i katalizatorów",
       "services": ["scrap", "catalysts"],
       "tileBg": "/panel-scrap.png",
       "tileColor": "#646464",
@@ -193,15 +201,16 @@
   },
   "homePage": {
     "meta": {
-      "title": "ALNIKO - skład opału, skup złomu, zakuwanie węży hydraulicznych, skup katalizatorów",
-      "description": "ALNIKO działa w Jeleniej Górze i Ząbkowicach Śląskich: skup złomu, skład opału, zakuwanie węży hydraulicznych i skup katalizatorów."
+      "title": "ALNIKO – skład opału, skup złomu i katalizatorów | Jelenia Góra, Ząbkowice",
+      "description": "Skład opału i skup złomu w Jeleniej Górze oraz skup złomu i katalizatorów w Ząbkowicach Śląskich. ALNIKO – lokalizacje, kontakt i oferta."
     },
+    "h1": "Skład opału, skup złomu i katalizatorów – Jelenia Góra i Ząbkowice Śląskie",
     "hero": {
       "ariaLabel": "ALNIKO",
       "facebookAriaLabel": "ALNIKO na Facebooku"
     },
     "about": {
-      "logoAlt": "Alniko Skład Opału Jelenia Góra",
+      "logoAlt": "ALNIKO – skład opału i skup złomu Jelenia Góra",
       "tagline": "Niech komfort ogrzewania będzie lepszy!<br/>Najwyższa jakość w najniższej cenie!",
       "body": [
         "Jesteśmy składem węgla w Jeleniej Górze otwartym od 2018 roku, naszym celem jest zapewnienie klientom najlepszej jakości opału w najniższej cenie.",
@@ -302,7 +311,7 @@
   },
   "footer": {
     "logoAlt": "Alniko",
-    "tagline": "Skład opału · Skup złomu<br/>Węże hydrauliczne · Katalizatory",
+    "tagline": "Skład opału · Skup złomu · Katalizatory<br/>Jelenia Góra · Ząbkowice Śląskie",
     "facebookAriaLabel": "ALNIKO na Facebooku",
     "locationsTitle": "Nasze lokalizacje",
     "servicesTitle": "Usługi",
@@ -321,11 +330,9 @@
   },
   "servicePages": {
     "common": {
-      "heroIntroBefore": "Oferta firmy ALNIKO w zakresie usługi:",
-      "heroIntroAfter": ". Działamy lokalnie i zapewniamy szybką obsługę dla klientów indywidualnych oraz biznesowych.",
       "locationsTitle": "Lokalizacje",
       "hoursTitle": "Godziny otwarcia",
-      "hoursBody": "Godziny pracy różnią się między punktami. Aktualne informacje potwierdzisz telefonicznie pod numerami podanymi w sekcji lokalizacji.",
+      "hoursBody": "Godziny pracy różnią się między punktami w Jeleniej Górze i Ząbkowicach Śląskich. Aktualne informacje potwierdzisz telefonicznie pod numerami podanymi w sekcji lokalizacji.",
       "contactLabel": "Kontakt:",
       "wholesaleTitle": "Oferta hurtowa"
     }
@@ -352,8 +359,8 @@
   },
   "privacyPage": {
     "meta": {
-      "title": "Polityka prywatności – ALNIKO",
-      "description": "Polityka prywatności serwisu ALNIKO – skup złomu, skład opału, zakuwanie węży hydraulicznych, skup katalizatorów."
+      "title": "Polityka prywatności – ALNIKO | alniko.eu",
+      "description": "Polityka prywatności serwisu ALNIKO (alniko.eu) – skład opału, skup złomu i katalizatorów w Jeleniej Górze oraz Ząbkowicach Śląskich."
     },
     "title": "Polityka prywatności",
     "subtitle": "Ostatnia aktualizacja: {year} r.",

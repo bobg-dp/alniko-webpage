@@ -101,6 +101,7 @@ const mapLocsJson = JSON.stringify(
           <a href="/">
             <img src="/alniko.webp" alt={about.logoAlt} class="about-logo" />
           </a>
+          <h1 class="about-heading">{home.h1}</h1>
         </div>
 
         <div class="about-main">
@@ -1448,6 +1449,19 @@ const mapLocsJson = JSON.stringify(
     margin: 0 auto;
     object-fit: contain;
     width: auto;
+  }
+
+  .about-heading {
+    color: #1a1a1a;
+    font-family: var(--font-title);
+    font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    margin: 1.25rem auto 0;
+    max-width: 36ch;
+    text-align: center;
+    text-transform: uppercase;
   }
 
   .about-tagline {

@@ -1,0 +1,76 @@
+---
+import siteData from "../config/site-data.json";
+import { services } from "../config/services";
+
+const siteUrl = siteData.meta.siteUrl.replace(/\/$/, "");
+
+function toTel(phone: string) {
+  return `+48${phone.replace(/\s/g, "")}`;
+}
+
+const locationsSchema = siteData.locations.map((loc) => ({
+  "@type": "LocalBusiness",
+  "@id": `${siteUrl}/#${loc.id}`,
+  name: `ALNIKO – ${loc.city}, ${loc.address}`,
+  image: `${siteUrl}/alniko.webp`,
+  url: siteUrl,
+  telephone: toTel(loc.phone),
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: loc.address,
+    addressLocality: loc.city,
+    postalCode: loc.postcode,
+    addressCountry: "PL",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: loc.lat,
+    longitude: loc.lng,
+  },
+  areaServed: {
+    "@type": "City",
+    name: loc.city,
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: loc.title,
+    itemListElement: loc.services.map((slug) => {
+      const service = services.find((s) => s.slug === slug);
+      return {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service?.name ?? slug,
+          url: `${siteUrl}${service?.path ?? ""}`,
+        },
+      };
+    }),
+  },
+}));
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: siteData.meta.companyName,
+      url: siteUrl,
+      logo: `${siteUrl}/alniko.webp`,
+      sameAs: [siteData.meta.facebookUrl],
+      location: locationsSchema.map((loc) => ({ "@id": loc["@id"] })),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: siteData.meta.companyName,
+      publisher: { "@id": `${siteUrl}/#organization` },
+      inLanguage: "pl-PL",
+    },
+    ...locationsSchema,
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

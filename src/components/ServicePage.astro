@@ -1,7 +1,7 @@
 ---
-import { locations } from "../config/site";
 import type { ServiceDefinition } from "../config/services";
 import { servicePagesCommon } from "../config/services";
+import siteData from "../config/site-data.json";
 
 interface Props {
   service: ServiceDefinition;
@@ -9,7 +9,9 @@ interface Props {
 
 const { service } = Astro.props;
 const common = servicePagesCommon;
-const serviceLocations = locations.filter((location) => location.services.includes(service.slug));
+const serviceLocations = siteData.locations.filter((location) =>
+  (location.services as string[]).includes(service.slug),
+);
 const offerPoints = service.page.offerPoints;
 const wholesalePoints = service.page.wholesalePoints ?? [];
 ---
@@ -17,10 +19,8 @@ const wholesalePoints = service.page.wholesalePoints ?? [];
 <main class="service-main">
   <section class="service-hero" style={`--service-color: ${service.color};`}>
     <div class="service-hero-inner">
-      <h1 class="section-title">{service.name}</h1>
-      <p>
-        {common.heroIntroBefore} <strong>{service.name}</strong>{common.heroIntroAfter}
-      </p>
+      <h1 class="section-title">{service.page.h1}</h1>
+      <p>{service.page.heroIntro}</p>
     </div>
   </section>
 
@@ -30,10 +30,12 @@ const wholesalePoints = service.page.wholesalePoints ?? [];
       {
         serviceLocations.map((location) => (
           <article class="location-card">
-            <h3>{location.title}</h3>
-            <p>{location.address}</p>
+            <h3>{location.city}</h3>
+            <p class="location-services">{location.title}</p>
+            <p>{location.postcode} {location.address}</p>
             <p>
-              {common.contactLabel} <a href={location.phoneHref}>{location.phoneLabel}</a>
+              {common.contactLabel}{" "}
+              <a href={`tel:${location.phone.replace(/\s/g, "")}`}>{location.phone}</a>
             </p>
           </article>
         ))
@@ -107,6 +109,11 @@ const wholesalePoints = service.page.wholesalePoints ?? [];
 
   .location-card h3 {
     margin-top: 0;
+  }
+
+  .location-services {
+    color: color-mix(in srgb, var(--color-white), transparent 25%);
+    font-size: 0.9rem;
   }
 
   .location-card a {

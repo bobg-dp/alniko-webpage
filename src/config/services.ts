@@ -5,6 +5,8 @@ export type ServiceSlug = "fuel" | "scrap" | "hoses" | "catalysts";
 export type ServicePageContent = {
   metaTitle: string;
   metaDescription: string;
+  h1: string;
+  heroIntro: string;
   offerTitle: string;
   offerPoints: string[];
   wholesalePoints?: string[];

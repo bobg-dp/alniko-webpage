@@ -1,6 +1,5 @@
 ---
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+import JsonLd from "../components/JsonLd.astro";
 import { colors } from "../config/theme";
 import { siteConfig } from "../config/site";
 
@@ -11,7 +10,10 @@ interface Props {
   hideFooter?: boolean;
 }
 
-const { title, description, hideHeader = false, hideFooter = false } = Astro.props;
+const { title, description } = Astro.props;
+const siteUrl = siteConfig.siteUrl.replace(/\/$/, "");
+const canonicalPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
+const canonicalUrl = `${siteUrl}${canonicalPath === "/" ? "/" : canonicalPath}`;
 ---
 
 <!doctype html>
@@ -22,19 +24,20 @@ const { title, description, hideHeader = false, hideFooter = false } = Astro.pro
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href={`${siteConfig.siteUrl}${Astro.url.pathname}`} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:site_name" content={siteConfig.companyName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={`${siteConfig.siteUrl}${Astro.url.pathname}`} />
-    <meta property="og:image" content={`${siteConfig.siteUrl}/head.webp`} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={`${siteUrl}/head.webp`} />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,400;0,700;0,900;1,400&subset=latin,latin-ext&display=swap" rel="stylesheet" />
+    <JsonLd />
     <slot name="head" />
     <style set:html={`
       :root {
