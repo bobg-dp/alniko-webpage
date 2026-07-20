@@ -104,7 +104,7 @@ const mapLocsJson = JSON.stringify(
           <a href="/">
             <img src="/alniko.webp" alt={about.logoAlt} class="about-logo" />
           </a>
-          <h1 class="about-heading">{home.h1}</h1>
+          <h1 class="about-heading" set:html={home.h1} />
         </div>
 
         <div class="about-main">
