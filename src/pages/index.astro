@@ -120,10 +120,6 @@ const mapLocsJson = JSON.stringify(
           <div class="about-body">
             <p class="about-tagline" set:html={about.tagline} />
             {about.body.map((paragraph) => <p set:html={paragraph} />)}
-            <div class="about-sign">
-              <p class="about-sign-invite">{about.ctaLabel}</p>
-              <p class="about-sign-name">{about.signName}</p>
-            </div>
           </div>
 
         </div>
