@@ -426,7 +426,7 @@
           {
             "heading": "Google Fonts",
             "paragraphs": [
-              "Strona wczytuje czcionki (Orbitron, Exo 2, Dancing Script) z serwerów Google LLC (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>). Podczas tego procesu przeglądarka użytkownika nawiązuje połączenie z serwerami Google, co może skutkować przekazaniem adresu IP. Więcej informacji: <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Polityka prywatności Google</a>."
+              "Czcionka tytułowa (ALNIKO-Orbitron, pochodna Orbitron na licencji SIL OFL) jest hostowana lokalnie na serwerze strony. Dodatkowo strona wczytuje czcionki Exo 2 i Dancing Script z serwerów Google LLC (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>). Podczas tego procesu przeglądarka użytkownika nawiązuje połączenie z serwerami Google, co może skutkować przekazaniem adresu IP. Więcej informacji: <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Polityka prywatności Google</a>."
             ]
           },
           {
