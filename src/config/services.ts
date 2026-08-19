@@ -29,7 +29,7 @@ export type ServiceDefinition = {
   panelBg: string;
   sectionImage: string;
   sectionImageContain: boolean;
-  galleryImages: string[];
+  galleryImages: Array<string | { src: string; thumb?: string }>;
   galleryLayout: "stack" | "side" | "featured" | "single" | "hero-mini";
   description: string;
   highlights?: ServiceHighlight[];

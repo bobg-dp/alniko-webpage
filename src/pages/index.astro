@@ -14,7 +14,7 @@ const contact = home.contact;
 const gallery = home.gallery;
 const lightbox = home.lightbox;
 const testimonials = home.testimonials;
-const galleryImages = gallery.images;
+const gallerySections = gallery.sections;
 const mapLocsJson = JSON.stringify(
   allLocations.map((loc) => ({
     id: loc.id,
@@ -159,15 +159,18 @@ const mapLocsJson = JSON.stringify(
               class="svc-gallery svc-slide svc-slide-right"
               data-layout={service.galleryLayout}
             >
-              {service.galleryImages.map((img, gi) => (
+              {service.galleryImages.map((img, gi) => {
+                const src = typeof img === "string" ? img : img.src;
+                const thumb = typeof img === "string" ? img : (img.thumb ?? img.src);
+                return (
                 <button
                   class="gallery-thumb"
-                  data-src={img}
+                  data-src={src}
                   data-gallery={service.slug}
                   data-index={gi}
                   aria-label={`${service.name} – ${home.serviceGalleryAriaSuffix} ${gi + 1}`}
                 >
-                  <img src={img} alt={`${service.name} – ${home.serviceGalleryAriaSuffix} ${gi + 1}`} loading="lazy" />
+                  <img src={thumb} alt={`${service.name} – ${home.serviceGalleryAriaSuffix} ${gi + 1}`} loading="lazy" />
                   <span class="gallery-zoom" aria-hidden="true">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                       <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
@@ -175,7 +178,8 @@ const mapLocsJson = JSON.stringify(
                     </svg>
                   </span>
                 </button>
-              ))}
+                );
+              })}
             </div>
 
           </div>
@@ -314,21 +318,26 @@ const mapLocsJson = JSON.stringify(
           <h2 class="gallery-title">{gallery.title}</h2>
           <p class="gallery-subtitle">{gallery.subtitle}</p>
         </div>
-        <div class="gallery-grid">
-          {galleryImages.map((img, i) => (
-            <button
-              class="gallery-thumb"
-              data-gallery="main"
-              data-index={i}
-              data-src={img.src}
-              data-caption={img.caption}
-              aria-label={img.caption}
-            >
-              <img src={img.src} alt={img.caption} loading="lazy" />
-              <span class="gallery-cap">{img.caption}</span>
-            </button>
-          ))}
-        </div>
+        {gallerySections.map((section) => (
+          <div class="gallery-group" id={`galeria-${section.id}`}>
+            <h3 class="gallery-group-title">{section.title}</h3>
+            <div class="gallery-grid">
+              {section.images.map((img, i) => (
+                <button
+                  class="gallery-thumb"
+                  data-gallery={`main-${section.id}`}
+                  data-index={i}
+                  data-src={img.src}
+                  data-caption={img.caption}
+                  aria-label={img.caption}
+                >
+                  <img src={img.src} alt={img.caption} loading="lazy" />
+                  <span class="gallery-cap">{img.caption}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -1082,6 +1091,24 @@ const mapLocsJson = JSON.stringify(
     text-align: center;
   }
 
+  .gallery-group {
+    margin-top: 2.75rem;
+  }
+
+  .gallery-group:first-of-type {
+    margin-top: 0;
+  }
+
+  .gallery-group-title {
+    color: rgba(255, 255, 255, 0.92);
+    font-family: var(--font-title);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.1rem;
+    text-transform: uppercase;
+  }
+
   .gallery-grid {
     display: grid;
     gap: 0.75rem;
@@ -1365,11 +1392,16 @@ const mapLocsJson = JSON.stringify(
 
   .svc-gallery[data-layout="side"] {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: auto;
   }
 
   .svc-gallery[data-layout="side"] .gallery-thumb {
     aspect-ratio: 3 / 4;
+  }
+
+  .svc-gallery[data-layout="side"] .gallery-thumb:nth-child(3) {
+    aspect-ratio: 16 / 10;
+    grid-column: 1 / -1;
   }
 
   .svc-gallery[data-layout="featured"] {

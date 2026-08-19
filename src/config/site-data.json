@@ -19,13 +19,13 @@
       "sectionImage": "/panel-scrap.png",
       "sectionImageContain": true,
       "galleryImages": [
-        "/scrap/maszyna1.jpg",
-        "/scrap/maszyna2.jpg",
-        "/scrap/maszyna3.jpg",
-        "/scrap/bocian.jpg",
-        "/scrap/zlom-maszyna.jpg",
-        "/scrap/zlom1.jpg",
-        "/scrap/zlom2.jpg"
+        "/scrap/maszyna1.webp",
+        "/scrap/maszyna2.webp",
+        "/scrap/maszyna3.webp",
+        "/scrap/bocian.webp",
+        "/scrap/zlom-maszyna.webp",
+        "/scrap/zlom1.webp",
+        "/scrap/zlom2.webp"
       ],
       "galleryLayout": "hero-mini",
       "description": "<p>Od <strong>ponad 30 lat</strong> prowadzimy profesjonalny skup złomu oraz surowców wtórnych, obsługując zarówno klientów indywidualnych, jak i firmy. Dzięki wieloletniemu doświadczeniu oraz nowoczesnemu zapleczu technicznemu zapewniamy sprawną obsługę, rzetelną wycenę i <strong>konkurencyjne ceny</strong>.</p><p>Skupujemy między innymi:</p><ul><li>złom stalowy i żeliwny,</li><li>metale kolorowe (miedź, aluminium, mosiądz, brąz, cynk, ołów),</li><li>stal nierdzewną i kwasoodporną,</li><li>kable i przewody,</li><li>akumulatory,</li><li>puszki aluminiowe oraz inne surowce wtórne.</li></ul><p>Każda dostawa jest ważona na <strong>legalizowanych wagach</strong>, a rozliczenie odbywa się szybko i w przejrzysty sposób. Współpracujemy zarówno z klientami indywidualnymi, jak i przedsiębiorstwami, oferując możliwość stałej współpracy oraz odbioru większych ilości złomu.</p><p>Dbamy nie tylko o wysoką jakość obsługi, ale również o środowisko naturalne. Prawidłowy recykling surowców pozwala ograniczyć zużycie zasobów naturalnych i przyczynia się do ochrony środowiska.</p><p>Zapraszamy do odwiedzenia naszych punktów skupu i kontaktu z naszym zespołem. Chętnie odpowiemy na pytania oraz przygotujemy indywidualną ofertę współpracy.</p>",
@@ -77,10 +77,14 @@
       "path": "/sklad-opalu",
       "color": "#ec7f24",
       "navIcon": "/icons/fire.webp",
-      "panelBg": "/panel-fuel.png",
-      "sectionImage": "/panel-fuel.png",
+      "panelBg": "/panel-fuel.webp",
+      "sectionImage": "/panel-fuel.webp",
       "sectionImageContain": false,
-      "galleryImages": ["/panel-fuel.png", "/fuel-bg.png"],
+      "galleryImages": [
+        { "src": "/fuel/flota.webp", "thumb": "/fuel/flota-thumb.webp" },
+        "/fuel-bg.png",
+        "/fuel/wegiel1.webp"
+      ],
       "galleryLayout": "side",
       "description": "<p>Od <strong>2018 roku</strong> prowadzimy skład opału, oferując wysokiej jakości paliwa opałowe dla klientów indywidualnych oraz firm. Stawiamy na sprawdzonych dostawców, dzięki czemu zapewniamy opał o odpowiednich parametrach, gwarantujący wydajne i ekonomiczne ogrzewanie.</p><p>W naszej ofercie znajdują się między innymi:</p><ul><li>węgiel kamienny,</li><li>ekogroszek,</li><li>pellet,</li><li>brykiet.</li></ul><p>Zapewniamy fachowe doradztwo w doborze odpowiedniego opału oraz <strong>konkurencyjne ceny</strong>. Oferujemy również <strong>transport</strong> zakupionego opału bezpośrednio do klienta, dzięki czemu cały proces zakupu jest szybki i wygodny.</p><p>Od lat stawiamy na rzetelną obsługę, terminowość oraz najwyższą jakość oferowanych produktów. Zadowolenie klientów i budowanie długotrwałych relacji są dla nas priorytetem.</p><p>Zapraszamy do kontaktu oraz odwiedzenia naszego składu opału przy <strong>ul. Powstańców Śląskich w Jeleniej Górze</strong>.</p>",
       "ctaLabel": "Zobacz więcej",
@@ -190,7 +194,7 @@
       "phone": "519 411 866",
       "title": "Skup złomu, skład opału, zakuwanie węży",
       "services": ["scrap", "fuel", "hoses"],
-      "tileBg": "/panel-fuel.png",
+      "tileBg": "/panel-fuel.webp",
       "tileColor": "#ec7f24",
       "lat": 50.9154,
       "lng": 15.7225
@@ -329,20 +333,67 @@
     "gallery": {
       "title": "Galeria",
       "subtitle": "Zajrzyj do naszych lokalizacji i poznaj naszą działalność",
-      "images": [
-        { "src": "/head.webp", "caption": "Alniko – siedziba główna" },
-        { "src": "/head2.webp", "caption": "Alniko – Jelenia Góra" },
-        { "src": "/panel-fuel.png", "caption": "Skład Opału" },
-        { "src": "/fuel-bg.png", "caption": "Opał – pełny asortyment" },
-        { "src": "/panel-scrap.png", "caption": "Skup Złomu" },
-        { "src": "/fuchs.png", "caption": "Złom – skup metali" },
+      "sections": [
         {
-          "src": "/panel-hoses.png",
-          "caption": "Zakuwanie Węży Hydraulicznych"
+          "id": "flota",
+          "title": "Nasza flota",
+          "images": [
+            {
+              "src": "/fleet/flota.webp",
+              "caption": "Flota ALNIKO – transport i logistyka"
+            },
+            {
+              "src": "/fleet/wywrotka.webp",
+              "caption": "Wywrotka ALNIKO przy rozładunku"
+            },
+            {
+              "src": "/fleet/tir-bok.webp",
+              "caption": "Ciągnik siodłowy ALNIKO"
+            },
+            {
+              "src": "/fleet/tir-wywrot.webp",
+              "caption": "Zestaw wywrotowy ALNIKO"
+            }
+          ]
         },
-        { "src": "/hoses-bg.png", "caption": "Węże hydrauliczne – warsztat" },
-        { "src": "/panel-catalysts.png", "caption": "Skup Katalizatorów" },
-        { "src": "/catalysts-bg.png", "caption": "Katalizatory – baza skupu" }
+        {
+          "id": "zlom",
+          "title": "Nasza codzienność",
+          "images": [
+            {
+              "src": "/scrap/bocian.webp",
+              "caption": "Bocian na hałdzie złomu"
+            },
+            {
+              "src": "/scrap/maszyna1.webp",
+              "caption": "Przeładunek złomu – maszyna Fuchs"
+            },
+            {
+              "src": "/scrap/maszyna2.webp",
+              "caption": "Skład złomu ALNIKO"
+            },
+            {
+              "src": "/fleet/ladowarka.webp",
+              "caption": "Prace na placu"
+            },
+            {
+              "src": "/scrap/zlom-maszyna.webp",
+              "caption": "Maszyna przeładunkowa na składzie"
+            },
+            {
+              "src": "/scrap/zlom1.webp",
+              "caption": "Plac skupu złomu"
+            },
+            {
+              "src": "/scrap/maszyna3.webp",
+              "caption": "Przeładunek surowców wtórnych"
+            },
+            {
+              "src": "/scrap/zlom2.webp",
+              "caption": "Fuchs na składzie złomu"
+            }
+          ]
+        }
       ]
     },
     "lightbox": {
