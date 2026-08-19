@@ -18,8 +18,16 @@
       "panelBg": "/panel-scrap.png",
       "sectionImage": "/panel-scrap.png",
       "sectionImageContain": true,
-      "galleryImages": ["/panel-scrap.png", "/fuchs.png"],
-      "galleryLayout": "stack",
+      "galleryImages": [
+        "/scrap/maszyna1.jpg",
+        "/scrap/maszyna2.jpg",
+        "/scrap/maszyna3.jpg",
+        "/scrap/bocian.jpg",
+        "/scrap/zlom-maszyna.jpg",
+        "/scrap/zlom1.jpg",
+        "/scrap/zlom2.jpg"
+      ],
+      "galleryLayout": "hero-mini",
       "description": "<p>Od <strong>ponad 30 lat</strong> prowadzimy profesjonalny skup złomu oraz surowców wtórnych, obsługując zarówno klientów indywidualnych, jak i firmy. Dzięki wieloletniemu doświadczeniu oraz nowoczesnemu zapleczu technicznemu zapewniamy sprawną obsługę, rzetelną wycenę i <strong>konkurencyjne ceny</strong>.</p><p>Skupujemy między innymi:</p><ul><li>złom stalowy i żeliwny,</li><li>metale kolorowe (miedź, aluminium, mosiądz, brąz, cynk, ołów),</li><li>stal nierdzewną i kwasoodporną,</li><li>kable i przewody,</li><li>akumulatory,</li><li>puszki aluminiowe oraz inne surowce wtórne.</li></ul><p>Każda dostawa jest ważona na <strong>legalizowanych wagach</strong>, a rozliczenie odbywa się szybko i w przejrzysty sposób. Współpracujemy zarówno z klientami indywidualnymi, jak i przedsiębiorstwami, oferując możliwość stałej współpracy oraz odbioru większych ilości złomu.</p><p>Dbamy nie tylko o wysoką jakość obsługi, ale również o środowisko naturalne. Prawidłowy recykling surowców pozwala ograniczyć zużycie zasobów naturalnych i przyczynia się do ochrony środowiska.</p><p>Zapraszamy do odwiedzenia naszych punktów skupu i kontaktu z naszym zespołem. Chętnie odpowiemy na pytania oraz przygotujemy indywidualną ofertę współpracy.</p>",
       "highlights": [
         { "icon": "lucide:tag", "text": "Konkurencyjne ceny" },

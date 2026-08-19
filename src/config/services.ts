@@ -30,7 +30,7 @@ export type ServiceDefinition = {
   sectionImage: string;
   sectionImageContain: boolean;
   galleryImages: string[];
-  galleryLayout: "stack" | "side" | "featured" | "single";
+  galleryLayout: "stack" | "side" | "featured" | "single" | "hero-mini";
   description: string;
   highlights?: ServiceHighlight[];
   ctaLabel: string;
