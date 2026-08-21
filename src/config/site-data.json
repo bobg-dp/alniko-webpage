@@ -82,7 +82,7 @@
       "sectionImageContain": false,
       "galleryImages": [
         { "src": "/fuel/flota.webp", "thumb": "/fuel/flota-thumb.webp" },
-        "/fuel-bg.png",
+        "/fuel-bg.webp",
         "/fuel/wegiel1.webp"
       ],
       "galleryLayout": "side",
