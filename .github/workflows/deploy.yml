@@ -28,9 +28,13 @@ jobs:
         with:
           node-version: 22
           package-manager: npm
-          build-cmd: npm run build -- --site "${{ steps.pages.outputs.origin }}" --base "${{ steps.pages.outputs.base_path }}"
-      - name: Verify CSS is prefixed for GitHub Pages
-        run: grep -q "${{ steps.pages.outputs.base_path }}/_astro/" dist/index.html
+          # Custom domain (alniko.eu) serves the site at "/", not "/alniko-webpage".
+          # configure-pages still reports the repo name as base_path for project Pages.
+          build-cmd: npm run build -- --site "https://alniko.eu" --base "/"
+      - name: Verify asset URLs are rooted for the custom domain
+        run: |
+          grep -q 'href="/_astro/' dist/index.html
+          ! grep -q '/alniko-webpage/_astro/' dist/index.html
 
   deploy:
     needs: build

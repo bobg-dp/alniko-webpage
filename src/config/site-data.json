@@ -196,8 +196,8 @@
       "services": ["scrap", "fuel", "hoses"],
       "tileBg": "/panel-fuel.webp",
       "tileColor": "#ec7f24",
-      "lat": 50.9154,
-      "lng": 15.7225
+      "lat": 50.905205152389286,
+      "lng": 15.765336155757904
     },
     {
       "id": "jg-wroclawska",
@@ -209,8 +209,8 @@
       "services": ["scrap", "catalysts"],
       "tileBg": "/panel-catalysts.png",
       "tileColor": "#efba1c",
-      "lat": 50.8978,
-      "lng": 15.7472
+      "lat": 50.911238725380706,
+      "lng": 15.815336631145195
     },
     {
       "id": "zabkowice-wroclawska",
@@ -222,8 +222,8 @@
       "services": ["scrap", "catalysts"],
       "tileBg": "/panel-scrap.png",
       "tileColor": "#646464",
-      "lat": 50.5903,
-      "lng": 16.8134
+      "lat": 50.6022951217829,
+      "lng": 16.819125959930922
     }
   ],
   "nav": {
