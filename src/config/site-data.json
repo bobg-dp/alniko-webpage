@@ -495,9 +495,9 @@
             ]
           },
           {
-            "heading": "CartoDB / CARTO",
+            "heading": "OpenStreetMap",
             "paragraphs": [
-              "Kafelki mapy (podkład kartograficzny) są pobierane z serwerów CARTO (<code>basemaps.cartocdn.com</code>). Może to wiązać się z rejestrowaniem adresu IP przez CARTO. Więcej informacji: <a href=\"https://carto.com/privacy/\" target=\"_blank\" rel=\"noopener noreferrer\">Polityka prywatności CARTO</a>."
+              "Kafelki mapy (podkład kartograficzny) są pobierane z serwerów OpenStreetMap Foundation (<code>tile.openstreetmap.org</code>). Może to wiązać się z rejestrowaniem adresu IP. Więcej informacji: <a href=\"https://wiki.osmfoundation.org/wiki/Privacy_Policy\" target=\"_blank\" rel=\"noopener noreferrer\">Polityka prywatności OSMF</a>."
             ]
           },
           {
